@@ -10,8 +10,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <?php wp_head(); ?>
-<script defer="defer" src="<?php echo get_template_directory_uri(); ?>/6k/build/static/js/main.c5512175.js"></script>
-<link href="<?php echo get_template_directory_uri(); ?>/6k/build/static/css/main.073c9b0a.css" rel="stylesheet">
+<script defer="defer" src="<?php echo get_template_directory_uri(); ?>/6k/build/static/js/main.c8f86970.js"></script>
+<link href="<?php echo get_template_directory_uri(); ?>/6k/build/static/css/main.e475d8eb.css" rel="stylesheet">
+<script src="https://webfont.fontplus.jp/accessor/script/fontplus.js?SKUuJA9FCRo%3D&box=a0gTO1QmFhk%3D&aa=1&ab=2"></script>
 </head>
 
 <body <?php body_class(); ?>>
