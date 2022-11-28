@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "TazuganeGothicStdN-Regular", sans-serif;
+}
+
+.jost {
+  font-family: 'Jost', sans-serif;
+}
+.text-last-justify {
+  text-align-last: justify;
+}
