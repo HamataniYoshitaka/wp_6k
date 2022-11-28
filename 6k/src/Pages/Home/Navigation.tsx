@@ -1,16 +1,19 @@
 import React from "react";
+import { useSelector } from 'react-redux'
 
 export default function HomeNavigation(props: any) {
+    const categories = useSelector((state: any) => state.product.categories)
+
     return (
         <>
         <nav className="fixed top-32 left-4 z-10">
-            <ul>
+            <ul className="w-12 space-y-3">
                 <li>
-                    <button className="text-sm">全て</button>
+                    <button onClick={()=>props.setSelectedCategoryId(-1)} className={`block w-full text-center py-1 transition-all ${props.selectedCategoryId===-1? 'text-sm bg-[#00FFEB]': 'text-xs text-slate-400'}`}>全て</button>
                 </li>
-                {['視覚', '嗅覚', '立体', '企画', '妄想'].map((title, i) => (
+                {categories.map((category:any, i:number) => (
                     <li>
-                        <button>{title}</button>
+                        <button onClick={()=>props.setSelectedCategoryId(category.id)} className={`block w-full text-center py-1 transition-all ${props.selectedCategoryId===category.id? 'text-sm bg-[#00FFEB]': 'text-xs text-slate-400'}`}>{category.name}</button>
                     </li>
                 ))}
             </ul>
