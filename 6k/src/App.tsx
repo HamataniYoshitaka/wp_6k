@@ -6,6 +6,7 @@ import Home from './Pages/Home';
 import Company from './Pages/Company';
 import Concept from './Pages/Concept';
 import Contact from './Pages/Contact';
+import Single from './Pages/Single';
 
 import NotFound from './Pages/404';
 import Header from './Components/Header'
@@ -19,9 +20,10 @@ function App() {
       <Header menuShowing={menuShowing} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Concept" element={<Concept />} />
-        <Route path="/Company" element={<Company />} />
-        <Route path="/Contact" element={<Contact />} />
+        <Route path="/concept" element={<Concept />} />
+        <Route path="/company" element={<Company />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/posts/:slug" element={<Single />} />
         <Route path="*" element={<NotFound />}/>
       </Routes>
       <Footer menuShowing={menuShowing} setMenuShowing={setMenuShowing} />

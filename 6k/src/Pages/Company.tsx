@@ -5,7 +5,7 @@ export default function About(props: any) {
     return (
         <div className="bg-gray-300 pt-32 pb-20 relative">
             <div className="fixed z-0 inset-0 overflow-hidden">
-                <h1 className="absolute top-[calc(50vw-0px)] left-0 text-transparent text-blur text-[160px] tracking-widest">COMPANY</h1>
+                <h1 className="absolute top-[calc(50vw-0px)] left-0 text-transparent text-blur text-[160px] tracking-widest cormorant">COMPANY</h1>
             </div>
             <div className="px-16 relative">
 

@@ -9,6 +9,9 @@ body {
 .jost {
   font-family: 'Jost', sans-serif;
 }
+.cormorant {
+  font-family: 'Cormorant Garamond', serif;
+}
 .text-last-justify {
   text-align-last: justify;
 }

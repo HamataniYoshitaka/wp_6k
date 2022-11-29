@@ -5,7 +5,7 @@ export default function Contact(props: any) {
     return (
         <div className="bg-gray-300 pt-32 pb-20 relative">
             <div className="fixed z-0 inset-0 overflow-hidden">
-                <h1 className="absolute top-[calc(50vw-0px)] left-0 text-transparent text-blur text-[160px] tracking-widest">CONTACT</h1>
+                <h1 className="absolute top-[calc(50vw-0px)] left-0 text-transparent text-blur text-[160px] tracking-widest cormorant">CONTACT</h1>
             </div>
             <div className="px-16 relative">
                 <h2 className="text-center text-sm">お問合せ</h2>

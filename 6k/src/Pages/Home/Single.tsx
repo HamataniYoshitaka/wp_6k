@@ -1,7 +1,38 @@
 import React from "react";
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import { useSelector } from "react-redux";
+import { format } from "date-fns";
+import { Link } from 'react-router-dom'
 
 export default function HomeSingle(props: any) {
+    const posts = useSelector((state: any) => state.product.posts)
+
     return (
-        <div>a</div>
+        <div className="pt-32 pb-20 relative">
+            <Swiper
+                loop
+            >
+                {posts.map((post: any, i: number) => (
+                    <SwiperSlide key={'post-'+post.id}>
+                        <div className="p-4">
+                            <Link to={'/posts/'+post.slug} className="block h-[calc(100vh-250px)] bg-white rounded-lg drop-shadow-[0_1px_10px_rgba(0,0,0,0.20)] overflow-hidden relative">
+                                <img src={post._embedded['wp:featuredmedia'][0].source_url} className="absolute top-0 left-0 w-full h-full object-cover" />
+                                <p className="absolute bottom-32 left-10 origin-top-left rotate-90 cormorant lowercase">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
+                                <ul className="absolute bottom-10 right-0 text-xs text-right space-y-2">
+                                    {post._embedded['wp:term'][1].map((tag: any) =>(
+                                        <li key={'post-'+post.id+'-tag-'+tag.id}>
+                                            <span className="inline-block py-0.5 px-1 bg-gray-400 text-white">{tag.name}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <h3 className="absolute top-14 right-0 text-right"><span className="inline-block py-1 px-2 bg-black text-white">{post.title.rendered}</span></h3>
+                            </Link>
+                        </div>
+                    </SwiperSlide>
+                ))}
+
+            </Swiper>
+        </div>
     )
 }

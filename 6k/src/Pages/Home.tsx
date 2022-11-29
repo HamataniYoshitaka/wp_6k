@@ -5,7 +5,7 @@ import HomeNavigation from "./Home/Navigation";
 import axios from 'axios'
 import { apiUrl } from "../utils";
 import { useSelector, useDispatch } from 'react-redux'
-import { setCategories } from "../redux/product";
+import { setCategories, setPosts } from "../redux/product";
 
 export default function Home(props: any) {
     const categories = useSelector((state: any) => state.product.categories)
@@ -16,8 +16,10 @@ export default function Home(props: any) {
     useEffect(()=>{
         if (categories.length) return
         axios.get(apiUrl() +'/wp-json/wp/v2/categories').then(res => {
-            console.log('categories',res)
             dispatch(setCategories(res.data))
+        })
+        axios.get(apiUrl() +'/wp-json/wp/v2/posts?_embed').then(res => {
+            dispatch(setPosts(res.data))
         })
     }, [])
 

@@ -12,7 +12,7 @@ export default function HomeNavigation(props: any) {
                     <button onClick={()=>props.setSelectedCategoryId(-1)} className={`block w-full text-center py-1 transition-all ${props.selectedCategoryId===-1? 'text-sm bg-[#00FFEB]': 'text-xs text-slate-400'}`}>全て</button>
                 </li>
                 {categories.map((category:any, i:number) => (
-                    <li>
+                    <li key={'category-'+category.id}>
                         <button onClick={()=>props.setSelectedCategoryId(category.id)} className={`block w-full text-center py-1 transition-all ${props.selectedCategoryId===category.id? 'text-sm bg-[#00FFEB]': 'text-xs text-slate-400'}`}>{category.name}</button>
                     </li>
                 ))}
