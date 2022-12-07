@@ -1,4 +1,17 @@
 <?php
+function is_localhost() {
+    $whitelist = [
+        '127.0.0.1',
+        '::1'
+    ];
+    
+    if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
+        // not valid
+        return false;
+    }
+    return true;
+}
+
 // Remove all default WP template redirects/lookups
 remove_action( 'template_redirect', 'redirect_canonical' );
 

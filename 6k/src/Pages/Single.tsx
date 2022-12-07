@@ -16,21 +16,16 @@ export default function Single(props: any) {
                 navigate('/')
             } else {
                 setPost(res.data[0])
-
-                const scriptAlert = document.createElement('script');
-                scriptAlert.type = 'text/javascript';
-
-                const textAlert = document.createTextNode(`FONTPLUS.start()`);
-                scriptAlert.appendChild(textAlert);
-
-                const head = document.getElementsByTagName('head')[0] as HTMLElement;
-                head.appendChild(scriptAlert);
-                
             }
         }).catch(error => {
             navigate('/')
         })
     }, [])
+    useEffect(()=>{
+        if (post) {
+            window.reload_fontPlus()
+        }
+    }, [post])
     return (
         <div className="bg-gray-100 pt-32 pb-20 relative">
             <div className="px-8 relative">

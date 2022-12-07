@@ -14,7 +14,6 @@ import Footer from './Components/Footer'
 
 function App() {
   const [menuShowing, setMenuShowing] = useState(false)
-
   return (
     <div className='w-screen min-h-screen relative'>
       <Header menuShowing={menuShowing} />
