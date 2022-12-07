@@ -18,8 +18,8 @@
 <!-- Font Plus -->
 <script src="https://webfont.fontplus.jp/accessor/script/fontplus.js?SKUuJA9FCRo%3D&box=a0gTO1QmFhk%3D&aa=1&ab=2"></script>
 
-<script defer="defer" src="<?php echo get_template_directory_uri(); ?>/6k/build/static/js/main.4c7c9c9c.js"></script>
-<link href="<?php echo get_template_directory_uri(); ?>/6k/build/static/css/main.2c12205a.css" rel="stylesheet">
+<script defer="defer" src="<?php echo get_template_directory_uri(); ?>/6k/build/static/js/main.eece5712.js"></script>
+<link href="<?php echo get_template_directory_uri(); ?>/6k/build/static/css/main.4f883d33.css" rel="stylesheet">
 </head>
 
 <body <?php body_class(); ?>>

@@ -56,7 +56,12 @@ export default function Contact(props: any) {
                 </div>
 
             </div>
-            <NavFooter />
+            <div className="my-8 px-8">
+                <hr className="border-t-2 border-black"/>
+            </div>
+            <div className="fixed bottom-14 left-0 z-10 w-full">
+                <NavFooter />
+            </div>
         </div>
 
     )

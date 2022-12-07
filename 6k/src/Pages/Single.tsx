@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { apiUrl } from "../utils";
 import { format } from "date-fns";
+import NavFooter from "../Components/NavFooter";
 
 export default function Single(props: any) {
     const { slug } = useParams()
@@ -42,6 +43,10 @@ export default function Single(props: any) {
                 )}
 
             </div>
+            <div className="fixed bottom-14 left-0 z-10 w-full">
+                <NavFooter />
+            </div>
+
         </div>
     )
 }

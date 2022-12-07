@@ -41,7 +41,12 @@ export default function About(props: any) {
                 <p className="text-gray-500 text-xs mt-3 leading-5">虫たちと一緒に出会う、新しい尺度。 虫と共創するジュエリーブランド。</p>
                 <a href="#" className="block border-2 bg-white border-black rounded-full text-xs text-center py-2 mt-4 jost">MORE</a>
             </div>
-            <NavFooter />
+            <div className="my-8 px-8">
+                <hr className="border-t-2 border-black"/>
+            </div>
+            <div className="fixed bottom-14 left-0 z-10 w-full">
+                <NavFooter />
+            </div>
         </div>
     )
 }

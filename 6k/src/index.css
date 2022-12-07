@@ -15,3 +15,14 @@ body {
 .text-last-justify {
   text-align-last: justify;
 }
+#pagination .swiper-wrapper {
+  align-items: end;
+}
+
+#pagination button {
+  height: 100px;
+}
+#pagination .swiper-slide-active button {
+  font-size: 63px;
+  color: #000;
+}

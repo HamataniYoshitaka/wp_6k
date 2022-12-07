@@ -11,7 +11,6 @@ export default function NavFooter(props: any) {
     };
     return (
         <div className="px-8 relative">
-            <hr className="border-t-2 border-black my-8"/>
             <div className="grid grid-cols-3 gap-2">
                 <button onClick={()=>navigate(-1)} className="flex justify-center items-center bg-white border-2 border-black text-center rounded-full py-1 text-xs jost">
                     <svg className="w-2 h-2 mr-2" viewBox="0 0 4.37 5.24">
