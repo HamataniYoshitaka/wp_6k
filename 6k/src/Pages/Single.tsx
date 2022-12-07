@@ -16,6 +16,16 @@ export default function Single(props: any) {
                 navigate('/')
             } else {
                 setPost(res.data[0])
+
+                const scriptAlert = document.createElement('script');
+                scriptAlert.type = 'text/javascript';
+
+                const textAlert = document.createTextNode(`FONTPLUS.start()`);
+                scriptAlert.appendChild(textAlert);
+
+                const head = document.getElementsByTagName('head')[0] as HTMLElement;
+                head.appendChild(scriptAlert);
+                
             }
         }).catch(error => {
             navigate('/')
