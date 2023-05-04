@@ -4,6 +4,7 @@ import Glass from "./Concept/Glass";
 import { imgDir } from "../utils";
 import ConceptIndicator from "./Concept/Indicator";
 import Typewriting from "./Concept/Typewriting";
+import { Link } from "react-router-dom";
 
 export default function Concept(props) {
     const fullpageRef = useRef(null);
@@ -24,8 +25,8 @@ export default function Concept(props) {
  
     return (
         <>
-            <div className="fixed z-0 inset-0 -top-40 overflow-hidden ">
-                <h1 className="absolute top-[calc(50vw-0px)] left-0 text-transparent text-blur text-[160px] tracking-widest cormorant">CONCEPT</h1>
+            <div className={`fixed z-0 top-0 left-0 w-screen h-screen overflow-hidden transition-opacity duration-[2s] ${currentPage===0? 'opacity-100': 'opacity-0'}`}>
+                <h1 className="absolute top-[calc(50vh-200px)] left-[calc(50vw-760px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40">CONCEPT</h1>
             </div>
             <Typewriting currentPage={currentPage} prevPage={prevPage} finishTypewriting={finishTypewriting} finishDeleting={finishDeleting}/>
             <ConceptIndicator currentPage={currentPage}/>
@@ -82,24 +83,34 @@ export default function Concept(props) {
                                     </p>
                                 </div>
                             </section>
-                            <section className="section bg-[#E8E8E8]">
-                                <div className="max-w-[970px] mx-auto">
-                                    <h4 className="text-3xl text-center font-medium">ROKKEI’S PROJECTS</h4>
-                                    <p className="text-center text-xs mt-8">クライアントワーク以外に社会へ問いを投げかける企画やブランドの運営をおこなっています</p>
-                                    <div className="mt-8 grid grid-cols-2 gap-12">
-                                        <div className="relative">
-                                            <img className="w-full h-auto" src={imgDir() + '/concept/no_mix.jpg'} />
-                                            <div className="absolute inset-0 flex justify-center items-center">
-                                                <img src={imgDir() + '/concept/typo-no_mix.svg'} />
+                            <section className="section min-h-screen">
+                                <div className="bg-[#E8E8E8] py-20">
+                                    <div className="max-w-[970px] mx-auto">
+                                        <h4 className="text-3xl text-center font-medium">ROKKEI’S PROJECTS</h4>
+                                        <p className="text-center text-xs mt-8">クライアントワーク以外に社会へ問いを投げかける企画やブランドの運営をおこなっています</p>
+                                        <div className="mt-8 grid grid-cols-2 gap-12">
+                                            <div className="relative">
+                                                <img className="w-full h-auto" src={imgDir() + '/concept/no_mix.jpg'} />
+                                                <div className="absolute inset-0 flex justify-center items-center">
+                                                    <img src={imgDir() + '/concept/typo-no_mix.svg'} />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="relative">
-                                            <img className="w-full h-auto" src={imgDir() + '/concept/hunch.jpg'} />
-                                            <div className="absolute inset-0 flex justify-center items-center">
-                                                <img src={imgDir() + '/concept/typo-hunch.svg'} />
+                                            <div className="relative">
+                                                <img className="w-full h-auto" src={imgDir() + '/concept/hunch.jpg'} />
+                                                <div className="absolute inset-0 flex justify-center items-center">
+                                                    <img src={imgDir() + '/concept/typo-hunch.svg'} />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                </div>
+                                <div className="flex justify-center items-center space-x-10 min-h-[calc(100vh-697px)]">
+                                    <Link to="/" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CREATIVE</Link>
+                                    <Link to="/" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CREATIVE</Link>
+                                    <Link to="/" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CREATIVE</Link>
+                                </div>
+                                <div className="h-9">
                                 </div>
                             </section>
 

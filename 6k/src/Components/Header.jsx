@@ -9,7 +9,7 @@ export default function Header(props) {
                 <path fill="currentColor" d="M26.96,28.04h-2.88c.95,15.97,4.65,32.57,7.94,41.52,1.5,.6,3.16,.63,4.68,.1-2.46-3.94-4.79-10.54-6.6-18.6-1.65-7.58-2.71-15.28-3.15-23.03"/>
                 <path fill="currentColor" d="M9.76,28.04c-.44,7.75-1.49,15.45-3.15,23.03C4.81,59.13,2.47,65.73,0,69.67c1.52,.53,3.19,.5,4.68-.1,3.3-8.98,7-25.58,7.94-41.52h-2.88Z"/>
             </svg>
-            <svg className="w-[100px] h-auto" viewBox="0 0 100.7 12.06">
+            <svg className="w-[180px] h-auto" viewBox="0 0 100.7 12.06">
                 <path fill="currentColor" d="M71.26,.12V11.45l.64,.49h.5V.12h-1.14Z"/>
                 <path fill="currentColor" d="M58.12,.12V11.45l.64,.49h.5V.12h-1.14Z"/>
                 <path fill="currentColor" d="M47.29,.12h-.82V11.45l.64,.49h5.94v-1.15h-5.43V6.24h4.34v-1.14h-4.34V1.26h5.43V.12h-5.77Z"/>
