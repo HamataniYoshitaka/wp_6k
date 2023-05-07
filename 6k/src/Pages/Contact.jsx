@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import axios from "axios";
+import { apiUrl } from "../utils";
 
 const schema = yup.object().required().shape({
     name: yup.string().required('必須項目です'),
@@ -15,6 +16,7 @@ const schema = yup.object().required().shape({
 })
 
 export default function Contact(props) {
+
     const [recaptcha, setRecapthca] = useState(false)
     const onChallenge = (value) => {
         setRecapthca(value != null)
@@ -36,7 +38,7 @@ export default function Contact(props) {
     }
     const [nowLoading, setNowLoading] = useState(false)
     const submit = () => {
-        const url = 'http://localhost:8002/wp-json/wp/6k/nonce'
+        const url = apiUrl() + '/wp-json/wp/6k/nonce'
         setNowLoading(true)
         axios.post(url, {}).then(res => {
             console.log('success', res)
@@ -48,7 +50,7 @@ export default function Contact(props) {
                 email: getValues('email'),
     
             }
-            const url2 = 'http://localhost:8002/wp-json/wp/6k/contact'
+            const url2 = apiUrl() + '/wp-json/wp/6k/contact'
             axios.post(url2, payload).then(res => {
                 console.log('success', res)
                 setNowLoading(false)
@@ -61,23 +63,6 @@ export default function Contact(props) {
             setNowLoading(false)
         })
     }
-    const submit2 = () => {
-        const payload = {
-            name: getValues('name'),
-            kana: getValues('kana'),
-            email: getValues('email'),
-
-        }
-        const url = 'http://localhost:8002/wp-json/wp/6k/nonce'
-        setNowLoading(true)
-        axios.post(url, payload).then(res => {
-            console.log('success', res)
-            setNowLoading(false)
-        }).catch(errors => {
-            console.log('error', errors)
-            setNowLoading(false)
-        })
-    }
 
     return (
         <div className="bg-[#E8E8E8] pt-32 pb-20 relative">
@@ -85,7 +70,7 @@ export default function Contact(props) {
             <div className="fixed z-0 top-0 left-0 w-screen h-screen overflow-hidden">
                 <h1 className="absolute top-[calc(50vh-200px)] left-[calc(50vw-760px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40">CONTACT</h1>
             </div>
-            <div className="md:w-[768px] mx-auto relative px-4 ">
+            <div className="md:w-[768px] mx-auto relative px-4 pb-20">
                 <div className="md:max-w-[372px]">
                     <h2 className=" text-sm">お問合せ</h2>
                     <hr className="w-4 border-t-1.5 border-black my-3"/>
@@ -141,7 +126,7 @@ export default function Contact(props) {
                             />
                         </div>
                         <button onClick={()=>submit()} disabled={!canSubmit()} className="block w-full bg-black text-white text-center text-xs py-3 transition-colors hover:bg-gray-800 disabled:bg-gray-400">送信</button>
-                        <button onClick={()=>submit()} className="block w-full bg-black text-white text-center text-xs py-3 transition-colors hover:bg-gray-800 disabled:bg-gray-400">送信</button>
+                        {/* <button onClick={()=>submit()} className="block w-full bg-black text-white text-center text-xs py-3 transition-colors hover:bg-gray-800 disabled:bg-gray-400">送信</button> */}
 
                     </div>
 

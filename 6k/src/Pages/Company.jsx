@@ -36,11 +36,11 @@ export default function About(props) {
                     <h3 className="mt-8"><span className="text-xs bg-white font-medium py-0.5 px-2 inline-block tracking-wider jost">PRODUCTS</span></h3>
                     <h4 className="mt-4 text-lg">混ぜるな危険</h4>
                     <p className="text-gray-500 text-xs mt-3 leading-5">「香り」で、世界の解像度は上がる。「混ぜるな危険」は「香り」と接続してこなかった「何か」を繋げていくプロジェクトチーム。</p>
-                    <a href="https://mazerunakiken.net/" target="_blank" className="block border-2 bg-white border-black rounded-full text-xs text-center py-2 mt-4 jost">MORE</a>
+                    <a href="https://mazerunakiken.net/" target="_blank" className="block border-1.5 bg-white border-black rounded-full text-xs text-center py-2 mt-4 jost">MORE</a>
 
                     <h4 className="mt-6 text-lg">hunch</h4>
                     <p className="text-gray-500 text-xs mt-3 leading-5">虫たちと一緒に出会う、新しい尺度。 虫と共創するジュエリーブランド。</p>
-                    <a href="#" className="block border-2 bg-white border-black rounded-full text-xs text-center py-2 mt-4 jost">MORE</a>
+                    <a href="#" className="block border-1.5 bg-white border-black rounded-full text-xs text-center py-2 mt-4 jost">MORE</a>
                 </div>
 
             </div>

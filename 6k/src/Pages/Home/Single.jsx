@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import SwiperControll from "./SwiperControll";
 
 export default function HomeSingle(props) {
+    const [dragging, setDragging] = useState(false)
     const posts = useSelector((state) => state.product.posts)
     const [swiper, setSwiper] = useState(null)
     const slideNext = () => {
@@ -24,11 +25,18 @@ export default function HomeSingle(props) {
                 <Swiper
                     loop
                     onSwiper={(swiper) => setSwiper(swiper)}
+                    onBeforeTransitionStart={() => setDragging(true)}
+                    onTransitionEnd={() => setDragging(false)}
+                    onTouchStart={(swiperSrc) => {
+                        setDragging(true)
+                        // TODO: indicator のindexを揃える
+                        swiper.slideToLoop(swiperSrc.activeIndex)
+                    }}
                 >
                     {posts.map((post, i) => (
                         <SwiperSlide key={'post-'+post.id}>
                             <div className="p-4">
-                                <Link to={'/posts/'+post.slug} className="block h-[calc(100vh-270px)] md:h-[520px] bg-white rounded-lg drop-shadow-[0_1px_10px_rgba(0,0,0,0.20)] overflow-hidden relative">
+                                <Link to={'/posts/'+post.slug} className={`block h-[calc(100vh-270px)] md:h-[520px] bg-white rounded-lg transition-all ${dragging? 'drop-shadow-[0_0_0_rgba(0,0,0,0.20)]': 'drop-shadow-[0_1px_10px_rgba(0,0,0,0.20)]'}  overflow-hidden relative`}>
                                     <img src={post._embedded['wp:featuredmedia'][0].source_url} className="absolute top-0 left-0 w-full h-full object-cover" />
                                     <p className="absolute bottom-32 left-10 origin-top-left rotate-90 cormorant lowercase">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                                     <ul className="absolute bottom-10 right-0 text-xs text-right space-y-2">
