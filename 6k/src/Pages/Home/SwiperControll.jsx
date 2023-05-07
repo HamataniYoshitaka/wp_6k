@@ -16,7 +16,7 @@ export default function SwiperControll(props) {
         props.slidePrev()
         swiper.slidePrev()
     }
-    const onClickPage = (index: number) => {
+    const onClickPage = (index) => {
         props.slideToLoop(index)
         swiper.slideToLoop(index)
     }
@@ -38,7 +38,7 @@ export default function SwiperControll(props) {
                         id="pagination"
                         onSwiper={(swiper) => setSwiper(swiper)}
                     >
-                        {posts.map((post, i:number)=>(
+                        {posts.map((post, i)=>(
                             <SwiperSlide key={'indicator-'+post.id}>
                                 <button onClick={()=>onClickPage(i)} className="flex justify-center items-end py-2 w-[44px] text-gray-500 transition-all duration-300 jost">{i+1}</button>
                             </SwiperSlide>

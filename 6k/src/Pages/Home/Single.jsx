@@ -15,7 +15,7 @@ export default function HomeSingle(props) {
     const slidePrev = () => {
         swiper.slidePrev()
     }
-    const slideToLoop = (index: number) => {
+    const slideToLoop = (index) => {
         swiper.slideToLoop(index)
     }
     return (
@@ -25,7 +25,7 @@ export default function HomeSingle(props) {
                     loop
                     onSwiper={(swiper) => setSwiper(swiper)}
                 >
-                    {posts.map((post, i: number) => (
+                    {posts.map((post, i) => (
                         <SwiperSlide key={'post-'+post.id}>
                             <div className="p-4">
                                 <Link to={'/posts/'+post.slug} className="block h-[calc(100vh-270px)] md:h-[520px] bg-white rounded-lg drop-shadow-[0_1px_10px_rgba(0,0,0,0.20)] overflow-hidden relative">

@@ -3,11 +3,12 @@ import NavFooter from "../Components/NavFooter";
 
 export default function About(props) {
     return (
-        <div className="bg-gray-300 pt-32 pb-20 relative">
-            <div className="fixed z-0 inset-0 overflow-hidden">
-                <h1 className="absolute top-[calc(50vw-0px)] left-0 text-transparent text-blur text-[160px] tracking-widest cormorant">COMPANY</h1>
+        <div className="bg-[#C6C6C6] pt-32 pb-40 relative">
+            <div className="fixed z-0 top-0 left-0 w-screen h-screen overflow-hidden">
+                <h1 className="absolute top-[calc(50vh-200px)] left-[calc(50vw-760px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40">COMPANY</h1>
             </div>
-            <div className="px-16 relative">
+
+            <div className="md:w-[768px] mx-auto relative px-4 ">
 
                 <h3><span className="text-xs bg-white font-medium py-0.5 px-2 inline-block tracking-wider jost">ESTABLISHED</span></h3>
                 <p className="mt-4 text-sm">2019.4</p>
@@ -31,15 +32,17 @@ export default function About(props) {
                     <li>ブランドを象徴する香りの提案</li>
                     <li>その他クリエイティブ</li>
                 </ul>
+                <div className="w-64">
+                    <h3 className="mt-8"><span className="text-xs bg-white font-medium py-0.5 px-2 inline-block tracking-wider jost">PRODUCTS</span></h3>
+                    <h4 className="mt-4 text-lg">混ぜるな危険</h4>
+                    <p className="text-gray-500 text-xs mt-3 leading-5">「香り」で、世界の解像度は上がる。「混ぜるな危険」は「香り」と接続してこなかった「何か」を繋げていくプロジェクトチーム。</p>
+                    <a href="https://mazerunakiken.net/" target="_blank" className="block border-2 bg-white border-black rounded-full text-xs text-center py-2 mt-4 jost">MORE</a>
 
-                <h3 className="mt-8"><span className="text-xs bg-white font-medium py-0.5 px-2 inline-block tracking-wider jost">PRODUCTS</span></h3>
-                <h4 className="mt-4 text-lg">混ぜるな危険</h4>
-                <p className="text-gray-500 text-xs mt-3 leading-5">「香り」で、世界の解像度は上がる。「混ぜるな危険」は「香り」と接続してこなかった「何か」を繋げていくプロジェクトチーム。</p>
-                <a href="https://mazerunakiken.net/" target="_blank" className="block border-2 bg-white border-black rounded-full text-xs text-center py-2 mt-4 jost">MORE</a>
+                    <h4 className="mt-6 text-lg">hunch</h4>
+                    <p className="text-gray-500 text-xs mt-3 leading-5">虫たちと一緒に出会う、新しい尺度。 虫と共創するジュエリーブランド。</p>
+                    <a href="#" className="block border-2 bg-white border-black rounded-full text-xs text-center py-2 mt-4 jost">MORE</a>
+                </div>
 
-                <h4 className="mt-6 text-lg">hunch</h4>
-                <p className="text-gray-500 text-xs mt-3 leading-5">虫たちと一緒に出会う、新しい尺度。 虫と共創するジュエリーブランド。</p>
-                <a href="#" className="block border-2 bg-white border-black rounded-full text-xs text-center py-2 mt-4 jost">MORE</a>
             </div>
             <NavFooter />
         </div>

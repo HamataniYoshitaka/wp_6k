@@ -89,17 +89,28 @@ export default function Concept(props) {
                                         <h4 className="text-3xl text-center font-medium">ROKKEI’S PROJECTS</h4>
                                         <p className="text-center text-xs mt-8">クライアントワーク以外に社会へ問いを投げかける企画やブランドの運営をおこなっています</p>
                                         <div className="mt-8 grid grid-cols-2 gap-12">
-                                            <div className="relative">
+                                            <div className="relative group">
                                                 <img className="w-full h-auto" src={imgDir() + '/concept/no_mix.jpg'} />
                                                 <div className="absolute inset-0 flex justify-center items-center">
                                                     <img src={imgDir() + '/concept/typo-no_mix.svg'} />
                                                 </div>
+                                                <div className="absolute inset-0 bg-black/70 flex flex-col justify-center items-center space-y-6 transition-opacity duration-500 opacity-0 group-hover:opacity-100">
+                                                    <h5 className="text-white text-2xl">混ぜるな危険</h5>
+                                                    <p className="text-white text-center text-xs leading-7">香りで、世界の解像度は上がる。<br />混ぜるな危険は、香りと接続してこなかった「何か」を<br />繋げていくプロジェクトチーム。</p>
+                                                    <a href="https://mazerunakiken.net/" target="_blank" className="border-1.5 border-white py-2 w-60 bg-white rounded-full text-black text-center text-sm transition-colors hover:bg-white/90">MORE</a>
+                                                </div>
                                             </div>
-                                            <div className="relative">
+                                            <div className="relative group">
                                                 <img className="w-full h-auto" src={imgDir() + '/concept/hunch.jpg'} />
                                                 <div className="absolute inset-0 flex justify-center items-center">
                                                     <img src={imgDir() + '/concept/typo-hunch.svg'} />
                                                 </div>
+                                                <div className="absolute inset-0 bg-black/70 flex flex-col justify-center items-center space-y-6 transition-opacity duration-500 opacity-0 group-hover:opacity-100">
+                                                    <h5 className="text-white text-2xl">hunch</h5>
+                                                    <p className="text-white text-center text-xs leading-7">「知ってるようで、知らないもの、と。」を<br />コンセプトにした、虫と共創する<br />ジュエリーブランド。</p>
+                                                    <a href="/" target="_blank" className="border-1.5 border-white py-2 w-60 bg-white rounded-full text-black text-center text-sm transition-colors hover:bg-white/90">MORE</a>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -107,8 +118,8 @@ export default function Concept(props) {
                                 </div>
                                 <div className="flex justify-center items-center space-x-10 min-h-[calc(100vh-697px)]">
                                     <Link to="/" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CREATIVE</Link>
-                                    <Link to="/" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">COMPANY</Link>
-                                    <Link to="/" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CONTACT</Link>
+                                    <Link to="/company" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">COMPANY</Link>
+                                    <Link to="/contact" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CONTACT</Link>
                                 </div>
                                 <div className="h-9">
                                 </div>

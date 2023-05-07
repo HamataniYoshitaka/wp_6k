@@ -15,7 +15,7 @@ export default function Single(props) {
     const navigate = useNavigate()
     const [post, setPost] = useState(null)
     useEffect(()=>{
-        axios.get(apiUrl() +'/wp-json/wp/6k/artwork?id=1').then(res => {
+        axios.get(apiUrl() +'/wp-json/wp/6k/artwork?slug='+slug).then(res => {
             console.log('res', res)
             if (!res.data.length) {
                 navigate('/')
@@ -57,15 +57,18 @@ export default function Single(props) {
                             <p className="text-sm cormorant lowercase ">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                         </div>
                         <hr className="my-6 border-black" />
+                    </div>
+                    <div className="w-[560px] mx-auto">
+
                         <div dangerouslySetInnerHTML={{__html: post.content}} className="text-xs leading-6">
                         </div>
                     </div>
 
-                    <div className="w-[657px] mx-auto mt-10">
+                    <div className="w-[560px] mx-auto mt-10">
                         <h6><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-lg font-semibold">detail</span></h6>
                     </div>
                     <div className="overflow-hidden">
-                        <div className="w-[687px] mx-auto artwork-detail-swiper relative">
+                        <div className="w-[592px] mx-auto artwork-detail-swiper relative">
                             <Swiper
                                 loop
                                 centeredSlides
@@ -101,7 +104,7 @@ export default function Single(props) {
                             </button>
                         </div>
                     </div>
-                    <div className="w-[657px] mx-auto mt-10 pb-20">
+                    <div className="w-[560px] mx-auto mt-10 pb-20">
                         <h6><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-lg font-semibold">trigger</span></h6>
                         <img src={post.trigger_image} className="w-full h-auto rounded-xl mt-6" />
                         <p className="text-sm leading-7 mt-6">{post.trigger_description}</p>

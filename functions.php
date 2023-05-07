@@ -91,14 +91,14 @@ add_action('rest_api_init', 'add_rest_original_endpoint');
 function artworkSingle($data) {
     global $wpdb;
 
-    $id = $data->get_param( 'id' );
+    $slug = $data->get_param( 'slug' );
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => -1,
         'post_status' => 'publish',
         'orderby' => 'date',
         'order' => 'DESC',
-        'p' => $id
+        'name' => $slug
     );
     $posts = get_posts($args);
     $data = array();
@@ -159,6 +159,23 @@ function artworkSingle($data) {
     }
     return $data;
 }
+/**
+ * 一般設定に項目追加
+ */
+// 項目の追加
+function add_custom_option_field(){
+    add_settings_field( 'mailform_to', 'メールフォーム送信先アドレス', 'display_custom_option', 'general');
+    register_setting( 'general', 'mailform_to' );
+  }
+  add_filter( 'admin_init', 'add_custom_option_field' );
+  // 追加した項目の内容
+  function display_custom_option(){
+    $mailform_to = get_option( 'mailform_to' );
+  ?>
+    <input type="text" id="mailform_to" name="mailform_to" style="width: 50%;" value="<?php echo $mailform_to; ?>">
+  <?php
+}
+  
 function create_nonce($data) {
     $nonce = wp_create_nonce( 'rokkei.co.jp' );
     return $nonce;
@@ -169,8 +186,61 @@ function contact($data) {
         return 'nonce error';
     }
     $name = $data->get_param( 'name' );
+    $kana = $data->get_param( 'kana' );
+    $company = $data->get_param( 'company' );
+    $company_kana = $data->get_param( 'company_kana' );
+    $tel = $data->get_param( 'tel' );
     $email = $data->get_param( 'email' );
     $message = $data->get_param( 'message' );
-    return 'success';
+    $work = $data->get_param( 'work' );
+
+$body = <<< EOM
+{$name}様
+
+お問い合わせいただきありがとうございます。
+改めて担当者よりご連絡いたしますので、しばらくお待ち下さい。
+
+ご入力頂いた内容は以下になります。
+---
+お名前: {$name}
+フリガナ: {$kana}
+会社名: {$company}
+会社名(フリガナ): {$company_kana}
+電話番号: {$tel}
+メールアドレス: {$email}
+気になったプロジェクト: {$work}
+お問い合わせ内容: {$message}
+---
+
+【六景】
+HP: rokkei.co.jp
+mail: info@rokkei.co.jp
+EOM;
+    
+    
+    $headers  = 'From: 六景 <system@rokkei.co.jp>' . "\r\n";
+    $headers .= 'Reply-To: 六景 <info@rokkei.co.jp>' . "\r\n";
+    $success1 = wp_mail( $email, '【六景】お問い合わせを受け付けました', $body, $headers );
+        
+            // 管理メール送信処理
+$body = <<< EOM
+webよりお問い合わせがありました。
+ご入力頂いた内容は以下になります。
+---
+お名前: {$name}
+フリガナ: {$kana}
+会社名: {$company}
+会社名(フリガナ): {$company_kana}
+電話番号: {$tel}
+メールアドレス: {$email}
+気になったプロジェクト: {$work}
+お問い合わせ内容: {$message}
+---
+EOM;
+        
+        $success2 = wp_mail( get_option( 'mailform_to' ), '【六景】webよりお問い合わせがありました', $body, $headers );
+    
+    
+        return ['status' => $success1 && $success2];
 }
 ?>
