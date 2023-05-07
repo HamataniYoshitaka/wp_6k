@@ -17,6 +17,8 @@
  * Copyright (C) 2018 alvarotrigo.com - A project by Alvaro Trigo & Michael Walker
  */
 
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+
 /**
  * @license React
  * react-dom.production.min.js

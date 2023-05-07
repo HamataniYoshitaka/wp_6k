@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Header(props) {
     return (
-        <header className={`fixed flex z-50 top-0 left-0 w-full justify-between items-center p-5 transition-colors duration-300 ${props.menuShowing? 'text-white': 'text-black'}`}>
+        <header className={`pointer-events-none fixed flex z-50 top-0 left-0 w-full justify-between items-center p-5 transition-colors duration-300 ${props.menuShowing? 'text-white': 'text-black'}`}>
             <svg className="w-9 h-auto " viewBox="0 0 36.71 70.05">
                 <path fill="currentColor" d="M36.7,15v-1.14H0v1.14l1.09,1.44H35.61l1.09-1.44Z"/>
                 <path fill="currentColor" d="M25.98,2.58l.99-1.43V0H9.76V1.16l.99,1.43h15.23Z"/>

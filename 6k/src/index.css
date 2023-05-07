@@ -26,3 +26,20 @@ body {
   font-size: 63px;
   color: #000;
 }
+.artwork-detail-swiper .swiper {
+  overflow: visible;
+}
+.artwork-detail-swiper .swiper-slide img {
+  transform: scale(0.9);
+  transition: transform 0.3s ease-in-out;
+}
+.artwork-detail-swiper .swiper-slide p {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.artwork-detail-swiper .swiper-slide.swiper-slide-active img {
+  transform: scale(1.0);
+}
+.artwork-detail-swiper .swiper-slide.swiper-slide-active p {
+  opacity: 1;
+}

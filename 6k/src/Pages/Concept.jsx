@@ -107,8 +107,8 @@ export default function Concept(props) {
                                 </div>
                                 <div className="flex justify-center items-center space-x-10 min-h-[calc(100vh-697px)]">
                                     <Link to="/" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CREATIVE</Link>
-                                    <Link to="/" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CREATIVE</Link>
-                                    <Link to="/" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CREATIVE</Link>
+                                    <Link to="/" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">COMPANY</Link>
+                                    <Link to="/" className="border-2 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CONTACT</Link>
                                 </div>
                                 <div className="h-9">
                                 </div>
