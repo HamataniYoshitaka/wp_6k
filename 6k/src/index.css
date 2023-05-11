@@ -26,6 +26,13 @@ body {
   font-size: 63px;
   color: #000;
 }
+.top-single-swiper>div {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+.top-single-swiper.swiper-slide-active>div {
+  opacity: 1;
+}
 .artwork-detail-swiper .swiper {
   overflow: visible;
 }

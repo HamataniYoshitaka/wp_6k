@@ -18,7 +18,7 @@ export default function Home(props) {
         axios.get(apiUrl() +'/wp-json/wp/v2/categories').then(res => {
             dispatch(setCategories(res.data))
         })
-        axios.get(apiUrl() +'/wp-json/wp/v2/posts?per_page=99&_embed').then(res => {
+        axios.get(apiUrl() +'/wp-json/wp/6k/artworks').then(res => {
             dispatch(setPosts(res.data))
         })
     }, [])

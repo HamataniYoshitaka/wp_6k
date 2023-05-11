@@ -65,11 +65,16 @@ if ( ! function_exists( 'spa_setup_theme' ) ) :
     add_action( 'after_setup_theme', 'spa_setup_theme' );
 endif;
 
-// nonceの有効期限を10秒に設定
-add_filter( 'nonce_life', function () { return 10; } );
+// nonceの有効期限を1時間に設定
+add_filter( 'nonce_life', function () { return 60*60; } );
 
 function add_rest_original_endpoint(){
 	//エンドポイントを登録
+    register_rest_route( 'wp/6k', '/artworks', array(
+        'methods' => 'GET',
+        'callback' => 'artworkIndex',
+        'permission_callback' => function() { return true; }
+	));
 	register_rest_route( 'wp/6k', '/artwork', array(
         'methods' => 'GET',
         'callback' => 'artworkSingle',
@@ -87,6 +92,77 @@ function add_rest_original_endpoint(){
     ));
 }
 add_action('rest_api_init', 'add_rest_original_endpoint');
+
+function artworkIndex() {
+    global $wpdb;
+
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+        'orderby' => 'date',
+        'order' => 'DESC',
+    );
+    $posts = get_posts($args);
+    $data = array();
+    foreach ($posts as $post) {
+        // カテゴリーを配列で取得
+        $categories = get_the_category($post->ID);
+        $category = array();
+        foreach ($categories as $cat) {
+            $category[] = array(
+                'id' => $cat->term_id,
+                'name' => $cat->name,
+                'slug' => $cat->slug
+            );
+        }
+        // タグを配列で取得
+        $tags = get_the_tags($post->ID);
+        $tag = array();
+        foreach ($tags as $t) {
+            $tag[] = array(
+                'id' => $t->term_id,
+                'name' => $t->name,
+                'slug' => $t->slug
+            );
+        }
+        // Smart Custom Fieldsの値を取得
+        $fields = SCF::get('details', $post->ID);
+        $details = array();
+        foreach ($fields as $field) { 
+            $image = $field['image'];
+            if ($image) {
+                $image = wp_get_attachment_url( $image );
+            }
+            $description = $field['description'];
+            $details[] = array(
+                'image' => $image,
+                'description' => $description
+            );
+        }
+        $trigger_image = SCF::get('trigger_image', $post->ID);
+        if ($trigger_image) {
+            $trigger_image = wp_get_attachment_url( $trigger_image );
+        }
+
+        $data[] = array(
+            'id' => $post->ID,
+            'title' => $post->post_title,
+            'slug' => $post->post_name,
+            'date' => $post->post_date,
+            'category' => $category,
+            'tag' => $tag,
+            'thumbnail' => get_the_post_thumbnail_url($post->ID, 'full'),
+            'details' => $details,
+            'trigger_image' => $trigger_image,
+            'trigger_description' => SCF::get('trigger_description', $post->ID),
+            'credit'  => SCF::get('credit', $post->ID),
+            'shadow_text' => SCF::get('shadow_text', $post->ID),
+        );
+
+    }
+    return $data;
+}
 
 function artworkSingle($data) {
     global $wpdb;
@@ -154,6 +230,7 @@ function artworkSingle($data) {
             'trigger_image' => $trigger_image,
             'trigger_description' => SCF::get('trigger_description', $post->ID),
             'credit'  => SCF::get('credit', $post->ID),
+            'shadow_text' => SCF::get('shadow_text', $post->ID),
         );
 
     }
