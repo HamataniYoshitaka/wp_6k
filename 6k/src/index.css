@@ -50,3 +50,109 @@ body {
 .artwork-detail-swiper .swiper-slide.swiper-slide-active p {
   opacity: 1;
 }
+
+.glitch-logo:before {
+  content: url(https://mazerunakiken.net/wp2020/wp-content/themes/mazeruna/assets/images/logo-glitch/red.svg);
+  animation: noise-anim-logo-red 3s infinite linear alternate-reverse;
+}
+.glitch-logo:after {
+  content: url(https://mazerunakiken.net/wp2020/wp-content/themes/mazeruna/assets/images/logo-glitch/blue.svg);
+  animation: noise-anim-logo-blue 2s infinite linear alternate-reverse;
+}
+
+.glitch-logo:after, .glitch-logo:before {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+@keyframes noise-anim-logo-blue {
+  0% {
+    clip-path: inset(209px 1px 122px 1px); }
+  5% {
+    clip-path: inset(112px 1px 68px 1px); }
+  10% {
+    clip-path: inset(187px 1px 150px 1px); }
+  15% {
+    clip-path: inset(51px 1px 136px 1px); }
+  20% {
+    clip-path: inset(65px 1px 213px 1px); }
+  25% {
+    clip-path: inset(18px 1px 30px 1px); }
+  30% {
+    clip-path: inset(165px 1px 82px 1px); }
+  35% {
+    clip-path: inset(115px 1px 184px 1px); }
+  40% {
+    clip-path: inset(80px 1px 104px 1px); }
+  45% {
+    clip-path: inset(135px 1px 192px 1px); }
+  50% {
+    clip-path: inset(64px 1px 209px 1px); }
+  55% {
+    clip-path: inset(92px 1px 104px 1px); }
+  60% {
+    clip-path: inset(144px 1px 98px 1px); }
+  65% {
+    clip-path: inset(118px 1px 208px 1px); }
+  70% {
+    clip-path: inset(175px 1px 26px 1px); }
+  75% {
+    clip-path: inset(53px 1px 171px 1px); }
+  80% {
+    clip-path: inset(209px 1px 47px 1px); }
+  85% {
+    clip-path: inset(79px 1px 83px 1px); }
+  90% {
+    clip-path: inset(56px 1px 134px 1px); }
+  95% {
+    clip-path: inset(101px 1px 121px 1px); }
+  100% {
+    clip-path: inset(179px 1px 135px 1px); } }
+
+@keyframes noise-anim-logo-red {
+  0% {
+    clip-path: inset(62px 1px 193px 1px); }
+  5% {
+    clip-path: inset(213px 1px 186px 1px); }
+  10% {
+    clip-path: inset(18px 1px 82px 1px); }
+  15% {
+    clip-path: inset(129px 1px 201px 1px); }
+  20% {
+    clip-path: inset(128px 1px 16px 1px); }
+  25% {
+    clip-path: inset(193px 1px 32px 1px); }
+  30% {
+    clip-path: inset(30px 1px 190px 1px); }
+  35% {
+    clip-path: inset(169px 1px 10px 1px); }
+  40% {
+    clip-path: inset(44px 1px 121px 1px); }
+  45% {
+    clip-path: inset(50px 1px 74px 1px); }
+  50% {
+    clip-path: inset(66px 1px 24px 1px); }
+  55% {
+    clip-path: inset(97px 1px 176px 1px); }
+  60% {
+    clip-path: inset(7px 1px 191px 1px); }
+  65% {
+    clip-path: inset(154px 1px 121px 1px); }
+  70% {
+    clip-path: inset(188px 1px 139px 1px); }
+  75% {
+    clip-path: inset(153px 1px 142px 1px); }
+  80% {
+    clip-path: inset(164px 1px 64px 1px); }
+  85% {
+    clip-path: inset(193px 1px 154px 1px); }
+  90% {
+    clip-path: inset(193px 1px 45px 1px); }
+  95% {
+    clip-path: inset(87px 1px 142px 1px); }
+  100% {
+    clip-path: inset(27px 1px 107px 1px); }
+}
