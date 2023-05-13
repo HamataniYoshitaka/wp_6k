@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import { useSelector } from "react-redux";
@@ -19,6 +19,11 @@ export default function SwiperControll(props) {
         props.slideToLoop(index)
         swiper.slideToLoop(index)
     }
+    useEffect(() => {
+        if (swiper) {
+            swiper.slideToLoop(props.realIndex)
+        }
+    }, [props.realIndex])
     return (
         <div className=" w-full z-10 relative -mt-16">
             <div className="flex justify-center items-end">

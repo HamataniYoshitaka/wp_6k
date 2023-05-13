@@ -6,7 +6,7 @@ export default function HomeNavigation(props) {
 
     return (
         <>
-        <nav className="fixed top-32 left-4 z-10">
+        <nav className="fixed top-28 md:top-32 left-4 z-10">
             <ul className="w-12 space-y-3">
                 <li>
                     <button onClick={()=>props.setSelectedCategoryId(-1)} className={`block w-full text-center py-1 transition-all ${props.selectedCategoryId===-1? 'text-sm bg-[#00FFEB]': 'text-xs text-slate-400'}`}>全て</button>
@@ -18,7 +18,7 @@ export default function HomeNavigation(props) {
                 ))}
             </ul>
         </nav>
-        <nav className="fixed top-32 right-4 z-10">
+        <nav className="fixed top-28 md:top-32 right-4 z-10">
             <ul className="w-12 space-y-3">
                 <li>
                     <button onClick={()=>props.changeView(true)} className={`block w-full text-center py-1 relative transition-all ${props.isSingleView? 'text-sm': 'text-xs text-slate-400'}`}>

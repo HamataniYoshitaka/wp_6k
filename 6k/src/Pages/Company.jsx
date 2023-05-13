@@ -18,7 +18,7 @@ export default function About(props) {
                 <h1 className="absolute top-[calc(50vh-200px)] left-[calc(50vw-760px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40">COMPANY</h1>
             </div>
 
-            <div className="md:w-[768px] mx-auto relative px-4 ">
+            <div className="md:w-[768px] mx-auto relative ">
 
                 <h3 className="px-10 overflow-hidden "><span className={`text-xs bg-white font-medium py-0.5 px-2 inline-block tracking-wider jost transition-transform duration-1000 delay-100  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-10'}`}>ESTABLISHED</span></h3>
                 <p className="mt-4 px-10 overflow-hidden">
@@ -112,7 +112,7 @@ export default function About(props) {
                         </span>
                     </li>
                 </ul>
-                <div className="w-96">
+                <div className="md:w-96">
                     <h3 className="mt-8 px-10 overflow-hidden">
                         <span className={`text-xs bg-white font-medium py-0.5 px-2 inline-block tracking-wider jost transition-transform duration-1000 delay-[2000ms]  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-10'}`}>PRODUCTS</span>
                     </h3>

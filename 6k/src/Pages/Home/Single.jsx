@@ -5,11 +5,14 @@ import { useSelector } from "react-redux";
 import { format } from "date-fns";
 import { Link } from 'react-router-dom'
 import SwiperControll from "./SwiperControll";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 const duration = 25
 let timer = null    // #shadow-titleのsceneを更新するためのタイマー
 
 export default function HomeSingle(props) {
+    const [windowWidth, windowHeight] = useWindowSize()
+
     useEffect(() => {
         if (props.posts.length) {
             setTimeout(() => {
@@ -98,13 +101,13 @@ export default function HomeSingle(props) {
                         </div>
                     </>
                 )}
-                <div className={`pt-32 pb-20- relative`}>
+                <div className={`pt-20 md:pt-32 pb-20- relative`}>
                     <div className="xl:max-w-[1101px] md:mx-auto relative" >
                         <Swiper
                             loop
                             centeredSlides
-                            slidesPerView={3}
-                            allowTouchMove={false}
+                            slidesPerView={windowWidth<576? 1: 3}
+                            allowTouchMove={windowWidth<576}
                             speed={600}
                             onInit={(swiper) => {setSwiper(swiper); console.log('swiper1',swiper)}}
                             onSlideChangeTransitionEnd={(swiper1) => {setRealIndex(swiper1.realIndex);setShadowTitleScene(0)}}
@@ -113,7 +116,7 @@ export default function HomeSingle(props) {
                             {props.posts.map((post, i) => (
                                 <SwiperSlide key={'post-'+post.id} className="top-single-swiper">
                                     <div className="p-4">
-                                        <Link to={'/posts/' + post.slug} className={`block h-[calc(100vh-270px)] md:h-[520px] bg-white rounded-lg transition-all drop-shadow-[0_1px_10px_rgba(0,0,0,0.20)] overflow-hidden relative`}>
+                                        <Link to={'/posts/' + post.slug} className={`block h-[calc(100vh-220px)] md:h-[520px] bg-white rounded-lg transition-all drop-shadow-[0_1px_10px_rgba(0,0,0,0.20)] overflow-hidden relative`}>
                                             <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
                                             <p className="absolute bottom-32 left-10 origin-top-left rotate-90 cormorant lowercase">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                                             <ul className="absolute bottom-10 right-0 text-xs text-right space-y-2">
@@ -130,7 +133,7 @@ export default function HomeSingle(props) {
                             ))}
                         </Swiper>
                         {props.posts.length && (
-                            <SwiperControll posts={props.posts} slideNext={slideNext} slidePrev={slidePrev} slideToLoop={slideToLoop}/>
+                            <SwiperControll posts={props.posts} slideNext={slideNext} slidePrev={slidePrev} slideToLoop={slideToLoop} realIndex={realIndex}/>
                         )}
                     </div>
                 </div>

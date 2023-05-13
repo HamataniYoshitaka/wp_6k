@@ -3,13 +3,13 @@ import React from "react";
 export default function Header(props) {
     return (
         <header className={`pointer-events-none fixed flex z-50 top-0 left-0 w-full justify-between items-center p-5 transition-colors duration-300 ${props.menuShowing? 'text-white': 'text-black'}`}>
-            <svg className="w-9 h-auto " viewBox="0 0 36.71 70.05">
+            <svg className="w-auto h-[60px] md:h-[95px] " viewBox="0 0 36.71 70.05">
                 <path fill="currentColor" d="M36.7,15v-1.14H0v1.14l1.09,1.44H35.61l1.09-1.44Z"/>
                 <path fill="currentColor" d="M25.98,2.58l.99-1.43V0H9.76V1.16l.99,1.43h15.23Z"/>
                 <path fill="currentColor" d="M26.96,28.04h-2.88c.95,15.97,4.65,32.57,7.94,41.52,1.5,.6,3.16,.63,4.68,.1-2.46-3.94-4.79-10.54-6.6-18.6-1.65-7.58-2.71-15.28-3.15-23.03"/>
                 <path fill="currentColor" d="M9.76,28.04c-.44,7.75-1.49,15.45-3.15,23.03C4.81,59.13,2.47,65.73,0,69.67c1.52,.53,3.19,.5,4.68-.1,3.3-8.98,7-25.58,7.94-41.52h-2.88Z"/>
             </svg>
-            <svg className="w-[180px] h-auto" viewBox="0 0 100.7 12.06">
+            <svg className="w-[100px] md:w-[180px] h-auto" viewBox="0 0 100.7 12.06">
                 <path fill="currentColor" d="M71.26,.12V11.45l.64,.49h.5V.12h-1.14Z"/>
                 <path fill="currentColor" d="M58.12,.12V11.45l.64,.49h.5V.12h-1.14Z"/>
                 <path fill="currentColor" d="M47.29,.12h-.82V11.45l.64,.49h5.94v-1.15h-5.43V6.24h4.34v-1.14h-4.34V1.26h5.43V.12h-5.77Z"/>
@@ -21,7 +21,7 @@ export default function Header(props) {
                 <path fill="currentColor" d="M38.28,7.72c-.49-.58-1-1.22-1.5-1.9l-.31-.43L41.55,.23h-1.53l-4.1,4.24V.12h-1.15V11.46l.64,.48h.51V6.35c1.39,2.01,3,3.87,4.78,5.55l.04,.04h.05c.47-.06,.9-.28,1.21-.63l.1-.11-.13-.07c-1.41-.93-2.66-2.08-3.71-3.4"/>
                 <path fill="currentColor" d="M100.2,10.36h-.64v1.09l.64,.49h.5v-1.57h-.5Z"/>
             </svg>
-            <svg className="w-[38px] h-auto " viewBox="0 0 37.85 71.37">
+            <svg className="w-auto h-[60px] md:h-[95px] " viewBox="0 0 37.85 71.37">
                 <path fill="currentColor" d="M19.1,71.37h1.32v-28.35h11.95v-11.73h-2.84v9.01H8.31v-9.01h-2.83v11.73h11.95v27.09l1.67,1.27Z"/>
                 <path fill="currentColor" d="M8.36,15.94H29.5v8.16h2.84V0H5.52V24.1h2.83V15.94Zm0-13.22H29.5V13.22H8.36V2.72Z"/>
                 <path fill="currentColor" d="M37.85,27.55v-1.11H0v1.11l1.07,1.41H36.79l1.07-1.41Z"/>
