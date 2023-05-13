@@ -4,6 +4,7 @@ import HomeIndex from "./Home/Index";
 import HomeNavigation from "./Home/Navigation";
 import axios from 'axios'
 import { apiUrl } from "../utils";
+import Opening from "../Components/Opening";
 
 export default function Home(props) {
     const [isSingleView, setIsSingleView] = useState(true)
@@ -39,6 +40,7 @@ export default function Home(props) {
 
     return (
         <>
+            {/* <Opening /> */}
             <HomeNavigation isSingleView={isSingleView} changeView={changeView} selectedCategoryId={selectedCategoryId} setSelectedCategoryId={setSelectedCategoryId}/>
             {isSingleView? (
                 <HomeSingle posts={posts} nowLoading={nowLoading} setNowLoading={setNowLoading} />
