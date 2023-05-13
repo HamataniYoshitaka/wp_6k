@@ -34,7 +34,7 @@ function reload_fontPlus() {
 FONTPLUS.async()
 
 </script>
-<script defer="defer" src="<?php echo get_template_directory_uri(); ?>/6k/build/static/js/main.b77de8dc.js"></script>
+<script defer="defer" src="<?php echo get_template_directory_uri(); ?>/6k/build/static/js/main.f0dfab3e.js"></script>
 <link href="<?php echo get_template_directory_uri(); ?>/6k/build/static/css/main.b8dec52b.css" rel="stylesheet">
 </head>
 
