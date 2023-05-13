@@ -33,10 +33,14 @@ export default function Footer(props) {
             </div>
         </nav>
         <footer className={`fixed z-50 bottom-0 left-0 w-full h-9  ${props.menuShowing? 'bg-white text-black': 'bg-black text-white'}`}>
-            <button className="flex w-full h-full justify-center items-center " onClick={()=>props.setMenuShowing(!props.menuShowing)}>
-                <svg className="w-7 h-auto" viewBox="0 0 26 10">
+            <button className=" w-full h-full relative " onClick={()=>props.setMenuShowing(!props.menuShowing)}>
+                <svg className={`w-7 h-auto absolute bottom-3 left-[calc(50vw-14px)] transition-all duration-300 ${props.menuShowing? 'opacity-0 scale-50': 'opacity-100 scale-100'}`} viewBox="0 0 26 10">
                     <line fill="none" stroke="currentColor" strokeWidth="1.5" x1="0" y1="1" x2="26" y2="1" />
                     <line fill="none" stroke="currentColor" strokeWidth="1.5" x1="5" y1="9" x2="21" y2="9" />
+                </svg>
+                <svg className={`w-8 h-auto absolute bottom-3 left-[calc(50vw-16px)] transition-all duration-300 ${!props.menuShowing? 'opacity-0 scale-50': 'opacity-100 scale-100'}`} viewBox="0 0 26 10">
+                    <line fill="none" stroke="currentColor" strokeWidth="1.5" x1="0" y1="1" x2="26" y2="9" />
+                    <line fill="none" stroke="currentColor" strokeWidth="1.5" x1="0" y1="9" x2="26" y2="1" />
                 </svg>
             </button>
         </footer>
