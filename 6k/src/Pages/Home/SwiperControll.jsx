@@ -4,7 +4,6 @@ import 'swiper/css'
 import { useSelector } from "react-redux";
 
 export default function SwiperControll(props) {
-    const posts = useSelector((state) => state.product.posts)
 
     const [swiper, setSwiper] = useState(null)
 
@@ -38,7 +37,7 @@ export default function SwiperControll(props) {
                         id="pagination"
                         onSwiper={(swiper) => setSwiper(swiper)}
                     >
-                        {posts.map((post, i)=>(
+                        {props.posts.map((post, i)=>(
                             <SwiperSlide key={'indicator-'+post.id}>
                                 <button onClick={()=>onClickPage(i)} className="flex justify-center items-end py-2 w-[44px] text-gray-500 transition-all duration-300 jost">{i+1}</button>
                             </SwiperSlide>
@@ -56,7 +55,7 @@ export default function SwiperControll(props) {
             </div>
             <div className="absolute -bottom-4 left-[calc(50%-20px)] w-10">
                 <hr className="border border-black w-4 mx-auto my-2"/>
-                <div className="text-center jost">{posts.length}</div>
+                <div className="text-center jost">{props.posts.length}</div>
             </div>
 
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Header from './Components/Header'
@@ -9,10 +9,23 @@ import Company from './Pages/Company'
 import Contact from './Pages/Contact'
 import Single from './Pages/Single'
 import NotFound from './Pages/404'
+import { setCategories } from "./redux/product";
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { apiUrl } from './utils';
 
 
 function App() {
+  const categories = useSelector((state) => state.product.categories)
   const [menuShowing, setMenuShowing] = useState(false)
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    if (categories.length) return
+    axios.get(apiUrl() +'/wp-json/wp/v2/categories').then(res => {
+        dispatch(setCategories(res.data))
+    })
+}, [])
+
   return (
     <div className='w-screen min-h-screen relative'>
       <Header menuShowing={menuShowing} />

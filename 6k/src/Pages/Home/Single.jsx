@@ -10,7 +10,14 @@ const duration = 25
 let timer = null    // #shadow-titleのsceneを更新するためのタイマー
 
 export default function HomeSingle(props) {
-    const posts = useSelector((state) => state.product.posts)
+    useEffect(() => {
+        if (props.posts.length) {
+            setTimeout(() => {
+                props.setNowLoading(false)
+            }, 100)
+        }
+    }, [props.posts])
+
     const [swiper, setSwiper] = useState(null)
     const [realIndex, setRealIndex] = useState(0)
     const [shadowTitleWidth, setShadowTitleWidth] = useState(0)
@@ -67,30 +74,31 @@ export default function HomeSingle(props) {
         )
     }
     return (
-        <>
+        <div className={` transition-opacity duration-300 ${props.nowLoading? 'opacity-0': 'opacity-100'}`}>
             {shadowTitleStyle(shadowTitleWidth)}
-            {(posts.length > 0) && (      
+            {(props.posts.length > 0) && (      
                 <>
+                {/* 背景のタイトル */}
                 {swiper && (
                     <>
                         <div className={`fixed top-0 left-0 w-screen h-screen overflow-hidden pointer-events-none transition-opacity duration-500 ${shadowTitleScene===2? 'z-0': 'z-10'} ${shadowTitleScene<=0? 'opacity-0': 'opacity-100'}`}>
                             <div className={`relative ${shadowTitleScene!==0 && 'shadow-title-frame'}`}>
                                 <p className={`z-10 absolute whitespace-nowrap top-[calc(50vh-200px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40`} style={{left:window.innerWidth/2+100-(shadowTitleWidth+48)*2}}>
-                                    <span className="mr-12">{posts[realIndex] && posts[realIndex].shadow_text}</span><span className="mr-12">{posts[realIndex] && posts[realIndex].shadow_text}</span>
+                                    <span className="mr-12">{props.posts[realIndex] && props.posts[realIndex].shadow_text}</span><span className="mr-12">{props.posts[realIndex] && props.posts[realIndex].shadow_text}</span>
                                 </p>                            
-                                <h2 id="shadow-title" className=" z-10 left-[calc(50vw+100px)] absolute whitespace-nowrap top-[calc(50vh-200px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40">{posts[realIndex] && posts[realIndex].shadow_text}</h2>
+                                <h2 id="shadow-title" className=" z-10 left-[calc(50vw+100px)] absolute whitespace-nowrap top-[calc(50vh-200px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40">{props.posts[realIndex] && props.posts[realIndex].shadow_text}</h2>
                             </div>
                         </div>
                         <div className={`fixed z-0 top-0 left-0 w-screen h-screen overflow-hidden pointer-events-none transition-opacity duration-500 ${shadowTitleScene<=0? 'opacity-0': 'opacity-100'}`}>
                             <div className={`relative ${shadowTitleScene!==0 && 'shadow-title-frame'}`}>
                                 <p className={`z-10 absolute whitespace-nowrap top-[calc(50vh-200px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40`} style={{left:window.innerWidth/2+100+shadowTitleWidth+48}}>
-                                    <span className="mr-12">{posts[realIndex] && posts[realIndex].shadow_text}</span><span className="mr-12">{posts[realIndex] && posts[realIndex].shadow_text}</span><span>{posts[realIndex] && posts[realIndex].shadow_text}</span>
+                                    <span className="mr-12">{props.posts[realIndex] && props.posts[realIndex].shadow_text}</span><span className="mr-12">{props.posts[realIndex] && props.posts[realIndex].shadow_text}</span><span>{props.posts[realIndex] && props.posts[realIndex].shadow_text}</span>
                                 </p>
                             </div>
                         </div>
                     </>
                 )}
-                <div className="pt-32 pb-20- relative">
+                <div className={`pt-32 pb-20- relative`}>
                     <div className="xl:max-w-[1101px] md:mx-auto relative" >
                         <Swiper
                             loop
@@ -102,7 +110,7 @@ export default function HomeSingle(props) {
                             onSlideChangeTransitionEnd={(swiper1) => {setRealIndex(swiper1.realIndex);setShadowTitleScene(0)}}
                             onBeforeTransitionStart={(swiper) => setShadowTitleScene(-1)}
                         >
-                            {posts.map((post, i) => (
+                            {props.posts.map((post, i) => (
                                 <SwiperSlide key={'post-'+post.id} className="top-single-swiper">
                                     <div className="p-4">
                                         <Link to={'/posts/' + post.slug} className={`block h-[calc(100vh-270px)] md:h-[520px] bg-white rounded-lg transition-all drop-shadow-[0_1px_10px_rgba(0,0,0,0.20)] overflow-hidden relative`}>
@@ -121,13 +129,13 @@ export default function HomeSingle(props) {
                                 </SwiperSlide>
                             ))}
                         </Swiper>
-                        {posts.length && (
-                            <SwiperControll slideNext={slideNext} slidePrev={slidePrev} slideToLoop={slideToLoop}/>
+                        {props.posts.length && (
+                            <SwiperControll posts={props.posts} slideNext={slideNext} slidePrev={slidePrev} slideToLoop={slideToLoop}/>
                         )}
                     </div>
                 </div>
                 </>
             )}
-        </>
+        </div>
     )
 }

@@ -21,10 +21,16 @@ export default function HomeNavigation(props) {
         <nav className="fixed top-32 right-4 z-10">
             <ul className="w-12 space-y-3">
                 <li>
-                    <button onClick={()=>props.setIsSingleView(true)} className={`block w-full text-center py-1 transition-all ${props.isSingleView? 'text-sm bg-[#00FFEB]': 'text-xs text-slate-400'}`}>単体</button>
+                    <button onClick={()=>props.changeView(true)} className={`block w-full text-center py-1 relative transition-all ${props.isSingleView? 'text-sm': 'text-xs text-slate-400'}`}>
+                        <div className={`absolute inset-0 bg-[#00FFEB] transition-all ${props.isSingleView? 'opacity-100 scale-100': 'opacity-0 scale-50'}`}></div>
+                        <span className="relative">単体</span>
+                    </button>
                 </li>
                 <li>
-                    <button onClick={()=>props.setIsSingleView(false)} className={`block w-full text-center py-1 transition-all ${!props.isSingleView? 'text-sm bg-[#00FFEB]': 'text-xs text-slate-400'}`}>一覧</button>
+                    <button onClick={()=>props.changeView(false)} className={`block relative w-full text-center py-1 transition-all ${!props.isSingleView? 'text-sm': 'text-xs text-slate-400'}`}>
+                        <div className={`absolute inset-0 bg-[#00FFEB] transition-all ${!props.isSingleView? 'opacity-100 scale-100': 'opacity-0 scale-50'}`}></div>
+                        <span className="relative">一覧</span>
+                    </button>
                 </li>
             </ul>
         </nav>
