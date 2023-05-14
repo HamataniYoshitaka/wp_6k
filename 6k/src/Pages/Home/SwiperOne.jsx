@@ -97,7 +97,7 @@ export default function SwiperOne(props) {
                             <div className="p-4">
                                 <Link to={'/posts/' + props.posts[0].slug} className={`block h-[calc(100vh-220px)] md:h-[520px] bg-white rounded-lg transition-all drop-shadow-[0_1px_10px_rgba(0,0,0,0.20)] overflow-hidden relative`}>
                                     <img src={props.posts[0].thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
-                                    <p className="absolute bottom-32 left-10 origin-top-left rotate-90 cormorant lowercase tracking-wider">{format(new Date(props.posts[0].date), 'yyyy.MM.dd / EEEE')}</p>
+                                    <p className="absolute bottom-4 -left-44 text-right w-48 origin-bottom-right rotate-90 cormorant lowercase tracking-wider">{format(new Date(props.posts[0].date), 'yyyy.MM.dd / EEEE')}</p>
                                     <ul className="absolute bottom-10 right-0 text-xs text-right space-y-2">
                                         {props.posts[0].tag.map((tag) =>(
                                             <li key={'post-'+props.posts[0].id+'-tag-'+tag.id}>
@@ -108,7 +108,7 @@ export default function SwiperOne(props) {
                                     <h3 className="absolute top-14 right-0 text-right"><span className="inline-block py-1 px-2 bg-black text-white">{props.posts[0].title}</span></h3>
                                 </Link>
                             </div>
-                            <div className=" w-full z-10 relative mt-0">
+                            <div className=" w-full z-10 relative -mt-4">
                                 <div className="flex justify-center items-end">
                                     <div>
                                         <div className="text-slate-500 p-4">
@@ -117,7 +117,7 @@ export default function SwiperOne(props) {
                                             </svg>
                                         </div>
                                     </div>
-                                    <div className="text-black jost text-5xl">1
+                                    <div className="text-black jost text-6xl -translate-y-8">1
                                     </div>
                                     <div>
                                         <div className="text-slate-500 p-4">
@@ -128,7 +128,7 @@ export default function SwiperOne(props) {
                                     </div>
                         
                                 </div>
-                                <div className="absolute -bottom-10 left-[calc(50%-20px)] w-10">
+                                <div className="absolute -bottom-2 left-[calc(50%-20px)] w-10">
                                     <hr className="border border-black w-4 mx-auto my-2"/>
                                     <div className="text-center jost">{props.posts.length}</div>
                                 </div>

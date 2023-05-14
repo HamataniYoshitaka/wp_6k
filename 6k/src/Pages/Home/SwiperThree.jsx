@@ -4,11 +4,13 @@ import 'swiper/css'
 import SwiperControll from "./SwiperControll";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
+import { useWindowSize } from "../../hooks/useWindowSize";
+
 const duration = 25
 let timer = null    // #shadow-titleのsceneを更新するためのタイマー
 
-
 export default function SwiperThree(props) {
+    const [windowWidth, windowHeight] = useWindowSize()
     const [swiper, setSwiper] = useState(null)
     const [realIndex, setRealIndex] = useState(0)
     const [shadowTitleWidth, setShadowTitleWidth] = useState(0)
@@ -106,7 +108,7 @@ export default function SwiperThree(props) {
                             <Swiper
                                 loop
                                 centeredSlides
-                                slidesPerView={3}
+                                slidesPerView={windowWidth<576? 1: 3}
                                 // allowTouchMove={windowWidth<576}
                                 speed={600}
                                 onInit={(swiper) => {setSwiper(swiper); console.log('swiper1',swiper)}}
@@ -120,7 +122,7 @@ export default function SwiperThree(props) {
                                         <div className="p-4">
                                             <Link to={'/posts/' + post.slug} className={`block h-[calc(100vh-220px)] md:h-[520px] bg-white rounded-lg transition-all drop-shadow-[0_1px_10px_rgba(0,0,0,0.20)] overflow-hidden relative`}>
                                                 <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
-                                                <p className="absolute bottom-32 left-10 origin-top-left rotate-90 cormorant lowercase tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
+                                                <p className="absolute bottom-4 -left-44 text-right w-48 origin-bottom-right rotate-90 cormorant lowercase tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                                                 <ul className="absolute bottom-10 right-0 text-xs text-right space-y-2">
                                                     {post.tag.map((tag) =>(
                                                         <li key={'post-'+post.id+'-tag-'+tag.id}>

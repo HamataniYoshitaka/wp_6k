@@ -8,9 +8,10 @@ import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react'
 import 'swiper/css'
 import { useSelector } from "react-redux";
 import OtherWorks from "./Single.tsx/OtherWorks";
-// import { useReloadFonts } from "../hooks/useReloadFonts";
+import { useReloadFonts } from "../hooks/useReloadFonts";
 
 export default function Single(props) {
+    const reloadFonts = useReloadFonts()
 
     const categories = useSelector(state => state.product.categories)
     const [swiper, setSwiper] = useState(null)
@@ -32,16 +33,16 @@ export default function Single(props) {
     }, [])
     useEffect(()=>{
         if (post) {
-            // useReloadFonts()
+            reloadFonts()
         }
     }, [post])
     return (
-        <div className="bg-[#E8E8E8] pt-32 pb-20 relative">
+        <div className={`bg-[#E8E8E8] pt-24 md:pt-32 pb-20 relative transition-opacity duration-700 ${post? 'opacity-100': 'opacity-0'}`}>
             {post && (
                 <>
                     <div className="md:w-[657px] mx-auto px-6 md:px-0">
                         <img src={post.thumbnail} className=" w-full h-auto rounded-xl " />
-                        <div className="flex flex-col md:flex-row md:items-center md:space-x-4 mt-4 md:mt-0">
+                        <div className="flex flex-col md:flex-row md:items-center md:space-x-4 mt-4">
                             <h1 className="text-2xl mt-3 order-3 md:order-1">{post.title}</h1>
                             <ul className="space-x-2 mt-2 order-2">
                                 {post.category.map((cat) =>(
@@ -55,19 +56,18 @@ export default function Single(props) {
                                     </li>
                                 ))}
                             </ul>
-                            <div className="grow"></div>
-                            <p className="text-sm cormorant lowercase order-1 md:order-3">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
+                            <div className="grow md:order-3"></div>
+                            <p className="text-sm cormorant lowercase order-1 md:order-4">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                         </div>
                         <hr className="my-6 border-black" />
                     </div>
                     <div className="md:w-[560px] px-6 md:px-0 mx-auto">
-
                         <div dangerouslySetInnerHTML={{__html: post.content}} className="text-xs leading-6">
                         </div>
                     </div>
 
                     <div className="md:w-[560px] px-6 md:px-0 mx-auto mt-10">
-                        <h6><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold">detail</span></h6>
+                        <h6><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">detail</span></h6>
                     </div>
                     <div className="overflow-hidden">
                         <div className="md:w-[592px] mx-auto artwork-detail-swiper relative">
@@ -107,25 +107,25 @@ export default function Single(props) {
                         </div>
                     </div>
                     <div className="md:w-[560px] px-6 md:px-0 mx-auto mt-10 pb-20">
-                        <h6><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold">trigger</span></h6>
+                        <h6><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">trigger</span></h6>
                         <img src={post.trigger_image} className="w-full h-auto rounded-xl mt-6" />
                         <p className="text-sm leading-7 mt-6">{post.trigger_description}</p>
-                        <h6 className="mt-10"><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold">credit</span></h6>
+                        <h6 className="mt-10"><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">credit</span></h6>
                         <p className="text-sm leading-7 mt-5" dangerouslySetInnerHTML={{__html: post.credit.replace(/\n/g, "<br />")}}></p>
                         <hr className="my-6 border-black border-t-1.5" />
                         <p className="text-sm text-center">このプロジェクトで気になったことを聞いてみる</p>
-                        <Link to="/contact" className="block w-full text-center text-xs mt-6 bg-white border-1.5 border-black rounded-full py-3">CONTACT</Link>
+                        <Link to="/contact" className="block w-full text-center text-xs mt-6 bg-white border-1.5 border-black rounded-full py-3 jost">CONTACT</Link>
                     </div>
 
                 </>
             )}
             <div className="bg-white py-10">
-                <h3 className="text-center text-3xl">SAME PROJECTS</h3>
+                <h3 className="text-center text-3xl jost">SAME PROJECTS</h3>
                 <h6 className="text-center text-xs mt-3">同プロジェクトの他のワークス</h6>
             </div>
             <div className="bg-[#E8E8E8] py-10">
                 <OtherWorks />
-                <h3 className="text-center text-3xl mt-14">CATEGORY</h3>
+                <h3 className="text-center text-3xl mt-14 jost">CATEGORY</h3>
                 <h6 className="text-center text-xs mt-3">カテゴリーを選ぶ</h6>
                 <ul className="flex flex-wrap gap-3 justify-center mt-6">
                     {categories.map((cat) => (

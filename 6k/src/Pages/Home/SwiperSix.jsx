@@ -4,11 +4,12 @@ import 'swiper/css'
 import SwiperControll from "./SwiperControll";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
+import { useWindowSize } from "../../hooks/useWindowSize";
 const duration = 25
 let timer = null    // #shadow-titleのsceneを更新するためのタイマー
 
-
 export default function SwiperSix(props) {
+    const [windowWidth, windowHeight] = useWindowSize()
     const [swiper, setSwiper] = useState(null)
     const [realIndex, setRealIndex] = useState(0)
     const [shadowTitleWidth, setShadowTitleWidth] = useState(0)
@@ -75,15 +76,15 @@ export default function SwiperSix(props) {
                         <>
                             <div className={`fixed top-0 left-0 w-screen h-screen overflow-hidden pointer-events-none transition-opacity duration-500 ${shadowTitleScene===2? 'z-0': 'z-10'} ${shadowTitleScene<=0? 'opacity-0': 'opacity-100'}`}>
                                 <div className={`relative ${shadowTitleScene!==0 && 'shadow-title-frame'}`}>
-                                    <p className={`z-10 absolute whitespace-nowrap top-[calc(50vh-200px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40`} style={{left:window.innerWidth/2+100-(shadowTitleWidth+48)*2}}>
+                                    <p className={`z-10 absolute whitespace-nowrap top-[calc(50vh-200px)] text-transparent text-blur text-[180px] md:text-[260px] tracking-widest cormorant opacity-40`} style={{left:window.innerWidth/2+100-(shadowTitleWidth+48)*2}}>
                                         <span className="mr-12">{props.posts[realIndex] && props.posts[realIndex].shadow_text}</span><span className="mr-12">{props.posts[realIndex] && props.posts[realIndex].shadow_text}</span>
                                     </p>                            
-                                    <h2 id="shadow-title" className=" z-10 left-[calc(50vw+100px)] absolute whitespace-nowrap top-[calc(50vh-200px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40">{props.posts[realIndex] && props.posts[realIndex].shadow_text}</h2>
+                                    <h2 id="shadow-title" className=" z-10 left-[calc(50vw+100px)] absolute whitespace-nowrap top-[calc(50vh-200px)] text-transparent text-blur text-[180px] md:text-[260px] tracking-widest cormorant opacity-40">{props.posts[realIndex] && props.posts[realIndex].shadow_text}</h2>
                                 </div>
                             </div>
                             <div className={`fixed z-0 top-0 left-0 w-screen h-screen overflow-hidden pointer-events-none transition-opacity duration-500 ${shadowTitleScene<=0? 'opacity-0': 'opacity-100'}`}>
                                 <div className={`relative ${shadowTitleScene!==0 && 'shadow-title-frame'}`}>
-                                    <p className={`z-10 absolute whitespace-nowrap top-[calc(50vh-200px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40`} style={{left:window.innerWidth/2+100+shadowTitleWidth+48}}>
+                                    <p className={`z-10 absolute whitespace-nowrap top-[calc(50vh-200px)] text-transparent text-blur text-[180px] md:text-[260px] tracking-widest cormorant opacity-40`} style={{left:window.innerWidth/2+100+shadowTitleWidth+48}}>
                                         <span className="mr-12">{props.posts[realIndex] && props.posts[realIndex].shadow_text}</span><span className="mr-12">{props.posts[realIndex] && props.posts[realIndex].shadow_text}</span><span>{props.posts[realIndex] && props.posts[realIndex].shadow_text}</span>
                                     </p>
                                 </div>
@@ -96,7 +97,7 @@ export default function SwiperSix(props) {
                             <Swiper
                                 loop
                                 centeredSlides
-                                slidesPerView={3}
+                                slidesPerView={windowWidth<576? 1: 3}
                                 // allowTouchMove={windowWidth<576}
                                 speed={600}
                                 onInit={(swiper) => {setSwiper(swiper); console.log('swiper1',swiper)}}
@@ -110,7 +111,7 @@ export default function SwiperSix(props) {
                                         <div className="p-4">
                                             <Link to={'/posts/' + post.slug} className={`block h-[calc(100vh-220px)] md:h-[520px] bg-white rounded-lg transition-all drop-shadow-[0_1px_10px_rgba(0,0,0,0.20)] overflow-hidden relative`}>
                                                 <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
-                                                <p className="absolute bottom-32 left-10 origin-top-left rotate-90 cormorant lowercase tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
+                                                <p className="absolute bottom-4 -left-44 text-right w-48 origin-bottom-right rotate-90 cormorant lowercase tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                                                 <ul className="absolute bottom-10 right-0 text-xs text-right space-y-2">
                                                     {post.tag.map((tag) =>(
                                                         <li key={'post-'+post.id+'-tag-'+tag.id}>
