@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import NavFooter from "../Components/NavFooter";
+import { useReloadFonts } from "../hooks/useReloadFonts";
 
 export default function About(props) {
+    const reloadFonts = useReloadFonts()
     const [isLoaded, setIsLoaded] = useState(false)
     const [titleShowing, setTitleShowing] = useState(false)
     useEffect(() => {
         setTimeout(() => {
             setIsLoaded(true)
+            reloadFonts()
         }, 200)
         setTimeout(() => {
             setTitleShowing(true)

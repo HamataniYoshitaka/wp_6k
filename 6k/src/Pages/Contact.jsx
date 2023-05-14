@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import axios from "axios";
 import { apiUrl } from "../utils";
+import { useReloadFonts } from "../hooks/useReloadFonts";
 
 const schema = yup.object().required().shape({
     name: yup.string().required('必須項目です'),
@@ -16,12 +17,13 @@ const schema = yup.object().required().shape({
 })
 
 export default function Contact(props) {
-
+    const reloadFonts = useReloadFonts()
     const [isLoaded, setIsLoaded] = useState(false)
     const [titleShowing, setTitleShowing] = useState(false)
     useEffect(() => {
         setTimeout(() => {
             setIsLoaded(true)
+            reloadFonts()
         }, 200)
         setTimeout(() => {
             setTitleShowing(true)

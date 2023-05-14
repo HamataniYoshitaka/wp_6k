@@ -1,12 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import Glass from "./Concept/Glass";
 import { imgDir } from "../utils";
 import ConceptIndicator from "./Concept/Indicator";
 import Typewriting from "./Concept/Typewriting";
 import { Link } from "react-router-dom";
+import { useReloadFonts } from "../hooks/useReloadFonts";
 
 export default function Concept(props) {
+    const reloadFonts = useReloadFonts()
+
     const fullpageRef = useRef(null);
     const [currentPage, setCurrentPage] = useState(0)
     const [prevPage, setPrevPage] = useState(0)
@@ -22,6 +25,12 @@ export default function Concept(props) {
     const finishDeleting = () => {
     }
 
+    // useEffect(() => {
+    //     // setTimeout(() => {
+    //         reloadFonts()
+    //     // }, 200)
+
+    // }, [])
  
     return (
         <>
@@ -45,15 +54,18 @@ export default function Concept(props) {
 
                     }
                 }}
+                afterRender={() => {
+                // oninitialized={(origin, destination, direction) => {
+                    console.log('afterRender')
+                    reloadFonts()
+
+                }}
                 render={({ state, fullpageApi }) => {
                     return (
                         <ReactFullpage.Wrapper>
                             <section className="section">
                                 <div className="px-8 relative">
                                     <h2 className="text-center text-2xl leading-10">景色に輪郭をあたえる<br />影のようなデザイン</h2>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-center">SCROLL DOWN</p>
                                 </div>
                             </section>
                             <section className="section">
@@ -117,9 +129,9 @@ export default function Concept(props) {
 
                                 </div>
                                 <div className="flex justify-center items-center space-x-10 min-h-[calc(100vh-697px)]">
-                                    <Link to="/" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CREATIVE</Link>
-                                    <Link to="/company" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">COMPANY</Link>
-                                    <Link to="/contact" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white">CONTACT</Link>
+                                    <Link to="/" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">CREATIVE</Link>
+                                    <Link to="/company" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">COMPANY</Link>
+                                    <Link to="/contact" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">CONTACT</Link>
                                 </div>
                                 <div className="h-9">
                                 </div>
