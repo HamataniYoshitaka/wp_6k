@@ -6,22 +6,59 @@ import { useSelector } from "react-redux";
 export default function SwiperControll(props) {
 
     const [swiper, setSwiper] = useState(null)
+    const [prevIndex, setPrevIndex] = useState(0)
+    const [indicators, setIndicators] = useState([])
+    useEffect(() => {
+        // postsが2の時は3倍数のindicatorを作成
+        if (props.posts.length == 2) {
+            let newIndicators = []
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 2; j++) {
+                    newIndicators.push(j)
+                }
+            }
+            setIndicators(newIndicators)
+        } else if (props.posts.length == 3) {
+            let newIndicators = []
+            for (let i = 0; i < 2; i++) {
+                for (let j = 0; j < 3; j++) {
+                    newIndicators.push(j)
+                }
+            }
+            setIndicators(newIndicators)
+        } else {
+            let newIndicators = []
+            for (let i = 0; i < 2; i++) {
+                for (let j = 0; j < props.posts.length; j++) {
+                    newIndicators.push(j)
+                }
+            }
+            console.log(newIndicators)
+            setIndicators(newIndicators)
+        }
+    }, [props.posts])
 
     const onClickNext = () => {
         props.slideNext()
-        swiper.slideNext()
+        // swiper.slideNext()
     }
     const onClickPrev = () => {
         props.slidePrev()
-        swiper.slidePrev()
+        // swiper.slidePrev()
     }
-    const onClickPage = (index) => {
-        props.slideToLoop(index)
+    const onClickPage = (label, index) => {
+        props.slideToLoop(label)
+        setPrevIndex(label)
         swiper.slideToLoop(index)
     }
     useEffect(() => {
         if (swiper) {
-            swiper.slideToLoop(props.realIndex)
+            if (props.realIndex===prevIndex) return
+            // console.log('props.realIndex'+props.realIndex)
+            if (prevIndex===0&&props.realIndex!==1) swiper.slidePrev()
+            else if (props.realIndex===0&&prevIndex!==1) swiper.slideNext()
+            else (props.realIndex>prevIndex)? swiper.slideNext(): swiper.slidePrev()
+            setPrevIndex(props.realIndex)
         }
     }, [props.realIndex])
     return (
@@ -34,17 +71,17 @@ export default function SwiperControll(props) {
                         </svg>
                     </button>
                 </div>
-                <div className="max-w-[220px]">
+                <div className={`${props.posts.length<=3? 'max-w-[140px]': 'max-w-[220px]' }`}>
                     <Swiper
                         loop
                         centeredSlides
-                        slidesPerView={5}
+                        slidesPerView={props.posts.length<=3? 3: 5}
                         id="pagination"
                         onSwiper={(swiper) => setSwiper(swiper)}
                     >
-                        {props.posts.map((post, i)=>(
-                            <SwiperSlide key={'indicator-'+post.id}>
-                                <button onClick={()=>onClickPage(i)} className="flex justify-center items-end py-2 w-[44px] text-gray-500 transition-all duration-300 jost">{i+1}</button>
+                        {indicators.map((label, index)=>(
+                            <SwiperSlide key={'indicator-'+index}>
+                                <button onClick={()=>onClickPage(label, index)} className="flex justify-center items-end py-2 w-[44px] text-gray-500 transition-all duration-300 jost">{label+1}</button>
                             </SwiperSlide>
                         ))}
                     </Swiper>

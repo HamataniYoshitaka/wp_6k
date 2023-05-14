@@ -8,8 +8,10 @@ import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react'
 import 'swiper/css'
 import { useSelector } from "react-redux";
 import OtherWorks from "./Single.tsx/OtherWorks";
+// import { useReloadFonts } from "../hooks/useReloadFonts";
 
 export default function Single(props) {
+
     const categories = useSelector(state => state.product.categories)
     const [swiper, setSwiper] = useState(null)
 
@@ -30,9 +32,7 @@ export default function Single(props) {
     }, [])
     useEffect(()=>{
         if (post) {
-            if(!(window.location.hostname === 'localhost' || window.location.hostname === "127.0.0.1")) {
-                window.reload_fontPlus()
-            }
+            // useReloadFonts()
         }
     }, [post])
     return (

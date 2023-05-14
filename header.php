@@ -23,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Jost:wght@500&display=swap" rel="stylesheet">
 
 <!-- Font Plus -->
 <script src="https://webfont.fontplus.jp/accessor/script/fontplus.js?SKUuJA9FCRo%3D&box=a0gTO1QmFhk%3D&aa=1&ab=2"></script>

@@ -93,15 +93,18 @@ function add_rest_original_endpoint(){
 }
 add_action('rest_api_init', 'add_rest_original_endpoint');
 
-function artworkIndex() {
+function artworkIndex($data) {
     global $wpdb;
+    $category_id = $data['category'];
 
+    // カテゴリが指定されている場合は絞り込む    
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => -1,
         'post_status' => 'publish',
+        'cat' => $category_id,
         'orderby' => 'date',
-        'order' => 'DESC',
+        'order' => 'ASC',
     );
     $posts = get_posts($args);
     $data = array();
@@ -173,7 +176,7 @@ function artworkSingle($data) {
         'posts_per_page' => -1,
         'post_status' => 'publish',
         'orderby' => 'date',
-        'order' => 'DESC',
+        'order' => 'ASC',
         'name' => $slug
     );
     $posts = get_posts($args);

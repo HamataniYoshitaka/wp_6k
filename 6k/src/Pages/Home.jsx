@@ -5,12 +5,15 @@ import HomeNavigation from "./Home/Navigation";
 import axios from 'axios'
 import { apiUrl } from "../utils";
 import Opening from "../Components/Opening";
+import { useReloadFonts } from "../hooks/useReloadFonts";
 
 export default function Home(props) {
+    const reloadFonts = useReloadFonts()
     const [isSingleView, setIsSingleView] = useState(true)
     const [selectedCategoryId, setSelectedCategoryId] = useState(-1)
     const [posts, setPosts] = useState([])
     const [nowLoading, setNowLoading] = useState(true)
+    const [fontLoaded, setFontLoaded] = useState(false)
     const changeView = (isSingleView) => {
         setNowLoading(true)
         setTimeout(()=>{
@@ -18,25 +21,42 @@ export default function Home(props) {
         }, 500)
     }
     useEffect(()=>{
-        axios.get(apiUrl() +'/wp-json/wp/6k/artworks').then(res => {
-            setPosts(res.data)
-            setNowLoading(false)
-        })
+        getPosts()
     }, [])
     useEffect(()=>{
         setNowLoading(true)
+        setTimeout(()=>{
+            setPosts([])
+            getPosts()
+        }, 500)
+        
+    }, [selectedCategoryId])
+
+    const getPosts = () => {
         if (selectedCategoryId === -1) {
             axios.get(apiUrl() +'/wp-json/wp/6k/artworks').then(res => {
                 setPosts(res.data)
-                setNowLoading(false)
+                // setNowLoading(false)
+                if (!fontLoaded) {
+                    setFontLoaded(true)
+                    setTimeout(()=>{
+                        reloadFonts()
+                    }, 100)
+                }
             })
         } else {
-            axios.get(apiUrl() +'/wp-json/wp/6k/artworks?categort='+selectedCategoryId).then(res => {
+            axios.get(apiUrl() +'/wp-json/wp/6k/artworks?category='+selectedCategoryId).then(res => {
                 setPosts(res.data)
-                setNowLoading(false)
+                // setNowLoading(false)
+                if (!fontLoaded) {
+                    // setFontLoaded(true)
+                    setTimeout(()=>{
+                        reloadFonts()
+                    }, 100)
+                }
             })
         }
-    }, [selectedCategoryId])
+    }
 
     return (
         <>
