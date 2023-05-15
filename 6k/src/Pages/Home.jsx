@@ -6,11 +6,26 @@ import axios from 'axios'
 import { apiUrl } from "../utils";
 import Opening from "../Components/Opening";
 import { useReloadFonts } from "../hooks/useReloadFonts";
+import { useLocation } from "react-router-dom";
 
 export default function Home(props) {
+    const search = useLocation().search;
+    const query = new URLSearchParams(search);
     const reloadFonts = useReloadFonts()
-    const [isSingleView, setIsSingleView] = useState(true)
-    const [selectedCategoryId, setSelectedCategoryId] = useState(-1)
+    const [isSingleView, setIsSingleView] = useState((()=>{
+        if (query.get('mode') === 'index') {
+            return false
+        } else {
+            return true
+        }
+    })())
+    const [selectedCategoryId, setSelectedCategoryId] = useState((()=>{
+        if (query.get('category')) {
+            return parseInt(query.get('category'))
+        } else {
+            return -1
+        }
+    })())
     const [posts, setPosts] = useState([])
     const [nowLoading, setNowLoading] = useState(true)
     const [fontLoaded, setFontLoaded] = useState(false)

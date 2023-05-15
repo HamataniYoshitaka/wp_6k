@@ -130,7 +130,7 @@ export default function Single(props) {
                 <ul className="flex flex-wrap gap-3 justify-center mt-6">
                     {categories.map((cat) => (
                         <li key={'cat-'+cat.id} className="inline-block">
-                            <Link to={'/category/'+cat.slug} className="border-1.5 border-black text-xs inline-block py-1 px-2 bg-white text-black font-bold hover:bg-slate-100">{cat.name}</Link>
+                            <Link to={'/?mode=index&category='+cat.id} className="border-1.5 border-black text-xs inline-block py-1 px-2 bg-white text-black font-bold hover:bg-slate-100">{cat.name}</Link>
                         </li>
                     ))}
                 </ul>
