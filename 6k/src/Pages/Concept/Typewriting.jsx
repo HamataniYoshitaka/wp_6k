@@ -70,8 +70,8 @@ export default function Typewriting(props) {
 
   return (
     <div className={`fixed top-0 left-0 w-screen h-screen pointer-events-none transition-opacity duration-600 delay-300 ${props.currentPage >= 5? 'opacity-0': 'opacity-1'}`}>
-        <div className="fixed top-0 opacity-0 pointer-events-none">影があることで日が差す方向が見えます見えないものが可視化されます景色に奥行きがでます</div>
-        <div className="fixed top-[calc(50vh-30px)] left-[calc(50vw-440px)] w-96 text-2xl">
+        <div className="fixed top-0 opacity-0 pointer-events-none text-xs">影があることで日が差す方向が見えます見えないものが可視化されます景色に奥行きがでます</div>
+        <div className="fixed top-[calc(50vh-200px)] md:top-[calc(50vh-30px)] left-[calc(50vw-70px)] md:left-[calc(50vw-440px)] w-60 md:w-96 text-xl md:text-2xl">
             <Typewriter
                 onInit={(typewriter) => {
                     setTypewriter0(typewriter);
@@ -84,7 +84,7 @@ export default function Typewriting(props) {
             />
 
         </div>
-        <div className="fixed top-[calc(50vh+30px)] left-[calc(50vw-440px)] w-96 text-2xl">
+        <div className="fixed top-[calc(50vh+120px)] md:top-[calc(50vh+30px)] left-[calc(50vw-160px)] md:left-[calc(50vw-440px)] w-80 md:w-96 text-xl md:text-2xl text-center md:text-left">
             <Typewriter
                 onInit={(typewriter) => {
                     setTypewriter(typewriter);

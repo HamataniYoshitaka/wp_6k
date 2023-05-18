@@ -17,7 +17,7 @@ export default function Glass(props) {
 
   return (
     <div className={`fixed transition-all duration-[2s] left-0 w-screen h-screen pointer-events-none ${props.currentPage === 0? 'top-[100vh]': 'top-0'}`}>
-      <svg className={`absolute bottom-[calc(50vh-300px)] left-[calc(50vw+50px)] w-[908px] h-auto shrink-0 transition-all duration-[2s] origin-[20%_70%] ease-out ${props.currentPage > 4? ' scale-[1000%] opacity-0': ' scale-100 opacity-1'}`} viewBox="0 0 908.06 1088.25">
+      <svg className={`absolute bottom-[calc(50vh-110px)] md:bottom-[calc(50vh-300px)] left-[calc(50vw-120px)] md:left-[calc(50vw+50px)] w-[540px] md:w-[908px] h-auto shrink-0 transition-all duration-[2s] origin-[20%_70%] ease-out ${props.currentPage > 4? ' scale-[1000%] opacity-0': ' scale-100 opacity-1'}`} viewBox="0 0 908.06 1088.25">
         <MorphPath
             fromPath={shadowPaths[props.prevPage<=4? props.prevPage: 4]}
             toPath={shadowPaths[props.currentPage<=4? props.currentPage: 4]}

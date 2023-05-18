@@ -84,7 +84,7 @@ export default function Concept(props) {
                             </section>
                             <section className="section">
                                 <div className="max-w-[880px] mx-auto flex justify-center">
-                                    <p className={`text-lg leading-10 transition-opacity duration-1000 ${currentPage>4? 'opacity-100': 'opacity-0'}`}>
+                                    <p className={`md:text-lg leading-10 transition-opacity duration-1000 ${currentPage>4? 'opacity-100': 'opacity-0'}`}>
                                         影は決して主役ではありません。<br />
                                         しかし、迷った時に方向性を示し、<br />
                                         見えていなかった新たな発見を生み、<br />
@@ -96,11 +96,11 @@ export default function Concept(props) {
                                 </div>
                             </section>
                             <section className="section min-h-screen">
-                                <div className="bg-[#E8E8E8] py-20">
+                                <div className="bg-[#E8E8E8] py-20 px-5 md:px-0">
                                     <div className="max-w-[970px] mx-auto">
                                         <h4 className="text-3xl text-center font-medium">ROKKEI’S PROJECTS</h4>
-                                        <p className="text-center text-xs mt-8">クライアントワーク以外に社会へ問いを投げかける企画やブランドの運営をおこなっています</p>
-                                        <div className="mt-8 grid grid-cols-2 gap-12">
+                                        <p className="text-center text-xs mt-8 leading-7">クライアントワーク以外に社会へ問いを投げかける<br className="md:hidden"/>企画やブランドの運営をおこなっています</p>
+                                        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-12 px-8 md:px-0">
                                             <div className="relative group">
                                                 <img className="w-full h-auto" src={imgDir() + '/concept/no_mix.jpg'} />
                                                 <div className="absolute inset-0 flex justify-center items-center">
@@ -128,7 +128,7 @@ export default function Concept(props) {
                                     </div>
 
                                 </div>
-                                <div className="flex justify-center items-center space-x-10 min-h-[calc(100vh-697px)]">
+                                <div className="flex flex-col md:flex-row justify-center items-center space-y-5 md:space-y-0 md:space-x-10 min-h-[calc(100vh-697px)] py-6 md:py-0">
                                     <Link to="/" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">CREATIVE</Link>
                                     <Link to="/company" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">COMPANY</Link>
                                     <Link to="/contact" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">CONTACT</Link>
