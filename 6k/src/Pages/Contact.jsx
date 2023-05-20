@@ -7,6 +7,7 @@ import * as yup from 'yup'
 import axios from "axios";
 import { apiUrl } from "../utils";
 import { useReloadFonts } from "../hooks/useReloadFonts";
+import { useWindowSize } from "../hooks/useWindowSize";
 
 const schema = yup.object().required().shape({
     name: yup.string().required('必須項目です'),
@@ -17,6 +18,7 @@ const schema = yup.object().required().shape({
 })
 
 export default function Contact(props) {
+    const [windowWidth, windowHeight] = useWindowSize()
     const reloadFonts = useReloadFonts()
     const [isLoaded, setIsLoaded] = useState(false)
     const [titleShowing, setTitleShowing] = useState(false)
@@ -80,7 +82,7 @@ export default function Contact(props) {
     return (
         <div className="bg-[#E8E8E8] pt-32 pb-20 relative">
 
-            <div className={`fixed z-0 top-0 left-0 w-screen h-screen overflow-hidden pointer-events-none transition-opacity duration-[2s] ${titleShowing? 'opacity-100': 'opacity-0'}`}>
+            <div className={`fixed z-0 top-0 left-0 w-screen overflow-hidden pointer-events-none transition-opacity duration-[2s] ${titleShowing? 'opacity-100': 'opacity-0'}`} style={{height: windowHeight}}>
                 <h1 className="absolute top-[calc(50vh-200px)] left-[calc(50vw-760px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40">CONTACT</h1>
             </div>
             <div className=" max-w-lg mx-auto relative px-4 pb-20">

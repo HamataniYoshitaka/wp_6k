@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import NavFooter from "../Components/NavFooter";
 import { useReloadFonts } from "../hooks/useReloadFonts";
+import { useWindowSize } from "../hooks/useWindowSize";
 
 export default function About(props) {
+    const [windowWidth, windowHeight] = useWindowSize()
     const reloadFonts = useReloadFonts()
     const [isLoaded, setIsLoaded] = useState(false)
     const [titleShowing, setTitleShowing] = useState(false)
@@ -17,7 +19,7 @@ export default function About(props) {
     }, [])
     return (
         <div className="bg-[#C6C6C6] pt-32 pb-40 relative">
-            <div className={`fixed z-0 top-0 left-0 w-screen h-screen overflow-hidden pointer-events-none transition-opacity duration-[2s] ${titleShowing? 'opacity-100': 'opacity-0'}`}>
+            <div className={`fixed z-0 top-0 left-0 w-screen overflow-hidden pointer-events-none transition-opacity duration-[2s] ${titleShowing? 'opacity-100': 'opacity-0'}`} style={{height: windowHeight}}>
                 <h1 className="absolute top-[calc(50vh-200px)] left-[calc(50vw-760px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40">COMPANY</h1>
             </div>
 
@@ -139,7 +141,7 @@ export default function About(props) {
                     </div>
                     <div className=" px-10 overflow-hidden">
                         <div className={`transition-transform duration-1000 delay-[2600ms] ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-10'}`}>
-                            <a href="#" target="_blank" className={`block border-1.5 bg-white border-black rounded-full text-xs text-center py-2 mt-4 jost transition-colors hover:bg-black hover:text-white `}>MORE</a>
+                            <a href="https://www.instagram.com/hunch.jewelry/" target="_blank" className={`block border-1.5 bg-white border-black rounded-full text-xs text-center py-2 mt-4 jost transition-colors hover:bg-black hover:text-white `}>MORE</a>
                         </div>
                     </div>
 

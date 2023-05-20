@@ -13,7 +13,7 @@ export default function SwiperOne(props) {
                     {/* 背景のタイトル */}
                     <ShadowTitle post={props.posts[0]} shadowTitleScene={shadowTitleScene} setShadowTitleScene={setShadowTitleScene} />
                     <div className={`pt-20 md:pt-[calc(50vh-260px-40px)] relative`}>
-                        <div className="xl:max-w-[370px] md:mx-auto relative" >
+                        <div className="md:max-w-[370px] md:mx-auto relative" >
 
                             <div className="p-4">
                                 <SingleCard post={props.posts[0]} />

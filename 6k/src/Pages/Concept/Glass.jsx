@@ -1,5 +1,6 @@
 import React from "react";
 import MorphPath from "./MorphPath";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 const firstPath = "m76.53,878.79c12.49-4.26,52.74-13.73,79.89-.03,40.66,20.52,7.65,118.05-33.87,106.37-6.96-1.96-38.01-3.86-45.19-6.22-31.84-10.43-31.35-80.16-6.22-97.39"
 const secondPath = "m103.74,891.14c21.68-30.03,118.45-164.02,124.16-170.37,41.98-46.72,213.83,37.93,166.09,80.96-15.05,13.57-205.17,154.82-221.58,166.33-77.64,54.44-121.28-4.04-68.67-76.91Z"
@@ -14,10 +15,11 @@ const clack1 = "m319.59,896.43c-.24.07-.5-.04-.6-.27-.11-.25,0-.55.25-.66,10.18-
 const clackPaths = [clack1, clack2]
 
 export default function Glass(props) {
+  const [windowWidth, windowHeight] = useWindowSize()
 
   return (
-    <div className={`fixed transition-all duration-[2s] left-0 w-screen h-screen pointer-events-none ${props.currentPage === 0? 'top-[100vh]': 'top-0'}`}>
-      <svg className={`absolute bottom-[calc(50vh-110px)] md:bottom-[calc(50vh-300px)] left-[calc(50vw-120px)] md:left-[calc(50vw+50px)] w-[540px] md:w-[908px] h-auto shrink-0 transition-all duration-[2s] origin-[20%_70%] ease-out ${props.currentPage > 4? ' scale-[1000%] opacity-0': ' scale-100 opacity-1'}`} viewBox="0 0 908.06 1088.25">
+    <div className={`${!windowHeight&&'!hidden'} fixed transition-all duration-[2s] left-0 w-screen pointer-events-none ${(!props.currentPage || props.currentPage===0)? 'top-[100vh]': 'top-0'}`} style={{height: windowHeight}}>
+      <svg className={`absolute left-[calc(50vw-60px)] md:left-[calc(50vw-50px)] xl:left-[calc(50vw+50px)] w-[440px] md:w-[760px] lg:w-[908px] h-auto shrink-0 transition-all duration-[2s] origin-[20%_70%] ease-out ${props.currentPage > 4? ' scale-[1000%] opacity-0': ' scale-100 opacity-1'}`} viewBox="0 0 908.06 1088.25" style={{bottom: windowWidth<576? windowHeight/2-120: windowWidth<1024? windowHeight/2-170: windowHeight/2-300}}>
         <MorphPath
             fromPath={shadowPaths[props.prevPage<=4? props.prevPage: 4]}
             toPath={shadowPaths[props.currentPage<=4? props.currentPage: 4]}

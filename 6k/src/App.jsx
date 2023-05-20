@@ -13,9 +13,11 @@ import { setCategories } from "./redux/product";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { apiUrl } from './utils';
+import { useWindowSize } from './hooks/useWindowSize';
 
 
 function App() {
+  const [windowWidth, windowHeight] = useWindowSize()
   const categories = useSelector((state) => state.product.categories)
   const [menuShowing, setMenuShowing] = useState(false)
   const onSetMenuShowing = (show) => {
@@ -45,7 +47,7 @@ function App() {
   }, [location, displayLocation]);
 
   return (
-    <div className='w-screen min-h-screen relative'>
+    <div className='w-screen relative' style={{minHeight: windowHeight}}>
       <Header menuShowing={menuShowing} />
         <div 
           className={`transition-opacity ${transitionStage==='fadeOut'? 'opacity-0': 'opacity-100'} ${menuShowing? 'duration-100': 'duration-300'}`}

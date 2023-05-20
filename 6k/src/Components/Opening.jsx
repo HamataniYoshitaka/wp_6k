@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { setOpeningShown } from "../redux/product";
+import { useWindowSize } from "../hooks/useWindowSize";
 
 export default function Opening() {
+    const [windowWidth, windowHeight] = useWindowSize
     const openingShown = useSelector((state) => state.product.openingShown)
     const dispatch = useDispatch()
 
@@ -17,8 +19,8 @@ export default function Opening() {
     return (
         <>
         {openingShown? null: (
-            <div className="fixed z-[60] top-0 left-0 w-screen h-screen bg-white">
-                <div className="fixed z-[60] top-0 left-0 w-screen h-screen bg-black">
+            <div className="fixed z-[60] top-0 left-0 w-screen bg-white" style={{height: windowHeight}}>
+                <div className="fixed z-[60] top-0 left-0 w-screen bg-black" style={{height: windowHeight}}>
                     <div className={`pointer-events-none fixed flex z-50 top-[calc(50vh-50px)] left-0 w-full justify-between items-center p-5 transition-colors duration-300 text-white`}>
                         <svg className="w-9 h-auto " viewBox="0 0 36.71 70.05">
                             <path fill="currentColor" d="M36.7,15v-1.14H0v1.14l1.09,1.44H35.61l1.09-1.44Z"/>
