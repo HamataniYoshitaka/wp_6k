@@ -83,61 +83,61 @@ export default function Contact(props) {
             <div className={`fixed z-0 top-0 left-0 w-screen h-screen overflow-hidden pointer-events-none transition-opacity duration-[2s] ${titleShowing? 'opacity-100': 'opacity-0'}`}>
                 <h1 className="absolute top-[calc(50vh-200px)] left-[calc(50vw-760px)] text-transparent text-blur text-[260px] tracking-widest cormorant opacity-40">CONTACT</h1>
             </div>
-            <div className="md:w-[768px] mx-auto relative px-4 pb-20">
-                <div className="md:max-w-[452px]">
-                    <div className="px-10 overflow-hidden">
+            <div className=" max-w-lg mx-auto relative px-4 pb-20">
+                <div className="">
+                    <div className="px-6 overflow-hidden">
                         <div className={`transition-transform duration-1000 delay-100  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                             <h2 className=" text-sm">お問合せ</h2>
                             <hr className="w-4 border-t-1.5 border-black my-3"/>
                         </div>
                     </div>
                     <div className="space-y-4 mt-4">
-                        <div className="px-10 overflow-hidden">
+                        <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-100  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">お名前 ※必須</label>
                                 <input type="text" className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" {...register('name')}/>
                                 <p className="text-xs text-red-600 mt-1">{errors.name?.message}</p>
                             </div>
                         </div>
-                        <div className="px-10 overflow-hidden">
+                        <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-200  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">フリガナ ※必須</label>
                                 <input type="text" className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" {...register('kana')}/>
                                 <p className="text-xs text-red-600 mt-1">{errors.kana?.message}</p>
                             </div>
                         </div>
-                        <div className="px-10 overflow-hidden">
+                        <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-300  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">御社名</label>
                                 <input type="text" className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
                             </div>
                         </div>
-                        <div className="px-10 overflow-hidden">
+                        <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-[400ms]  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">御社名 フリガナ</label>
                                 <input type="text" className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
                             </div>
                         </div>
-                        <div className="px-10 overflow-hidden">
+                        <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-500  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">電話番号</label>
                                 <input type="text" className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
                             </div>
                         </div>
-                        <div className="px-10 overflow-hidden">
+                        <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-[600ms]  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">メールアドレス ※必須</label>
                                 <input type="email" className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" {...register('email')}/>
                                 <p className="text-xs text-red-600 mt-1">{errors.email?.message}</p>
                             </div>
                         </div>
-                        <div className="px-10 overflow-hidden">
+                        <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-[700ms]  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">気になったプロジェクト</label>
                                 <input type="email" className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
                             </div>
                         </div>
-                        <div className="px-10 overflow-hidden">
+                        <div className="px-6 overflow-hidden">
                             <div className={`transition-all duration-1000 delay-[800ms]  ${isLoaded? 'scale-100 translate-y-0 opacity-100': 'scale-125 translate-y-20 opacity-0'}`}>
                                 <label className="text-xs">お問い合わせの内容 ※必須</label>
                                 <textarea rows={5} className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" {...register('message')}></textarea>
@@ -145,7 +145,7 @@ export default function Contact(props) {
                             </div>
                         </div>
 
-                        <div className="px-10 overflow-hidden">
+                        <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-[900ms]  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">
                                     <input type="checkbox" {...register('agreement')} className="mr-1"/>
@@ -160,7 +160,7 @@ export default function Contact(props) {
                                 onChange={onChallenge}
                             />
                         </div>
-                        <div className="px-10 overflow-hidden">
+                        <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-[1000ms]  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
 
                                 <button onClick={()=>submit()} disabled={!canSubmit()} className="block w-full bg-black text-white text-center text-xs py-3 transition-colors hover:bg-gray-800 disabled:bg-gray-400">送信</button>
