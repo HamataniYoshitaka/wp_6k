@@ -7,7 +7,7 @@ const secondPath = "m103.74,891.14c21.68-30.03,118.45-164.02,124.16-170.37,41.98
 const thirdPath = "m156.42,878.76c42.86-3.66,298.66-22.88,308.58-22.79,60.05.52,58.74,234.47-2.23,225.84-23.32-3.3-315.95-82.11-338.16-89.17-88.03-27.99-60.77-102.66,25.81-113.25"
 const fourthPath = "m105.74,890.14C125.23,856.83,618.25,49.99,626.79,35.79c46.71-77.73,320.74,6.37,259.2,96.13-14.88,21.7-683.38,800.75-713.57,836.14s-128.81,28.31-66.67-77.91Z"
 
-const shadowPaths = [firstPath, firstPath, secondPath, thirdPath, fourthPath]
+const shadowPaths = [firstPath, firstPath, secondPath, firstPath, thirdPath, firstPath, fourthPath]
 
 const clack2 = "m489.06,1015.8c-.58,0-1.12-.33-1.36-.88l-1.83-4-20.85.39h-.03c-.6,0-1.14-.35-1.38-.9l-3.59-8.26-18.18,3.83c-.45.09-.91-.02-1.27-.31l-17.99-14.9c-8.93,7.7-19.64,16.39-22.25,16.05-2.65-.34-27.13-12.85-34.57-16.68-.74-.38-1.03-1.28-.65-2.02.38-.74,1.28-1.03,2.02-.65,11.69,6.02,30.88,15.65,33.48,16.35,2.13-.58,12.24-8.59,20.95-16.15.55-.48,1.37-.49,1.94-.02l18.42,15.25,18.67-3.93c.7-.15,1.4.22,1.68.87l3.68,8.46,20.83-.39h.03c.59,0,1.12.34,1.36.88l1.76,3.83,4.36-.81c.2-.04.41-.03.61.01l4.29.98,10.21-.4c.82-.03,1.52.61,1.56,1.44.03.83-.61,1.53-1.44,1.56l-10.4.41c-.13,0-.26,0-.39-.04l-4.19-.95-5.2.96c-.09.02-.18.03-.27.03Z"
 const clack1 = "m319.59,896.43c-.24.07-.5-.04-.6-.27-.11-.25,0-.55.25-.66,10.18-4.65,29.87-13.74,31.53-14.89,1.5-1.04,8.17-12.32,12.29-19.64.06-.11.14-.21.29-.23l19.4-5.86,13.93-13.44c.11-.11.27-.16.43-.13l5.74.94,16.85-13.53c.11-.09.24-.13.38-.11l2.97.4,3.85-3.63,3.9-2.46,8-6.56c.21-.18.53-.14.7.07.18.21.14.53-.07.7l-8.05,6.6-3.87,2.44-3.95,3.73c-.11.1-.26.15-.41.13l-2.99-.41-16.85,13.54c-.11.09-.25.13-.39.1l-5.72-.93-13.84,13.35c-.06.06-.11.1-.2.12l-19.32,5.84c-1.44,2.56-10.38,18.33-12.49,19.8-2.15,1.49-30.48,14.43-31.69,14.98-.02,0-.04.02-.06.02Z"
@@ -19,17 +19,17 @@ export default function Glass(props) {
 
   return (
     <div className={`${!windowHeight&&'!hidden'} fixed transition-all duration-[2s] left-0 w-screen pointer-events-none ${(!props.currentPage || props.currentPage===0)? 'top-[100vh]': 'top-0'}`} style={{height: windowHeight}}>
-      <svg className={`absolute left-[calc(50vw-60px)] md:left-[calc(50vw-50px)] xl:left-[calc(50vw+50px)] w-[440px] md:w-[760px] lg:w-[908px] h-auto shrink-0 transition-all duration-[2s] origin-[20%_70%] ease-out ${props.currentPage > 4? ' scale-[1000%] opacity-0': ' scale-100 opacity-1'}`} viewBox="0 0 908.06 1088.25" style={{bottom: windowWidth<576? windowHeight/2-120: windowWidth<1024? windowHeight/2-170: windowHeight/2-300}}>
+      <svg className={`absolute left-[calc(50vw-60px)] md:left-[calc(50vw-50px)] xl:left-[calc(50vw+50px)] w-[440px] md:w-[760px] lg:w-[908px] h-auto shrink-0 transition-all duration-[2s] origin-[20%_70%] ease-out ${props.currentPage > 6? ' scale-[1000%] opacity-0': ' scale-100 opacity-1'}`} viewBox="0 0 908.06 1088.25" style={{bottom: windowWidth<576? windowHeight/2-120: windowWidth<1024? windowHeight/2-170: windowHeight/2-300}}>
         <MorphPath
-            fromPath={shadowPaths[props.prevPage<=4? props.prevPage: 4]}
-            toPath={shadowPaths[props.currentPage<=4? props.currentPage: 4]}
-            animation={{ duration: 1.0, ease: 'easeIn', delay: props.prevPage<props.currentPage? 1.0: 0 }}
+            fromPath={shadowPaths[props.prevPage<=6? props.prevPage: 6]}
+            toPath={shadowPaths[props.currentPage<=6? props.currentPage: 6]}
+            animation={{ duration: 1.0, ease: 'easeIn' }}
             fill={'#1a1311'}
         />
         <MorphPath
-            fromPath={clackPaths[props.currentPage === 3? 0: 1]}
-            toPath={clackPaths[props.currentPage === 3? 1: 0]}
-            animation={{ duration: 1.0, ease: 'easeIn', delay: props.prevPage<props.currentPage? 1.0: 0 }}
+            fromPath={clackPaths[props.currentPage === 4? 0: 1]}
+            toPath={clackPaths[props.currentPage === 4? 1: 0]}
+            animation={{ duration: 1.0, ease: 'easeIn' }}
             fill={'#fff'}
         />
         <path fill="#1a1311" d="m120.06,995.37c-20.25-1.15-41.37-4.36-57.58-17.53-10.15-7.09-9.68-20.81-13.05-31.6-11.41-37.62-19.71-76.12-26.98-114.73-5.78-26.23-13.74-51.96-18.26-78.49-4.62-15.06-6.5-31.81,4.22-44.88,16.14-20.96,39.54-37.32,65.43-43.49,37.38-9.63,77.59-10.94,114.13,2.85,17.53,7.89,36.89,17.18,45.57,35.36,7.74,16.32.62,33.81-2.02,50.53-2.22,12.9-5.67,25.53-8.44,38.28-11.92,40.81-24.09,81.56-33.75,122.98-2.62,10.56-4.83,21.23-7.98,31.64-2.39,13.37-6.28,27.03-19.21,33.87-11.55,6.24-29.11,16.36-42.07,15.23M7.31,754.87c3.88,23.53,11.3,46.27,16.15,69.59,6.19,28.67,11.95,57.43,18.77,85.96,5.02,17.74,10.34,35.43,14.37,53.46,10.06,25.08,46.03,27.16,69.44,28.6,17.25-5.67,43.71-12.94,48.7-32.8,7.27-26.06,12.96-52.54,19.73-78.74,11.62-45.18,27.95-89.14,35.59-135.27-14.3,20.25-38.99,28.45-61.75,35.16-49.27,15.59-123.56,13.91-161-25.95m125.05-94.58v-.15c-28.92,1.08-59.99,3.18-85.43,18.18-56.02,31.25-62.11,78.17,4.31,99.81,51.85,17.19,121.95,8.89,166.67-22.96,8.9-6.45,14.1-16.64,15.66-27.38,8.36-47.64-64.69-67.64-101.21-67.5"/>

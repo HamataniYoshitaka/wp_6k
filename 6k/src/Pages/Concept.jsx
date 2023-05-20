@@ -86,6 +86,14 @@ export default function Concept(props) {
                                 </div>
                             </section>
                             <section className="section">
+                                <div className="max-w-[880px] mx-auto">
+                                </div>
+                            </section>
+                            <section className="section">
+                                <div className="max-w-[880px] mx-auto">
+                                </div>
+                            </section>
+                            <section className="section">
                                 <div className="max-w-[880px] mx-auto flex justify-center">
                                     <p className={`md:text-lg leading-10 transition-opacity duration-1000 ${currentPage>4? 'opacity-100': 'opacity-0'}`}>
                                         影は決して主役ではありません。<br />
