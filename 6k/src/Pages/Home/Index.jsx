@@ -23,7 +23,7 @@ export default function HomeIndex(props) {
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 lg:gap-10 lg:w-[962px] mx-auto">
                     {props.posts.map((post, i) => (
                         <div className="w-full h-[240px] md:h-[460px] lg:h-[462px] relative" key={i}>
-                            <div className={`absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 ${!shadowVisible? 'drop-shadow-[0_0px_0px_rgba(0,0,0,0.001)]': 'drop-shadow-[0_1px_7px_rgba(0,0,0,0.15)]'} ${i%3===1? 'lg:top-8': 'lg:-top-6'} ${i%2===1? 'top-6': '-top-6'}`}>
+                            <div className={`absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 ${!shadowVisible? 'shadow-[0_0px_0px_rgba(0,0,0,0.001)]': 'shadow-[0_1px_15px_rgba(0,0,0,0.20)]'} ${i%3===1? 'lg:top-8': 'lg:-top-6'} ${i%2===1? 'top-6': '-top-6'}`}>
                             </div>
                             <div className={`group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ${i%3===1? 'lg:top-8': 'lg:-top-6'} ${i%2===1? 'top-6': '-top-6'} ${props.nowLoading? 'opacity-0 -translate-y-10': 'opacity-100 translate-y-0'}`} style={{transitionDelay: i*200+200+'ms'}}>
                                 <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />

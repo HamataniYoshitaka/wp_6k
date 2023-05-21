@@ -34,7 +34,7 @@ body {
   opacity: 1;
 }
 .artwork-detail-swiper .swiper {
-  overflow: visible;
+  /* overflow: visible; */
 }
 .artwork-detail-swiper .swiper-slide img {
   transform: scale(0.9);

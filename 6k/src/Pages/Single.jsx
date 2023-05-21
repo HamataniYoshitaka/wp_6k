@@ -9,8 +9,11 @@ import 'swiper/css'
 import { useSelector } from "react-redux";
 import OtherWorks from "./Single.tsx/OtherWorks";
 import { useReloadFonts } from "../hooks/useReloadFonts";
+import SameProjects from "./Single.tsx/SameProjects";
+import { useWindowSize } from "../hooks/useWindowSize";
 
 export default function Single(props) {
+    const [windowWidth, windowHeight] = useWindowSize()
     const reloadFonts = useReloadFonts()
 
     const categories = useSelector(state => state.product.categories)
@@ -20,6 +23,8 @@ export default function Single(props) {
     const navigate = useNavigate()
     const [post, setPost] = useState(null)
     useEffect(()=>{
+        if (!slug) return 
+        setPost(null)
         axios.get(apiUrl() +'/wp-json/wp/6k/artwork?slug='+slug).then(res => {
             console.log('res', res)
             if (!res.data.length) {
@@ -30,7 +35,7 @@ export default function Single(props) {
         }).catch(error => {
             navigate('/')
         })
-    }, [])
+    }, [slug])
     useEffect(()=>{
         if (post) {
             reloadFonts()
@@ -69,18 +74,18 @@ export default function Single(props) {
                     <div className="md:w-[560px] px-6 md:px-0 mx-auto mt-10">
                         <h6><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">detail</span></h6>
                     </div>
-                    <div className="overflow-hidden">
-                        <div className="md:w-[592px] mx-auto artwork-detail-swiper relative">
+                    <div className="">
+                        <div className="artwork-detail-swiper relative">
                             <Swiper
                                 loop
                                 centeredSlides
-                                slidesPerView={1}
+                                slidesPerView={windowWidth<592? 1.3: windowWidth/592}
                                 onSwiper={(swiper) => setSwiper(swiper)}
                             >
                                 {post.details.map((detail, i) => (
                                     <SwiperSlide key={'detail-'+i}>
-                                        <div className="p-4">
-                                            <img src={detail.image} className="w-full h-[445px] rounded-xl object-cover" />
+                                        <div className="p-2 md:p-4">
+                                            <img src={detail.image} className="w-full h-72 md:h-[445px] rounded-xl object-cover" />
                                             <p className="text-sm leading-7 mt-6">{detail.description}</p>
                                         </div>
                                     </SwiperSlide> 
@@ -88,18 +93,18 @@ export default function Single(props) {
                                 {post.details.map((detail, i) => (
                                     <SwiperSlide key={'detail-1-'+i}>
                                         <div className="p-4">
-                                            <img src={detail.image} className="w-full h-[445px] rounded-xl object-cover" />
+                                            <img src={detail.image} className="w-full h-72 md:h-[445px] rounded-xl object-cover" />
                                             <p className="text-sm leading-7 mt-6">{detail.description}</p>
                                         </div>
                                     </SwiperSlide> 
                                 ))}
                             </Swiper>
-                            <button onClick={()=>swiper.slidePrev(700)} className="absolute z-10 -left-8 top-56 rounded-full p-2 transition-opacity hover:bg-black/5">
+                            <button onClick={()=>swiper.slidePrev(700)} className="hidden md:block absolute z-10 left-[calc(50vw-330px)] top-56 rounded-full p-2 transition-opacity hover:bg-black/5">
                                 <svg className="w-5 h-5" viewBox="0 0 4.37 5.24">
                                     <path fill="currentColor" d="M0,2.62L4.37,0V5.24L0,2.62Z"/>
                                 </svg>
                             </button>
-                            <button onClick={()=>swiper.slideNext(700)} className="absolute z-10 -right-8 top-56 rounded-full p-2 transition-opacity hover:bg-black/5">
+                            <button onClick={()=>swiper.slideNext(700)} className="hidden md:block absolute z-10 left-[calc(50vw+295px)] top-56 rounded-full p-2 transition-opacity hover:bg-black/5">
                                 <svg className="w-5 h-5 -scale-x-100" viewBox="0 0 4.37 5.24">
                                     <path fill="currentColor" d="M0,2.62L4.37,0V5.24L0,2.62Z"/>
                                 </svg>
@@ -116,26 +121,25 @@ export default function Single(props) {
                         <p className="text-sm text-center">このプロジェクトで気になったことを聞いてみる</p>
                         <Link to="/contact" className="block w-full text-center text-xs mt-6 bg-white border-1.5 border-black rounded-full py-3 jost">CONTACT</Link>
                     </div>
+                    <div className="bg-white py-10">
+                        <SameProjects slug={slug} />
+                    </div>
+                    <div className="bg-[#E8E8E8] py-10">
+                        <OtherWorks />
+                        <h3 className="text-center text-3xl mt-14 jost">CATEGORY</h3>
+                        <h6 className="text-center text-xs mt-3">カテゴリーを選ぶ</h6>
+                        <ul className="flex flex-wrap gap-3 justify-center mt-6">
+                            {categories.map((cat) => (
+                                <li key={'cat-'+cat.id} className="inline-block">
+                                    <Link to={'/?mode=index&category='+cat.id} className="border-1.5 border-black text-xs inline-block py-1 px-2 bg-white text-black font-bold hover:bg-slate-100">{cat.name}</Link>
+                                </li>
+                            ))}
+                        </ul>
 
+                    </div>
                 </>
             )}
-            <div className="bg-white py-10">
-                <h3 className="text-center text-3xl jost">SAME PROJECTS</h3>
-                <h6 className="text-center text-xs mt-3">同プロジェクトの他のワークス</h6>
-            </div>
-            <div className="bg-[#E8E8E8] py-10">
-                <OtherWorks />
-                <h3 className="text-center text-3xl mt-14 jost">CATEGORY</h3>
-                <h6 className="text-center text-xs mt-3">カテゴリーを選ぶ</h6>
-                <ul className="flex flex-wrap gap-3 justify-center mt-6">
-                    {categories.map((cat) => (
-                        <li key={'cat-'+cat.id} className="inline-block">
-                            <Link to={'/?mode=index&category='+cat.id} className="border-1.5 border-black text-xs inline-block py-1 px-2 bg-white text-black font-bold hover:bg-slate-100">{cat.name}</Link>
-                        </li>
-                    ))}
-                </ul>
 
-            </div>
             <NavFooter />
 
         </div>

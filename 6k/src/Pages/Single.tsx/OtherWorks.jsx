@@ -7,6 +7,7 @@ import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react'
 import 'swiper/css'
 import { format } from "date-fns";
 import { apiUrl } from "../../utils";
+import { BrowserView, MobileView } from "react-device-detect";
 
 export default function OtherWorks(props) {
     const [windowWidth, windowHeight] = useWindowSize()
@@ -34,7 +35,7 @@ export default function OtherWorks(props) {
         }
     }, [windowWidth, posts])
     return (
-        <div ref={ref} className="">
+        <div ref={ref} className="min-h-[626px] md:min-h-[642px]">
             <h3 className="text-center text-3xl jost">OTHER WORKS</h3>
             <h6 className="text-center text-xs mt-3 mb-10">他のワークスを見る</h6>
             {posts.length > 0 && (
@@ -44,24 +45,31 @@ export default function OtherWorks(props) {
                         {posts.map((post, i) => (
                             <div key={'otherpost-'+i} className="p-6">
                                 <div className="w-[310px] h-[490px] relative">
-                                    <div className="absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 drop-shadow-[0_1px_7px_rgba(0,0,0,0.15)] ">
+                                    <div className="absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 shadow-[0_1px_20px_rgba(0,0,0,0.15)] ">
                                     </div>
-                                    <div className="group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ">
-                                        <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
-                                        {post.title.rendered}
-                                        <div className="absolute inset-0 bg-black/50 flex flex-col justify-center space-y-4 items-center transition-opacity duration-300 opacity-0 group-hover:opacity-100 p-4">
-                                            <h5 className="text-white text-2xl">{post.title}</h5>
-                                            <ul className=" space-x-3">
-                                                {post.tag.map((tag) =>(
-                                                    <li key={'post-'+post.id+'-tag-'+tag.id} className="inline-block jost">
-                                                        <span className="inline-block text-xs py-0.5 px-3 bg-white text-black">{tag.name}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                            <p className="text-sm text-white cormorant tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
-                                            <Link to={'/posts/'+post.slug} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</Link>
+                                    <MobileView>
+                                            <Link to={'/posts/'+post.slug} className="absolute block inset-0 text-white/0">
+                                                <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover rounded-lg" />
+                                            </Link>
+                                        </MobileView>
+                                    <BrowserView>
+                                        <div className="group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ">
+                                            <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
+                                            {post.title.rendered}
+                                            <div className="absolute inset-0 bg-black/50 flex flex-col justify-center space-y-4 items-center transition-opacity duration-300 opacity-0 group-hover:opacity-100 p-4">
+                                                <h5 className="text-white text-2xl">{post.title}</h5>
+                                                <ul className=" space-x-3">
+                                                    {post.tag.map((tag) =>(
+                                                        <li key={'post-'+post.id+'-tag-'+tag.id} className="inline-block jost">
+                                                            <span className="inline-block text-xs py-0.5 px-3 bg-white text-black">{tag.name}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                                <p className="text-sm text-white cormorant tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
+                                                <Link to={'/posts/'+post.slug} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</Link>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </BrowserView>
                                 </div>
                             </div>
                         ))}
@@ -79,24 +87,31 @@ export default function OtherWorks(props) {
                             <SwiperSlide key={'otherpost-'+post.id}>
                                 <div className="p-4 md:p-6">
                                     <div className="w-full h-[490px] relative">
-                                        <div className="absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 drop-shadow-[0_1px_7px_rgba(0,0,0,0.15)] ">
+                                        <div className="absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 shadow-[0_1px_20px_rgba(0,0,0,0.15)] ">
                                         </div>
-                                        <div className="group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ">
-                                            <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
-                                            {post.title.rendered}
-                                            <div className="absolute inset-0 bg-black/50 flex flex-col justify-center space-y-4 items-center transition-opacity duration-300 opacity-0 group-hover:opacity-100 p-4">
-                                                <h5 className="text-white text-2xl">{post.title}</h5>
-                                                <ul className=" space-x-3">
-                                                    {post.tag.map((tag) =>(
-                                                        <li key={'post-'+post.id+'-tag-'+tag.id} className="inline-block jost">
-                                                            <span className="inline-block text-xs py-0.5 px-3 bg-white text-black">{tag.name}</span>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                                <p className="text-sm text-white cormorant tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
-                                                <Link to={'/posts/'+post.slug} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</Link>
+                                        <MobileView>
+                                            <Link to={'/posts/'+post.slug} className="absolute block inset-0 text-white/0">
+                                                <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover rounded-lg" />
+                                            </Link>
+                                        </MobileView>
+                                        <BrowserView>
+                                            <div className="group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ">
+                                                <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
+                                                {post.title.rendered}
+                                                <div className="absolute inset-0 bg-black/50 flex flex-col justify-center space-y-4 items-center transition-opacity duration-300 opacity-0 group-hover:opacity-100 p-4">
+                                                    <h5 className="text-white text-2xl">{post.title}</h5>
+                                                    <ul className=" space-x-3">
+                                                        {post.tag.map((tag) =>(
+                                                            <li key={'post-'+post.id+'-tag-'+tag.id} className="inline-block jost">
+                                                                <span className="inline-block text-xs py-0.5 px-3 bg-white text-black">{tag.name}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                    <p className="text-sm text-white cormorant tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
+                                                    <Link to={'/posts/'+post.slug} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</Link>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </BrowserView>
                                     </div>
                                 </div>
                             </SwiperSlide>
@@ -105,24 +120,31 @@ export default function OtherWorks(props) {
                             <SwiperSlide key={'otherpost-1-'+post.id}>
                                 <div className="p-4 md:p-6">
                                     <div className="w-full h-[490px] relative">
-                                        <div className="absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 drop-shadow-[0_1px_7px_rgba(0,0,0,0.15)] ">
+                                        <div className="absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 shadow-[0_1px_20px_rgba(0,0,0,0.15)] ">
                                         </div>
-                                        <div className="group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ">
-                                            <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
-                                            {post.title.rendered}
-                                            <div className="absolute inset-0 bg-black/50 flex flex-col justify-center space-y-4 items-center transition-opacity duration-300 opacity-0 group-hover:opacity-100 p-4">
-                                                <h5 className="text-white text-2xl">{post.title}</h5>
-                                                <ul className=" space-x-3">
-                                                    {post.tag.map((tag) =>(
-                                                        <li key={'post-'+post.id+'-tag-'+tag.id} className="inline-block jost">
-                                                            <span className="inline-block text-xs py-0.5 px-3 bg-white text-black">{tag.name}</span>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                                <p className="text-sm text-white cormorant tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
-                                                <Link to={'/posts/'+post.slug} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</Link>
+                                        <MobileView>
+                                            <Link to={'/posts/'+post.slug} className="absolute block inset-0 text-white/0">
+                                                <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover rounded-lg" />
+                                            </Link>
+                                        </MobileView>
+                                        <BrowserView>
+                                            <div className="group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ">
+                                                <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
+                                                {post.title.rendered}
+                                                <div className="absolute inset-0 bg-black/50 flex flex-col justify-center space-y-4 items-center transition-opacity duration-300 opacity-0 group-hover:opacity-100 p-4">
+                                                    <h5 className="text-white text-2xl">{post.title}</h5>
+                                                    <ul className=" space-x-3">
+                                                        {post.tag.map((tag) =>(
+                                                            <li key={'post-'+post.id+'-tag-'+tag.id} className="inline-block jost">
+                                                                <span className="inline-block text-xs py-0.5 px-3 bg-white text-black">{tag.name}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                    <p className="text-sm text-white cormorant tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
+                                                    <Link to={'/posts/'+post.slug} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</Link>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </BrowserView>
                                     </div>
                                 </div>
                             </SwiperSlide>

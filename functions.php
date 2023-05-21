@@ -80,6 +80,12 @@ function add_rest_original_endpoint(){
         'callback' => 'artworkSingle',
         'permission_callback' => function() { return true; }
 	));
+    register_rest_route( 'wp/6k', '/same_projects', array(
+        'methods' => 'GET',
+        'callback' => 'get_same_projects',
+        'permission_callback' => function() { return true; }
+	));
+
     register_rest_route( 'wp/6k', '/nonce', array(
         'methods' => 'POST',
         'callback' => 'create_nonce',
@@ -90,6 +96,7 @@ function add_rest_original_endpoint(){
         'callback' => 'contact',
         'permission_callback' => function() { return true; }
     ));
+    
 }
 add_action('rest_api_init', 'add_rest_original_endpoint');
 
@@ -129,24 +136,6 @@ function artworkIndex($data) {
                 'slug' => $t->slug
             );
         }
-        // Smart Custom Fieldsの値を取得
-        $fields = SCF::get('details', $post->ID);
-        $details = array();
-        foreach ($fields as $field) { 
-            $image = $field['image'];
-            if ($image) {
-                $image = wp_get_attachment_url( $image );
-            }
-            $description = $field['description'];
-            $details[] = array(
-                'image' => $image,
-                'description' => $description
-            );
-        }
-        $trigger_image = SCF::get('trigger_image', $post->ID);
-        if ($trigger_image) {
-            $trigger_image = wp_get_attachment_url( $trigger_image );
-        }
 
         $data[] = array(
             'id' => $post->ID,
@@ -156,10 +145,6 @@ function artworkIndex($data) {
             'category' => $category,
             'tag' => $tag,
             'thumbnail' => get_the_post_thumbnail_url($post->ID, 'full'),
-            'details' => $details,
-            'trigger_image' => $trigger_image,
-            'trigger_description' => SCF::get('trigger_description', $post->ID),
-            'credit'  => SCF::get('credit', $post->ID),
             'shadow_text' => SCF::get('shadow_text', $post->ID),
         );
 
@@ -239,6 +224,72 @@ function artworkSingle($data) {
     }
     return $data;
 }
+
+function get_same_projects($data) {
+    global $wpdb;
+
+    $slug = $data->get_param( 'slug' );
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+        'orderby' => 'date',
+        'order' => 'ASC',
+        'name' => $slug
+    );
+    $posts = get_posts($args);
+    $data = array();
+    foreach ($posts as $post) {
+        // Smart Custom Fieldsの値を取得
+        $fields = SCF::get('SameProjects', $post->ID);
+        $ids = [];
+        foreach ($fields as $field) { 
+            $ids[] = $field['same_project'];
+        }
+        // idsを元に投稿を取得
+        $args2 = array(
+            'post_type' => 'post',
+            'posts_per_page' => -1,
+            'post_status' => 'publish',
+            'orderby' => 'date',
+            'order' => 'ASC',
+            'include' => $ids[0]
+        );
+        $posts2 = get_posts($args2);
+        foreach ($posts2 as $post2) {
+            // カテゴリーを配列で取得
+            $categories = get_the_category($post2->ID);
+            $category = array();
+            foreach ($categories as $cat) {
+                $category[] = array(
+                    'id' => $cat->term_id,
+                    'name' => $cat->name,
+                    'slug' => $cat->slug
+                );
+            }
+            // タグを配列で取得
+            $tags = get_the_tags($post2->ID);
+            $tag = array();
+            foreach ($tags as $t) {
+                $tag[] = array(
+                    'id' => $t->term_id,
+                    'name' => $t->name,
+                    'slug' => $t->slug
+                );
+            }
+            $data[] = array(
+                'title' => $post2->post_title,
+                'category' => $category,
+                'tag' => $tag,
+                'slug' => $post2->post_name,
+                'date' => $post2->post_date,
+                'thumbnail' => get_the_post_thumbnail_url($post2->ID, 'full'),
+            );
+        }
+    }
+    return $data;
+}
+
 /**
  * 一般設定に項目追加
  */

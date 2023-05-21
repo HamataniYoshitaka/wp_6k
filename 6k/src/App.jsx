@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { apiUrl } from './utils';
 import { useWindowSize } from './hooks/useWindowSize';
+import ScrollToTop from './Components/ScrollToTop';
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
         <div 
           className={`transition-opacity ${transitionStage==='fadeOut'? 'opacity-0': 'opacity-100'} ${menuShowing? 'duration-100': 'duration-300'}`}
         >
+          <ScrollToTop />
           <Routes location={displayLocation}>
             <Route path="/" element={<Home />} />
             <Route path="/concept" element={<Concept />} />

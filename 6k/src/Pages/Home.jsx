@@ -36,9 +36,6 @@ export default function Home(props) {
         }, 500)
     }
     useEffect(()=>{
-        getPosts()
-    }, [])
-    useEffect(()=>{
         setNowLoading(true)
         setTimeout(()=>{
             setPosts([])
