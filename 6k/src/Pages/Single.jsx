@@ -46,7 +46,7 @@ export default function Single(props) {
             {post && (
                 <>
                     <div className="md:w-[657px] mx-auto px-6 md:px-0">
-                        <img src={post.thumbnail} className=" w-full h-auto rounded-xl " />
+                        <img src={post.fv_image} className=" w-full h-auto rounded-xl " />
                         <div className="flex flex-col md:flex-row md:items-center md:space-x-4 mt-4">
                             <h1 className="text-2xl mt-3 order-3 md:order-1">{post.title}</h1>
                             <ul className="space-x-2 mt-2 order-2">

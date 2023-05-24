@@ -205,6 +205,10 @@ function artworkSingle($data) {
         if ($trigger_image) {
             $trigger_image = wp_get_attachment_url( $trigger_image );
         }
+        $fvImage = SCF::get('fv_image', $post->ID);
+        if ($fvImage) {
+            $fvImage = wp_get_attachment_url( $fvImage );
+        }
 
         $data[] = array(
             'id' => $post->ID,
@@ -219,6 +223,7 @@ function artworkSingle($data) {
             'trigger_description' => SCF::get('trigger_description', $post->ID),
             'credit'  => SCF::get('credit', $post->ID),
             'shadow_text' => SCF::get('shadow_text', $post->ID),
+            'fv_image' => $fvImage,
         );
 
     }
