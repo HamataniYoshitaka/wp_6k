@@ -21,6 +21,24 @@ function remove_redirects() {
 }
 add_action( 'init', 'remove_redirects' );
 
+// フィルターをかける
+add_filter('admin_post_thumbnail_html', '_what_is_eyecatch', 10, 2);
+ 
+/**
+ * アイキャッチのメタボックスに説明文を追加
+ *
+ * @param string $content 元々表示されるはずだったHTML
+ * @param int $post_id 投稿のID
+ * @return string
+ */
+function _what_is_eyecatch($content, $post_id){
+     $post = get_post($post_id);
+     // もし投稿のアイキャッチにだけ表示したいとかであれば、
+     // ここで if('post' == $post->post_type) とかすればOK
+     return $content.'<p class="description">アイキャッチっていうのは（以下略</p>';
+}
+
+
 /**
  * General Theme Settings
  *
@@ -379,4 +397,5 @@ EOM;
     
         return ['status' => $success1 && $success2];
 }
+
 ?>

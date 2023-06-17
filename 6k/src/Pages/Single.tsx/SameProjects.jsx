@@ -29,7 +29,11 @@ export default function SameProjects(props) {
             if (posts.length*334 <= windowWidth){
                 setSlidesToShow(0)
             } else {
-                setSlidesToShow(windowWidth/334)
+                if (windowWidth >= 768) {
+                    setSlidesToShow(windowWidth/334)
+                } else {
+                    setSlidesToShow(windowWidth/306)
+                }
             }    
         }
     }, [windowWidth, posts])
@@ -72,7 +76,7 @@ export default function SameProjects(props) {
                     >
                         {posts.map((post, i) => (
                             <SwiperSlide key={'sameproject-'+i}>
-                                <div className="p-4 md:p-6">
+                                <div className="p-2 md:p-6">
                                     <Link to={'/posts/' + post.slug} className={`block bg-white rounded-lg shadow-[0_1px_15px_rgba(0,0,0,0.20)] overflow-hidden relative w-[286px] h-[490px]`}>
                                         <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
                                         <p className={`absolute bottom-4 -left-44 text-right w-48 origin-bottom-right rotate-90 cormorant lowercase tracking-wider`}>{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
@@ -92,7 +96,7 @@ export default function SameProjects(props) {
                         ))}
                         {posts.map((post, i) => (
                             <SwiperSlide key={'sameproject-1-'+i}>
-                                <div className="p-4 md:p-6">
+                                <div className="p-2 md:p-6">
                                     <Link to={'/posts/' + post.slug} className={`block bg-white rounded-lg shadow-[0_1px_15px_rgba(0,0,0,0.20)] overflow-hidden relative w-[286px] h-[490px]`}>
                                         <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
                                         <p className={`absolute bottom-4 -left-44 text-right w-48 origin-bottom-right rotate-90 cormorant lowercase tracking-wider`}>{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>

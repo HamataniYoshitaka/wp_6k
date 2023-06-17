@@ -85,7 +85,7 @@ export default function OtherWorks(props) {
                     >
                         {posts.map((post, i) => (
                             <SwiperSlide key={'otherpost-'+post.id}>
-                                <div className="p-4 md:p-6">
+                                <div className="p-2 md:p-6">
                                     <div className="w-full h-[490px] relative">
                                         <div className="absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 shadow-[0_1px_20px_rgba(0,0,0,0.15)] ">
                                         </div>
@@ -118,7 +118,7 @@ export default function OtherWorks(props) {
                         ))}
                         {posts.map((post, i) => (
                             <SwiperSlide key={'otherpost-1-'+post.id}>
-                                <div className="p-4 md:p-6">
+                                <div className="p-2 md:p-6">
                                     <div className="w-full h-[490px] relative">
                                         <div className="absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 shadow-[0_1px_20px_rgba(0,0,0,0.15)] ">
                                         </div>

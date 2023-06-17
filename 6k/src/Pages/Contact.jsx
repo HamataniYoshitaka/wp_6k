@@ -52,6 +52,7 @@ export default function Contact(props) {
         else return false
     }
     const [nowLoading, setNowLoading] = useState(false)
+    const [sent, setSent] = useState(false)
     const submit = () => {
         const url = apiUrl() + '/wp-json/wp/6k/nonce'
         setNowLoading(true)
@@ -68,6 +69,7 @@ export default function Contact(props) {
             const url2 = apiUrl() + '/wp-json/wp/6k/contact'
             axios.post(url2, payload).then(res => {
                 console.log('success', res)
+                setSent(true)
                 setNowLoading(false)
             }).catch(errors => {
                 console.log('error', errors)
@@ -162,13 +164,23 @@ export default function Contact(props) {
                                 onChange={onChallenge}
                             />
                         </div>
-                        <div className="px-6 overflow-hidden">
-                            <div className={`transition-transform duration-1000 delay-[1000ms]  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
-
-                                <button onClick={()=>submit()} disabled={!canSubmit()} className="block w-full bg-black text-white text-center text-xs py-3 transition-colors hover:bg-gray-800 disabled:bg-gray-400">送信</button>
-                                {/* <button onClick={()=>submit()} className="block w-full bg-black text-white text-center text-xs py-3 transition-colors hover:bg-gray-800 disabled:bg-gray-400">送信</button> */}
+                        {nowLoading? (
+                            <div className="flex justify-center py-8">
+                                <div className="animate-spin h-10 w-10 border-4 border-stone-800 rounded-full border-t-transparent"></div>
                             </div>
-                        </div>
+                        ): (
+                            <div className="px-6 overflow-hidden">
+                                <div className={`transition-transform duration-1000 delay-[1000ms]  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
+                                    <button onClick={()=>submit()} disabled={!canSubmit()} className="block w-full bg-black text-white text-center text-xs py-3 transition-colors hover:bg-gray-800 disabled:bg-gray-400">送信</button>
+                                    {/* <button onClick={()=>submit()} className="block w-full bg-black text-white text-center text-xs py-3 transition-colors hover:bg-gray-800 disabled:bg-gray-400">送信</button> */}
+                                </div>
+                            </div>
+                        )}
+                        {sent && (
+                            <div className=" py-8">
+                                <p className=" text-center">送信が完了しました。<br />ご利用ありがとうございました。</p>
+                            </div>
+                        )}
                     </div>
 
                 </div>

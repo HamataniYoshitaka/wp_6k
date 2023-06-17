@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.single-content h6 {
+  font-family: 'Jost', sans-serif;
+  @apply inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold mt-6 md:mt-10 mb-4;
+}
+.single-content img {
+  @apply my-6 md:my-8 rounded-xl;
+}
+
 body {
   font-family: "TazuganeGothicStdN-Regular", sans-serif;
 }
@@ -156,3 +164,4 @@ body {
   100% {
     clip-path: inset(27px 1px 107px 1px); }
 }
+
