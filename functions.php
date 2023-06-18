@@ -210,14 +210,14 @@ function artworkSingle($data) {
         $details = array();
         foreach ($fields as $field) { 
             $image = $field['image'];
-            if ($image) {
+            if ($image && is_numeric($image)) {
                 $image = wp_get_attachment_url( $image );
+                $description = $field['description'];
+                $details[] = array(
+                    'image' => $image,
+                    'description' => $description
+                );
             }
-            $description = $field['description'];
-            $details[] = array(
-                'image' => $image,
-                'description' => $description
-            );
         }
         $trigger_image = SCF::get('trigger_image', $post->ID);
         if ($trigger_image) {
@@ -269,6 +269,7 @@ function get_same_projects($data) {
         foreach ($fields as $field) { 
             $ids[] = $field['same_project'];
         }
+        if (count($ids[0])===0) return [];
         // idsを元に投稿を取得
         $args2 = array(
             'post_type' => 'post',

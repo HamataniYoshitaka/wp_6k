@@ -70,7 +70,8 @@ export default function Single(props) {
                         <div dangerouslySetInnerHTML={{__html: post.content}} className="text-xs md:text-sm leading-6 md:leading-8 single-content">
                         </div>
                     </div>
-
+                    {post.details.length > 0 && (
+                    <>
                     <div className="md:w-[560px] px-6 md:px-0 mx-auto mt-10">
                         <h6><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">detail</span></h6>
                     </div>
@@ -111,6 +112,8 @@ export default function Single(props) {
                             </button>
                         </div>
                     </div>
+                    </>
+                    )}
                     <div className="md:w-[560px] px-6 md:px-0 mx-auto mt-10 pb-20">
                         <h6><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">trigger</span></h6>
                         <img src={post.trigger_image} className="w-full h-auto rounded-xl mt-6" />
@@ -119,7 +122,7 @@ export default function Single(props) {
                         <p className="text-xs md:text-sm leading-6 md:leading-8 mt-5" dangerouslySetInnerHTML={{__html: post.credit.replace(/\n/g, "<br />")}}></p>
                         <hr className="my-6 border-black border-t-1.5" />
                         <p className="text-sm text-center">このプロジェクトで気になったことを聞いてみる</p>
-                        <Link to="/contact" className="block w-full text-center text-xs mt-6 bg-white border-1.5 border-black rounded-full py-3 jost">CONTACT</Link>
+                        <Link to={'/contact?project='+post.title} className="block w-full text-center text-xs mt-6 bg-white border-1.5 border-black rounded-full py-3 jost">CONTACT</Link>
                     </div>
                     <div className="bg-white py-10">
                         <SameProjects slug={slug} />

@@ -8,6 +8,7 @@ import axios from "axios";
 import { apiUrl } from "../utils";
 import { useReloadFonts } from "../hooks/useReloadFonts";
 import { useWindowSize } from "../hooks/useWindowSize";
+import { useLocation } from "react-router-dom";
 
 const schema = yup.object().required().shape({
     name: yup.string().required('必須項目です'),
@@ -18,6 +19,7 @@ const schema = yup.object().required().shape({
 })
 
 export default function Contact(props) {
+    const location = useLocation()
     const [windowWidth, windowHeight] = useWindowSize()
     const reloadFonts = useReloadFonts()
     const [isLoaded, setIsLoaded] = useState(false)
@@ -30,6 +32,13 @@ export default function Contact(props) {
         setTimeout(() => {
             setTitleShowing(true)
         }, 1000)
+
+        // URLにprojectがあれば、その値をFormにセット
+        const queryParams = new URLSearchParams(location.search);
+        const projectName = queryParams.get('project');
+        if (projectName) {
+            setProject(projectName)
+        }
     }, [])
 
     const [recaptcha, setRecapthca] = useState(false)
@@ -47,6 +56,12 @@ export default function Contact(props) {
             agreement: false
         }
     })
+    // バリデーション不要のForm
+    const [company, setCompany] = useState('')
+    const [companyKana, setCompanyKana] = useState('')
+    const [project, setProject] = useState('')
+    const [tel, setTel] = useState('')
+
     const canSubmit = () => {
         if (isValid && recaptcha) return true
         else return false
@@ -64,6 +79,11 @@ export default function Contact(props) {
                 name: getValues('name'),
                 kana: getValues('kana'),
                 email: getValues('email'),
+                message: getValues('message'),
+                work: project,
+                company: company,
+                company_kana: companyKana,
+                tel: tel
     
             }
             const url2 = apiUrl() + '/wp-json/wp/6k/contact'
@@ -113,19 +133,19 @@ export default function Contact(props) {
                         <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-300  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">御社名</label>
-                                <input type="text" className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
+                                <input type="text" value={company} onChange={e=>setCompany(e.target.value)} className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
                             </div>
                         </div>
                         <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-[400ms]  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">御社名 フリガナ</label>
-                                <input type="text" className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
+                                <input type="text" value={companyKana} onChange={e=>setCompanyKana(e.target.value)} className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
                             </div>
                         </div>
                         <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-500  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">電話番号</label>
-                                <input type="text" className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
+                                <input type="text" value={tel} onChange={e=>setTel(e.target.value)} className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
                             </div>
                         </div>
                         <div className="px-6 overflow-hidden">
@@ -138,7 +158,7 @@ export default function Contact(props) {
                         <div className="px-6 overflow-hidden">
                             <div className={`transition-transform duration-1000 delay-[700ms]  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                 <label className="text-xs">気になったプロジェクト</label>
-                                <input type="email" className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
+                                <input type="text" value={project} onChange={e=>setProject(e.target.value)} className="bg-white block w-full border-1.5 border-black px-3 py-2 text-sm mt-2" />
                             </div>
                         </div>
                         <div className="px-6 overflow-hidden">
