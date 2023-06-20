@@ -40,7 +40,7 @@ export default function SwiperSix(props) {
                             <Swiper
                                 loop
                                 centeredSlides
-                                slidesPerView={windowWidth<576? 1: 3}
+                                slidesPerView={windowWidth<576? 1: windowWidth<=768? 1.9: windowWidth<=820? 2: 3}
                                 // allowTouchMove={windowWidth<576}
                                 speed={600}
                                 onInit={(swiper) => {setSwiper(swiper); console.log('swiper1',swiper)}}

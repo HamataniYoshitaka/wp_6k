@@ -52,7 +52,7 @@ export default function SwiperThree(props) {
                             <Swiper
                                 loop
                                 centeredSlides
-                                slidesPerView={windowWidth<576? 1: 3}
+                                slidesPerView={windowWidth<576? 1: windowWidth<=768? 1.9: 3}
                                 // allowTouchMove={windowWidth<576}
                                 speed={600}
                                 onInit={(swiper) => {setSwiper(swiper); console.log('swiper1',swiper)}}

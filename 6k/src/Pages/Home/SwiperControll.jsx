@@ -81,7 +81,7 @@ export default function SwiperControll(props) {
                     >
                         {indicators.map((label, index)=>(
                             <SwiperSlide key={'indicator-'+index}>
-                                <button onClick={()=>onClickPage(label, index)} className="flex justify-center items-end py-2 w-[44px] text-gray-500 transition-all duration-300 jost">{label+1}</button>
+                                <button onClick={()=>onClickPage(label, index)} className="flex justify-center items-end py-2 w-[44px] text-gray-500 transition-all duration-300 jost focus-visible:ring-0">{label+1}</button>
                             </SwiperSlide>
                         ))}
                     </Swiper>

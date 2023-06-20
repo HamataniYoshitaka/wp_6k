@@ -2,11 +2,28 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { useWindowSize } from "../../hooks/useWindowSize";
+import { useMousePosition } from "../../hooks/userMousePosition";
+import { isMobile } from "react-device-detect";
 
 export default function SingleCard(props) {
+    const mousePosition = useMousePosition()
     const [windowWidth, windowHeight] = useWindowSize()
+    const shadowStyle = () => {
+        if (isMobile) {
+            return '0px 1px 15px rgba(0, 0, 0, 0.2)'
+        }   
+
+        // return         '-10px 0px 20px rgba(0, 0, 0, 0.2)'
+        let x = (windowWidth/2 - mousePosition.x)
+        let y = (windowHeight/2 - mousePosition.y)
+        const length = Math.sqrt(x*x + y*y)
+        x = x/length * Math.pow(length, 1/3)
+        y = y/length * Math.pow(length, 1/3)
+        // return x+'px '+y+'px '+ (length) +'px rgba(0, 0, 0, 0.2)'            
+        return x+'px '+y+'px 15px rgba(0, 0, 0, 0.2)'            
+    }
     return (
-        <Link to={'/posts/' + props.post.slug} className={`block bg-white rounded-lg transition-all shadow-[0_1px_15px_rgba(0,0,0,0.20)] overflow-hidden relative`} style={{height: windowWidth<576? windowHeight-220: 520}}>
+        <Link to={'/posts/' + props.post.slug} className={`block bg-white rounded-lg overflow-hidden relative`} style={{height: windowWidth<576? windowHeight-220: 520, boxShadow: shadowStyle()}}>
             <img src={props.post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
             <p className={`absolute bottom-4 -left-44 text-right w-48 origin-bottom-right rotate-90 cormorant lowercase tracking-wider ${windowHeight<600 && 'hidden'}`}>{format(new Date(props.post.date), 'yyyy.MM.dd / EEEE')}</p>
             <ul className="absolute bottom-4 right-0  text-right space-y-2">
