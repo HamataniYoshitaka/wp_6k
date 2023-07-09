@@ -72,7 +72,7 @@ export default function Home(props) {
 
     return (
         <>
-            {/* <Opening /> */}
+            <Opening />
             <HomeNavigation isSingleView={isSingleView} changeView={changeView} selectedCategoryId={selectedCategoryId} setSelectedCategoryId={setSelectedCategoryId}/>
             {isSingleView? (
                 <HomeSingle posts={posts} nowLoading={nowLoading} setNowLoading={setNowLoading} />
