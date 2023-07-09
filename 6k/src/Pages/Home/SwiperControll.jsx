@@ -62,7 +62,7 @@ export default function SwiperControll(props) {
         }
     }, [props.realIndex])
     return (
-        <div className=" w-full z-10 relative -mt-16">
+        <div className={` w-full z-10 relative -mt-16 transition-all duration-1000 ${props.pagerShowing? 'translate-y-0 opacity-1000': ' translate-y-10 opacity-0'}`}>
             <div className="flex justify-center items-end">
                 <div>
                     <button onClick={()=>onClickPrev()} className="text-black p-4">

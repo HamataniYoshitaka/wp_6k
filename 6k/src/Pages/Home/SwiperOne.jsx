@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SingleCard from "./SingleCard";
 import ShadowTitle from "./ShadowTitle";
+import { useSelector } from "react-redux";
 
 
 export default function SwiperOne(props) {
     const [shadowTitleScene, setShadowTitleScene] = useState(-1)
+    const [pagerShowing, setPagerShowing] = useState(false)
+    const openingShown = useSelector((state) => state.product.openingShown)
+
+    useEffect(() => {
+        if(props.posts.length > 0 && openingShown) {
+            setTimeout(() => {
+                setPagerShowing(true)
+            }, 500)
+        }
+    }, [openingShown])
 
     return (
         <>
@@ -18,7 +29,7 @@ export default function SwiperOne(props) {
                             <div className="p-4">
                                 <SingleCard post={props.posts[0]} />
                             </div>
-                            <div className=" w-full z-10 relative -mt-4">
+                            <div className={`w-full z-10 relative -mt-4 transition-all duration-1000 ${pagerShowing? 'translate-y-0 opacity-1000': ' translate-y-10 opacity-0'}`}>
                                 <div className="flex justify-center items-end">
                                     <div>
                                         <div className="text-slate-500 p-4">

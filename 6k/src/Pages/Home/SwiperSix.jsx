@@ -5,12 +5,23 @@ import SwiperControll from "./SwiperControll";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import SingleCard from "./SingleCard";
 import ShadowTitle from "./ShadowTitle";
+import { useSelector } from "react-redux";
 
 export default function SwiperSix(props) {
     const [windowWidth, windowHeight] = useWindowSize()
     const [swiper, setSwiper] = useState(null)
     const [realIndex, setRealIndex] = useState(0)
     const [shadowTitleScene, setShadowTitleScene] = useState(-1)
+    const [pagerShowing, setPagerShowing] = useState(false)
+    const openingShown = useSelector((state) => state.product.openingShown)
+
+    useEffect(() => {
+        if(props.posts.length > 0 && openingShown) {
+            setTimeout(() => {
+                setPagerShowing(true)
+            }, 500)
+        }
+    }, [openingShown])
 
     const slideNext = () => {
         console.log('slideNext')
@@ -58,7 +69,7 @@ export default function SwiperSix(props) {
                                 ))}
                             </Swiper>
                             {props.posts.length && (
-                                <SwiperControll posts={props.posts} slideNext={slideNext} slidePrev={slidePrev} slideToLoop={slideToLoop} realIndex={realIndex}/>
+                                <SwiperControll posts={props.posts} slideNext={slideNext} slidePrev={slidePrev} slideToLoop={slideToLoop} realIndex={realIndex} pagerShowing={pagerShowing}/>
                             )}
                         </div>
                     </div>
