@@ -188,17 +188,16 @@ export default function Contact(props) {
                             <div className="flex justify-center py-8">
                                 <div className="animate-spin h-10 w-10 border-4 border-stone-800 rounded-full border-t-transparent"></div>
                             </div>
+                        ): sent? (
+                            <div className=" py-8">
+                                <p className=" text-center">送信が完了しました。<br />ご利用ありがとうございました。</p>
+                            </div>
                         ): (
                             <div className="px-6 overflow-hidden">
                                 <div className={`transition-transform duration-1000 delay-[1000ms]  ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-20'}`}>
                                     <button onClick={()=>submit()} disabled={!canSubmit()} className="block w-full bg-black text-white text-center text-xs py-3 transition-colors hover:bg-gray-800 disabled:bg-gray-400">送信</button>
                                     {/* <button onClick={()=>submit()} className="block w-full bg-black text-white text-center text-xs py-3 transition-colors hover:bg-gray-800 disabled:bg-gray-400">送信</button> */}
                                 </div>
-                            </div>
-                        )}
-                        {sent && (
-                            <div className=" py-8">
-                                <p className=" text-center">送信が完了しました。<br />ご利用ありがとうございました。</p>
                             </div>
                         )}
                     </div>

@@ -133,7 +133,7 @@ export default function About(props) {
                         </div>
                     </div>
 
-                    <h4 className="mt-4 px-10 overflow-hidden">
+                    <h4 className="mt-10 px-10 overflow-hidden">
                         <span className={`text-lg inline-block tracking-wider transition-transform duration-1000 delay-[2400ms] ${isLoaded? 'scale-100 translate-y-0': 'scale-125 translate-y-10'}`}>hunch</span>
                     </h4>
                     <div className="mt-3 px-10 overflow-hidden">

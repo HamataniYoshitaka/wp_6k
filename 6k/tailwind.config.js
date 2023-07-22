@@ -16,6 +16,9 @@ module.exports = {
         ".text-blur": {
           textShadow: "0px 0px 25px rgba(0,0,0,0.8)"
         },
+        ".text-blur-sm": {
+          textShadow: "0px 0px 15px rgba(0,0,0,0.8)"
+        },
       };
 
       addUtilities(newUtilities);

@@ -62,7 +62,7 @@ export default function Single(props) {
                                 ))}
                             </ul>
                             <div className="grow md:order-3"></div>
-                            <p className="text-sm cormorant lowercase order-1 md:order-4">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
+                            <p className="text-sm cormorant lowercase order-1 md:mt-2 md:order-4">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                         </div>
                         <hr className="my-6 border-black" />
                     </div>
@@ -77,39 +77,61 @@ export default function Single(props) {
                     </div>
                     <div className="">
                         <div className="artwork-detail-swiper relative">
-                            <Swiper
-                                loop
-                                centeredSlides
-                                slidesPerView={windowWidth<592? 1.3: windowWidth/592}
-                                onSwiper={(swiper) => setSwiper(swiper)}
-                            >
-                                {post.details.map((detail, i) => (
-                                    <SwiperSlide key={'detail-'+i}>
-                                        <div className="p-2 md:p-4">
-                                            <img src={detail.image} className="w-full h-72 md:h-[445px] rounded-xl object-cover" />
-                                            <p className="text-sm leading-7 mt-6">{detail.description}</p>
-                                        </div>
-                                    </SwiperSlide> 
-                                ))}
-                                {post.details.map((detail, i) => (
-                                    <SwiperSlide key={'detail-1-'+i}>
-                                        <div className="p-4">
-                                            <img src={detail.image} className="w-full h-72 md:h-[445px] rounded-xl object-cover" />
-                                            <p className="text-sm leading-7 mt-6">{detail.description}</p>
-                                        </div>
-                                    </SwiperSlide> 
-                                ))}
-                            </Swiper>
-                            <button onClick={()=>swiper.slidePrev(700)} className="hidden md:block absolute z-10 left-[calc(50vw-330px)] top-56 rounded-full p-2 transition-opacity hover:bg-black/5">
-                                <svg className="w-5 h-5" viewBox="0 0 4.37 5.24">
-                                    <path fill="currentColor" d="M0,2.62L4.37,0V5.24L0,2.62Z"/>
-                                </svg>
-                            </button>
-                            <button onClick={()=>swiper.slideNext(700)} className="hidden md:block absolute z-10 left-[calc(50vw+295px)] top-56 rounded-full p-2 transition-opacity hover:bg-black/5">
-                                <svg className="w-5 h-5 -scale-x-100" viewBox="0 0 4.37 5.24">
-                                    <path fill="currentColor" d="M0,2.62L4.37,0V5.24L0,2.62Z"/>
-                                </svg>
-                            </button>
+                            {post.details.length == 1 && (
+                                <div className="max-w-[592px] mx-auto">
+                                    <div className="p-6 md:p-4">
+                                        <img src={post.details[0].image} className="w-full h-72 md:h-[445px] rounded-xl object-cover" />
+                                        <p className="text-sm leading-7 mt-6">{post.details[0].description}</p>
+                                    </div>
+                                </div>
+                            )}
+                            {post.details.length >= 2 && (
+                                <>
+                                <Swiper
+                                    loop
+                                    centeredSlides
+                                    slidesPerView={windowWidth<592? 1.3: windowWidth/592}
+                                    onSwiper={(swiper) => setSwiper(swiper)}
+                                    initialSlide={1}
+                                >
+                                    {post.details.map((detail, i) => (
+                                        <SwiperSlide key={'detail-'+i}>
+                                            <div className="p-2 md:p-4">
+                                                <img src={detail.image} className="w-full h-72 md:h-[445px] rounded-xl object-cover" />
+                                                <p className="text-sm leading-7 mt-6">{detail.description}</p>
+                                            </div>
+                                        </SwiperSlide> 
+                                    ))}
+                                    {post.details.length < 5 && post.details.map((detail, i) => (
+                                        <SwiperSlide key={'detail-1-'+i}>
+                                            <div className="p-4">
+                                                <img src={detail.image} className="w-full h-72 md:h-[445px] rounded-xl object-cover" />
+                                                <p className="text-sm leading-7 mt-6">{detail.description}</p>
+                                            </div>
+                                        </SwiperSlide> 
+                                    ))}
+                                    {post.details.length ===2 && post.details.map((detail, i) => (
+                                        <SwiperSlide key={'detail-2-'+i}>
+                                            <div className="p-4">
+                                                <img src={detail.image} className="w-full h-72 md:h-[445px] rounded-xl object-cover" />
+                                                <p className="text-sm leading-7 mt-6">{detail.description}</p>
+                                            </div>
+                                        </SwiperSlide> 
+                                    ))}
+
+                                </Swiper>
+                                <button onClick={()=>swiper.slidePrev(700)} className="hidden md:block absolute z-10 left-[calc(50vw-330px)] top-56 rounded-full p-2 transition-opacity hover:bg-black/5">
+                                    <svg className="w-5 h-5" viewBox="0 0 4.37 5.24">
+                                        <path fill="currentColor" d="M0,2.62L4.37,0V5.24L0,2.62Z"/>
+                                    </svg>
+                                </button>
+                                <button onClick={()=>swiper.slideNext(700)} className="hidden md:block absolute z-10 left-[calc(50vw+295px)] top-56 rounded-full p-2 transition-opacity hover:bg-black/5">
+                                    <svg className="w-5 h-5 -scale-x-100" viewBox="0 0 4.37 5.24">
+                                        <path fill="currentColor" d="M0,2.62L4.37,0V5.24L0,2.62Z"/>
+                                    </svg>
+                                </button>
+                            </>
+                            )}
                         </div>
                     </div>
                     </>
@@ -122,11 +144,11 @@ export default function Single(props) {
                         <p className="text-xs md:text-sm leading-6 md:leading-8 mt-5" dangerouslySetInnerHTML={{__html: post.credit.replace(/\n/g, "<br />")}}></p>
                         <hr className="my-6 border-black border-t-1.5" />
                         <p className="text-sm text-center">このプロジェクトで気になったことを聞いてみる</p>
-                        <Link to={'/contact?project='+post.title} className="block w-full text-center text-xs mt-6 bg-white border-1.5 border-black rounded-full py-3 jost">CONTACT</Link>
+                        <Link to={'/contact?project='+post.title} className="block w-full text-center text-xs mt-6 bg-white border-1.5 border-black rounded-full py-3 jost hover:bg-slate-100">CONTACT</Link>
                     </div>
-                    <div className="bg-white py-10">
-                        <SameProjects slug={slug} />
-                    </div>
+
+                    <SameProjects slug={slug} />
+                    
                     <div className="bg-[#E8E8E8] py-10">
                         <OtherWorks />
                         <h3 className="text-center text-3xl mt-14 jost">CATEGORY</h3>

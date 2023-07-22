@@ -49,7 +49,7 @@ function App() {
 
   return (
     <div className='w-screen relative' style={{minHeight: windowHeight}}>
-      <Header menuShowing={menuShowing} />
+      <Header menuShowing={menuShowing} setMenuShowing={onSetMenuShowing} />
         <div 
           className={`transition-opacity ${transitionStage==='fadeOut'? 'opacity-0': 'opacity-100'} ${menuShowing? 'duration-100': 'duration-300'}`}
         >
