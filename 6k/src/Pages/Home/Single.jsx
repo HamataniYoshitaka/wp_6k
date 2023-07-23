@@ -9,11 +9,11 @@ export default function HomeSingle(props) {
     const [windowWidth, windowHeight] = useWindowSize()
 
     useEffect(() => {
-        if (props.posts.length) {
+        // if (props.posts.length) {
             setTimeout(() => {
                 props.setNowLoading(false)
             }, 400)
-        }
+        // }
     }, [props.posts])
 
     return (
@@ -25,7 +25,7 @@ export default function HomeSingle(props) {
             ): (props.posts.length && props.posts.length >=6)? (
                 <SwiperSix posts={props.posts}/>
             ): (
-                <div>
+                <div className="w-screen h-screen flex items-center justify-center text-gray-400">
                     no works.
                 </div>
             )}

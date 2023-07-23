@@ -15,10 +15,19 @@ export default function HomeIndex(props) {
             , 1600)
         } else {
             setShadowVisible(false)
+            setTimeout(() => {
+                props.setNowLoading(false)
+            }, 1000)
+
         }
     }, [props.posts])
     return (
         <div className={` transition-opacity duration-300 ${props.nowLoading? 'opacity-0': 'opacity-100'}`}>
+            {props.posts.length === 0 && (
+                <div className="w-screen h-screen flex items-center justify-center text-gray-400">
+                    no works.
+                </div>
+            )}
             <div className="pt-24 pb-20 relative px-6 lg:px-0">
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 lg:gap-10 lg:w-[962px] mx-auto">
                     {props.posts.map((post, i) => (
