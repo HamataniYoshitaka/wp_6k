@@ -88,7 +88,7 @@ export default function Typewriting(props) {
 
   return (
     <div className={`fixed top-0 left-0 w-screen pointer-events-none transition-opacity duration-600 delay-300 ${props.currentPage >= 7? 'opacity-0': 'opacity-1'}`} style={{height: windowHeight}}>
-        <div className="fixed top-0 opacity-0 pointer-events-none text-xs">影があることで日が差す方向が見えます見えないものが可視化されます景色に奥行きがでます</div>
+        <div className="fixed top-0 opacity-0 pointer-events-none text-xs">景色に輪郭をあたえる影のようなデザイン影があることで日が差す方向が見えます見えないものが可視化されます景色に奥行きがでます</div>
         <div className="fixed top-[calc(50vh-200px)] md:top-[calc(50vh-30px)] left-[calc(50vw-70px)] md:left-[calc(50vw-360px)] lg:left-[calc(50vw-440px)] w-60 md:w-96 text-xl md:text-2xl">
             <Typewriter
                 onInit={(typewriter) => {
@@ -103,7 +103,7 @@ export default function Typewriting(props) {
             />
 
         </div>
-        <div className="fixed left-[calc(50vw-160px)] md:left-[calc(50vw-360px)] lg:left-[calc(50vw-440px)] w-80 md:w-96 text-xl md:text-2xl text-center md:text-left" style={{top: windowWidth<576? windowHeight/2+120: windowHeight/2+30}}>
+        <div className="fixed left-[calc(50vw-160px)] md:left-[calc(50vw-360px)] lg:left-[calc(50vw-440px)] w-80 md:w-96 text-xl md:text-2xl text-center md:text-left" style={{top: windowWidth<576? windowHeight/2+120: windowHeight/2+20}}>
             <Typewriter
                 onInit={(typewriter) => {
                     setTypewriter(typewriter);

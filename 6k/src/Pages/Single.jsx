@@ -4,13 +4,14 @@ import axios from 'axios'
 import { apiUrl } from "../utils";
 import { format } from "date-fns";
 import NavFooter from "../Components/NavFooter";
-import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import { useSelector } from "react-redux";
 import OtherWorks from "./Single.tsx/OtherWorks";
 import { useReloadFonts } from "../hooks/useReloadFonts";
 import SameProjects from "./Single.tsx/SameProjects";
 import { useWindowSize } from "../hooks/useWindowSize";
+import { useInView } from 'react-hook-inview'
 
 export default function Single(props) {
     const [windowWidth, windowHeight] = useWindowSize()
@@ -22,6 +23,38 @@ export default function Single(props) {
     const { slug } = useParams()
     const navigate = useNavigate()
     const [post, setPost] = useState(null)
+
+    const [detailTitleRef, isDetailTitleVisible] = useInView({
+        threshold: 1,
+        unobserveOnEnter: true,
+    })
+    const [detailContentRef, isDetailContentVisible] = useInView({
+        threshold: 0.5,
+        unobserveOnEnter: true,
+    })
+
+    const [triggerTitleRef, isTriggerTitleVisible] = useInView({
+        threshold: 1,
+        unobserveOnEnter: true,
+    })
+    const [triggerImageRef, isTriggerImageVisible] = useInView({
+        threshold: 0.5,
+        unobserveOnEnter: true,
+    })
+    const [triggerDescriptionRef, isTriggerDescriptionVisible] = useInView({
+        threshold: 0.5,
+        unobserveOnEnter: true,
+    })
+
+    const [creditTitleRef, isCreditTitleVisible] = useInView({
+        threshold: 1,
+        unobserveOnEnter: true,
+    })
+    const [creditContentRef, isCreditContentVisible] = useInView({
+        threshold: 0.5,
+        unobserveOnEnter: true,
+    })
+
     useEffect(()=>{
         if (!slug) return 
         setPost(null)
@@ -73,11 +106,11 @@ export default function Single(props) {
                     {post.details.length > 0 && (
                     <>
                     <div className="md:w-[560px] px-6 md:px-0 mx-auto mt-10">
-                        <h6><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">detail</span></h6>
+                        <h6 ref={detailTitleRef} className={`transition-all duration-300 ${isDetailTitleVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">detail</span></h6>
                     </div>
-                    <div className="">
+                    <div ref={detailContentRef} className={` transition-all duration-300 ${isDetailContentVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
                         <div className="artwork-detail-swiper relative">
-                            {post.details.length == 1 && (
+                            {post.details.length === 1 && (
                                 <div className="max-w-[592px] mx-auto">
                                     <div className="p-6 md:p-4">
                                         <img src={post.details[0].image} className="w-full h-72 md:h-[445px] rounded-xl object-cover" />
@@ -137,11 +170,11 @@ export default function Single(props) {
                     </>
                     )}
                     <div className="md:w-[560px] px-6 md:px-0 mx-auto mt-10 pb-20">
-                        <h6><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">trigger</span></h6>
-                        <img src={post.trigger_image} className="w-full h-auto rounded-xl mt-6" />
-                        <p className="text-xs md:text-sm leading-6 md:leading-8 mt-6">{post.trigger_description}</p>
-                        <h6 className="mt-10"><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">credit</span></h6>
-                        <p className="text-xs md:text-sm leading-6 md:leading-8 mt-5" dangerouslySetInnerHTML={{__html: post.credit.replace(/\n/g, "<br />")}}></p>
+                        <h6 ref={triggerTitleRef} className={`transition-all duration-300 ${isTriggerTitleVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">trigger</span></h6>
+                        <img ref={triggerImageRef} src={post.trigger_image} className={`w-full h-auto rounded-xl mt-6 transition-all duration-300 ${isTriggerImageVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`} />
+                        <p ref={triggerDescriptionRef} className={`text-xs md:text-sm leading-6 md:leading-8 mt-6 transition-all duration-300 ${isTriggerDescriptionVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>{post.trigger_description}</p>
+                        <h6 ref={creditTitleRef} className={`mt-10 transition-all duration-300 ${isCreditTitleVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">credit</span></h6>
+                        <p ref={creditContentRef} className={`text-xs md:text-sm leading-6 md:leading-8 mt-5 transition-all duration-300 ${isCreditContentVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`} dangerouslySetInnerHTML={{__html: post.credit.replace(/\n/g, "<br />")}}></p>
                         <hr className="my-6 border-black border-t-1.5" />
                         <p className="text-sm text-center">このプロジェクトで気になったことを聞いてみる</p>
                         <Link to={'/contact?project='+post.title} className="block w-full text-center text-xs mt-6 bg-white border-1.5 border-black rounded-full py-3 jost hover:bg-slate-100">CONTACT</Link>

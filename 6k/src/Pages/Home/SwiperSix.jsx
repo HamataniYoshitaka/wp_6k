@@ -19,6 +19,7 @@ export default function SwiperSix(props) {
         if(props.posts.length > 0 && openingShown) {
             setTimeout(() => {
                 setPagerShowing(true)
+                setShadowTitleScene(0)
             }, 500)
         }
     }, [openingShown])

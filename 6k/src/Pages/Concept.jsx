@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useReloadFonts } from "../hooks/useReloadFonts";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { BrowserView, MobileView } from "react-device-detect";
+import Typewriter from 'typewriter-effect';
 
 export default function Concept(props) {
     const [windowWidth, windowHeight] = useWindowSize()
@@ -28,12 +29,16 @@ export default function Concept(props) {
     const finishDeleting = () => {
     }
 
-    // useEffect(() => {
-    //     // setTimeout(() => {
-    //         reloadFonts()
-    //     // }, 200)
-
-    // }, [])
+    const [typewriter, setTypewriter] = useState(null);
+    useEffect(() => {
+        if (typewriter) {
+            typewriter
+            .changeCursor('|')
+            .typeString('景色に輪郭をあたえる<br />　影のようなデザイン')
+            .changeCursor('　')
+            .start();
+        }
+    }, [typewriter])
  
     return (
         <>
@@ -68,7 +73,19 @@ export default function Concept(props) {
                         <ReactFullpage.Wrapper>
                             <section className="section">
                                 <div className="px-8 relative">
-                                    <h2 className="text-center text-2xl leading-10">景色に輪郭をあたえる<br />影のようなデザイン</h2>
+                                    <h2 className="text-center text-2xl leading-10">
+                                        <Typewriter
+                                            onInit={(typewriter) => {
+                                                setTypewriter(typewriter);
+                                            }}
+                                            options = {{
+                                                looop: false,
+                                                cursor: '　',
+                                                deleteSpeed: 10,
+                                                delay: 60,
+                                            }}
+                                        />
+                                    </h2>
                                 </div>
                             </section>
                             <section className="section">
@@ -95,7 +112,7 @@ export default function Concept(props) {
                             </section>
                             <section className="section">
                                 <div className="max-w-[880px] mx-auto flex justify-center">
-                                    <p className={`md:text-lg leading-10 transition-opacity duration-1000 ${currentPage>4? 'opacity-100': 'opacity-0'}`}>
+                                    <p className={`text-sm md:text-lg !leading-8 lg:!leading-10 transition-opacity duration-1000 mb-28 ${currentPage>4? 'opacity-100': 'opacity-0'}`}>
                                         影は決して主役ではありません。<br />
                                         しかし、迷った時に方向性を示し、<br />
                                         見えていなかった新たな発見を生み、<br />
@@ -105,13 +122,15 @@ export default function Concept(props) {
                                         影のようなデザインを目指します。
                                     </p>
                                 </div>
+                                <div className="absolute bottom-24 left-0 w-full">
+                                    <h4 className="text-2xl text-center font-medium tracking-wider">ROKKEI’S PROJECTS</h4>
+                                    <p className="mt-4 lg:mt-0 text-center text-xs leading-5 tracking-wider">クライアントワーク以外に社会へ問いを投げかける<br className="md:hidden"/>企画やブランドの運営をおこなっています</p>
+                                </div>
                             </section>
                             <section className="section" style={{minHeight: windowHeight}}>
-                                <div className="bg-[#E8E8E8] py-20 px-5 md:px-0">
+                                <div className="bg-[#E8E8E8] py-32 px-5 md:px-0">
                                     <div className="max-w-[970px] mx-auto">
-                                        <h4 className="text-3xl text-center font-medium">ROKKEI’S PROJECTS</h4>
-                                        <p className="text-center text-xs mt-8 leading-7">クライアントワーク以外に社会へ問いを投げかける<br className="md:hidden"/>企画やブランドの運営をおこなっています</p>
-                                        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-12 px-8 lg:px-0">
+                                        <div className=" grid grid-cols-1 md:grid-cols-2 gap-12 px-8">
                                             <div className="relative group">
                                                 <img className="w-full h-auto" src={imgDir() + '/concept/no_mix.jpg'} />
                                                 <div className="absolute inset-0 flex justify-center items-center">
@@ -153,7 +172,7 @@ export default function Concept(props) {
                                     </div>
 
                                 </div>
-                                <div className="flex flex-col md:flex-row justify-center items-center space-y-5 md:space-y-0 md:space-x-10 min-h-[calc(100vh-697px)] py-6 lg:py-0">
+                                <div className="flex flex-col md:flex-row justify-center items-center space-y-5 md:space-y-0 md:space-x-10 min-h-[200px] py-6 lg:py-0">
                                     <Link to="/" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">CREATIVE</Link>
                                     <Link to="/company" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">COMPANY</Link>
                                     <Link to="/contact" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">CONTACT</Link>
