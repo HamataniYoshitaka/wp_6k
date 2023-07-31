@@ -1,6 +1,7 @@
 import React from "react";
 import MorphPath from "./MorphPath";
 import { useWindowSize } from "../../hooks/useWindowSize";
+import { imgDir } from "../../utils";
 
 const firstPath = "m76.53,878.79c12.49-4.26,52.74-13.73,79.89-.03,40.66,20.52,7.65,118.05-33.87,106.37-6.96-1.96-38.01-3.86-45.19-6.22-31.84-10.43-31.35-80.16-6.22-97.39"
 const secondPath = "m103.74,891.14c21.68-30.03,118.45-164.02,124.16-170.37,41.98-46.72,213.83,37.93,166.09,80.96-15.05,13.57-205.17,154.82-221.58,166.33-77.64,54.44-121.28-4.04-68.67-76.91Z"
@@ -36,7 +37,9 @@ export default function Glass(props) {
         <path fill="#fff" d="m7.31,754.87c37.52,39.88,111.62,41.53,161,25.94,22.76-6.71,47.45-14.91,61.75-35.16-7.64,46.14-23.97,90.09-35.59,135.27-6.77,26.2-12.47,52.68-19.74,78.74-4.98,19.89-31.44,27.09-48.69,32.8-23.4-1.4-59.4-3.55-69.45-28.6-4.03-18.04-9.35-35.71-14.37-53.46-6.8-28.54-12.58-57.3-18.77-85.97-4.86-23.31-12.27-46.06-16.15-69.59"/>
         <path fill="#fff" d="m132.36,660.29c36.56-.13,109.54,19.84,101.21,67.49-1.57,10.74-6.76,20.94-15.66,27.38-44.71,31.86-114.8,40.15-166.67,22.97-66.33-21.61-60.42-68.5-4.31-99.81,25.43-15,56.5-17.1,85.42-18.18v.15"/>
       </svg>
-      
+      <img className={`pointer-events-none w-12 md:w-20 lg:w-24 absolute bottom-[calc(50vh-70px)] md:bottom-[calc(50vh-10px)] lg:bottom-[calc(50vh-180px)] left-[calc(50vw-100px)] md:left-[calc(50vw-130px)] lg:left-[calc(50vw-150px)] xl:left-[calc(50vw-50px)] transition-opacity duration-1000 ${props.currentPage === 2? 'opacity-100': 'opacity-0'}`} src={imgDir() + '/concept/arrows1.svg'} />
+      <img className={`pointer-events-none w-12 md:w-20 lg:w-28 absolute bottom-[calc(50vh-70px)] md:bottom-[calc(50vh-0px)] lg:bottom-[calc(50vh-240px)] xl:bottom-[calc(50vh-150px)] left-[calc(50vw-100px)] md:left-[calc(50vw-120px)] lg:left-[calc(50vw-150px)] xl:left-[calc(50vw-50px)] transition-opacity duration-1000 ${props.currentPage === 4? 'opacity-100': 'opacity-0'}`} src={imgDir() + '/concept/arrows2.svg'} />
+      <img className={`pointer-events-none w-12 md:w-16 lg:w-20 absolute bottom-[calc(50vh-70px)] md:bottom-[calc(50vh-50px)] lg:bottom-[calc(50vh-240px)] xl:bottom-[calc(50vh-180px)] left-[calc(50vw-100px)] md:left-[calc(50vw-100px)] lg:left-[calc(50vw-150px)] xl:left-[calc(50vw-20px)] transition-opacity duration-1000 ${props.currentPage === 6? 'opacity-100': 'opacity-0'}`} src={imgDir() + '/concept/arrows3.svg'} />
     </div>
   )
 }

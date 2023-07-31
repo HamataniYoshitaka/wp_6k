@@ -124,7 +124,7 @@ export default function Concept(props) {
                                 </div>
                                 <div className="absolute bottom-24 left-0 w-full">
                                     <h4 className="text-2xl text-center font-medium tracking-wider">ROKKEI’S PROJECTS</h4>
-                                    <p className="mt-4 lg:mt-0 text-center text-xs leading-5 tracking-wider">クライアントワーク以外に社会へ問いを投げかける<br className="md:hidden"/>企画やブランドの運営をおこなっています</p>
+                                    <p className="mt-4  text-center text-xs leading-5 tracking-wider">クライアントワーク以外に社会へ問いを投げかける<br className="md:hidden"/>企画やブランドの運営をおこなっています</p>
                                 </div>
                             </section>
                             <section className="section" style={{minHeight: windowHeight}}>
