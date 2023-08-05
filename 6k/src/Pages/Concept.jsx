@@ -54,7 +54,6 @@ export default function Concept(props) {
                 onLeave={(origin, destination, direction) => {
                     setPrevPage(origin.index)
                     setCurrentPage(destination.index)
-                    // console.log(destination.index, direction)
                     if (destination.index < 4 && destination.index > 0) {
                         handleScrolling(false)
                     } else if (destination.index === 4 && direction === 'down') {
@@ -64,7 +63,6 @@ export default function Concept(props) {
                 }}
                 afterRender={() => {
                 // oninitialized={(origin, destination, direction) => {
-                    console.log('afterRender')
                     reloadFonts()
 
                 }}
@@ -134,7 +132,7 @@ export default function Concept(props) {
                                             <div className="relative group">
                                                 <img className="w-full h-auto" src={imgDir() + '/concept/no_mix.jpg'} />
                                                 <div className="absolute inset-0 flex justify-center items-center">
-                                                    <img src={imgDir() + '/concept/typo-no_mix.svg'} />
+                                                    <img className="h-36 md:h-auto" src={imgDir() + '/concept/typo-no_mix.svg'} />
                                                 </div>
                                                 <MobileView>
                                                     <a href="https://mazerunakiken.net/" target="_blank" className="absolute block inset-0 text-white/0">
@@ -152,7 +150,7 @@ export default function Concept(props) {
                                             <div className="relative group">
                                                 <img className="w-full h-auto" src={imgDir() + '/concept/hunch.jpg'} />
                                                 <div className="absolute inset-0 flex justify-center items-center">
-                                                    <img src={imgDir() + '/concept/typo-hunch.svg'} />
+                                                    <img className="w-32 md:w-auto" src={imgDir() + '/concept/typo-hunch.svg'} />
                                                 </div>
                                                 <MobileView>
                                                     <a href="https://www.instagram.com/hunch.jewelry/" target="_blank" className="absolute block inset-0 text-white/0">
@@ -173,9 +171,9 @@ export default function Concept(props) {
 
                                 </div>
                                 <div className="flex flex-col md:flex-row justify-center items-center space-y-5 md:space-y-0 md:space-x-10 min-h-[200px] py-6 lg:py-0">
-                                    <Link to="/" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">CREATIVE</Link>
-                                    <Link to="/company" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">COMPANY</Link>
-                                    <Link to="/contact" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-sm hover:bg-black hover:text-white jost">CONTACT</Link>
+                                    <Link to="/" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-xs md:text-sm hover:bg-black hover:text-white jost tracking-widest">CREATIVE</Link>
+                                    <Link to="/company" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-xs md:text-sm hover:bg-black hover:text-white jost tracking-widest">COMPANY</Link>
+                                    <Link to="/contact" className="border-1.5 text-center border-black rounded-full py-2 block w-60 text-xs md:text-sm hover:bg-black hover:text-white jost tracking-widest">CONTACT</Link>
                                 </div>
                                 <div className="h-9">
                                 </div>
