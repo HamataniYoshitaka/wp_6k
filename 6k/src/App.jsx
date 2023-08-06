@@ -15,6 +15,7 @@ import axios from 'axios';
 import { apiUrl } from './utils';
 import { useWindowSize } from './hooks/useWindowSize';
 import ScrollToTop from './Components/ScrollToTop';
+import AnimatedCursor from "react-animated-cursor"
 
 
 function App() {
@@ -50,6 +51,11 @@ function App() {
   return (
     <div className='w-screen relative' style={{minHeight: windowHeight}}>
       <Header menuShowing={menuShowing} setMenuShowing={onSetMenuShowing} />
+      <AnimatedCursor 
+        innerSize={8}
+        outerSize={8}
+        color='3, 244, 252'
+      />
         <div 
           className={`transition-opacity ${transitionStage==='fadeOut'? 'opacity-0': 'opacity-100'} ${menuShowing? 'duration-100': 'duration-300'}`}
         >
