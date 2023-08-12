@@ -36,9 +36,12 @@ export default function HomeIndex(props) {
                             </div>
                             <div className={`group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ${i%3===1? 'lg:top-8': 'lg:-top-6'} ${i%2===1? 'top-6': '-top-6'} ${props.nowLoading? 'opacity-0 -translate-y-10': 'opacity-100 translate-y-0'}`} style={{transitionDelay: i*200+200+'ms'}}>
                                 <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
-                                {post.title.rendered}
-                                <div className="absolute inset-0 bg-black/50 flex flex-col justify-center space-y-4 items-center transition-opacity duration-300 opacity-0 group-hover:opacity-100 p-4">
-                                    <h5 className="text-white text-2xl">{post.title}</h5>
+                                <div className="absolute inset-0 bg-black/50 flex-col justify-center space-y-4 items-center transition-opacity duration-300 opacity-0 group-hover:opacity-100 p-4 hidden lg:flex">
+                                    {post.title_multiline? (
+                                        <h5 className="text-white text-2xl text-center" dangerouslySetInnerHTML={{__html: post.title_multiline.replace(/\n/, '<br>')}}></h5>
+                                    ): (
+                                        <h5 className="text-white text-2xl">{post.title}</h5>
+                                    )}
                                     <ul className=" space-x-3">
                                         {post.tag.map((tag) =>(
                                             <li key={'post-'+post.id+'-tag-'+tag.id} className="inline-block jost">
@@ -49,6 +52,7 @@ export default function HomeIndex(props) {
                                     <p className="text-sm text-white cormorant tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                                     <Link to={'/posts/'+post.slug} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</Link>
                                 </div>
+                                <Link to={'/posts/'+post.slug} className="absolute inset-0 lg:hidden block">&nbsp;</Link>
                             </div>
                         </div>
                     ))}

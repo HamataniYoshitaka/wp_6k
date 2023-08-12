@@ -28,7 +28,13 @@ export default function SingleCard(props) {
             <p className={`absolute bottom-4 -left-44 text-right w-48 origin-bottom-right rotate-90 cormorant lowercase tracking-wider ${windowHeight<600 && 'hidden'}`}>{format(new Date(props.post.date), 'yyyy.MM.dd / EEEE')}</p>
             <ul className="absolute bottom-4 right-0  text-right space-y-2">
                 <li>
-                    <h3 className=""><span className="inline-block pt-1 pb-0.5 px-2 bg-black text-white">{props.post.title}</span></h3>
+                    <h3 className="">
+                        {props.post.title_multiline? (
+                            <span className="inline pt-1 pb-0.5 px-2 bg-black text-white padded-multiline" dangerouslySetInnerHTML={{__html: props.post.title_multiline.replace(/\n/, '<br>')}}></span>
+                        ): (
+                            <span className="inline pt-1 pb-0.5 px-2 bg-black text-white">{props.post.title}</span>
+                        )}
+                    </h3>
                 </li>
                 {props.post.tag.map((tag) =>(
                     <li key={'post-'+props.post.id+'-tag-'+tag.id}>

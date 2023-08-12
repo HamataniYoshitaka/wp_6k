@@ -97,9 +97,12 @@ export default function OtherWorks(props) {
                                         <BrowserView>
                                             <div className="group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ">
                                                 <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
-                                                {post.title.rendered}
                                                 <div className="absolute inset-0 bg-black/50 flex flex-col justify-center space-y-4 items-center transition-opacity duration-300 opacity-0 group-hover:opacity-100 p-4">
-                                                    <h5 className="text-white text-2xl">{post.title}</h5>
+                                                    {post.title_multiline? (
+                                                        <h5 className="text-white text-2xl text-center" dangerouslySetInnerHTML={{__html: post.title_multiline.replace(/\n/, '<br>')}}></h5>
+                                                    ): (
+                                                        <h5 className="text-white text-2xl">{post.title}</h5>
+                                                    )}
                                                     <ul className=" space-x-3">
                                                         {post.tag.map((tag) =>(
                                                             <li key={'post-'+post.id+'-tag-'+tag.id} className="inline-block jost">
@@ -129,10 +132,13 @@ export default function OtherWorks(props) {
                                         </MobileView>
                                         <BrowserView>
                                             <div className="group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ">
-                                                <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
-                                                {post.title.rendered}
+                                                <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />                                                {post.title.rendered}
                                                 <div className="absolute inset-0 bg-black/50 flex flex-col justify-center space-y-4 items-center transition-opacity duration-300 opacity-0 group-hover:opacity-100 p-4">
-                                                    <h5 className="text-white text-2xl">{post.title}</h5>
+                                                    {post.title_multiline? (
+                                                        <h5 className="text-white text-2xl text-center" dangerouslySetInnerHTML={{__html: post.title_multiline.replace(/\n/, '<br>')}}></h5>
+                                                    ): (
+                                                        <h5 className="text-white text-2xl">{post.title}</h5>
+                                                    )}
                                                     <ul className=" space-x-3">
                                                         {post.tag.map((tag) =>(
                                                             <li key={'post-'+post.id+'-tag-'+tag.id} className="inline-block jost">

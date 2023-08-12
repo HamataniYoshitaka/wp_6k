@@ -165,3 +165,7 @@ body {
     clip-path: inset(27px 1px 107px 1px); }
 }
 
+.padded-multiline {
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}

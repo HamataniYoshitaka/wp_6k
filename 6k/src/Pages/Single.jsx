@@ -80,8 +80,12 @@ export default function Single(props) {
                 <>
                     <div className="md:w-[657px] mx-auto px-6 md:px-0">
                         <img src={post.fv_image} className=" w-full h-auto rounded-xl " />
-                        <div className="flex flex-col md:flex-row md:items-center md:space-x-4 mt-4">
-                            <h1 className="text-2xl mt-3 order-3 md:order-1">{post.title}</h1>
+                        <div className="flex flex-col mt-4">
+                            {post.title_multiline? (
+                                <h1 className="text-2xl mt-3 order-3" dangerouslySetInnerHTML={{__html: post.title_multiline.replace(/\n/, '<br>')}}></h1>
+                            ): (
+                                <h1 className="text-2xl mt-3 order-3">{post.title}</h1>
+                            )}
                             <ul className="space-x-2 mt-2 order-2">
                                 {post.category.map((cat) =>(
                                     <li key={'post-'+post.id+'-cat-'+cat.id} className="inline-block">
@@ -94,8 +98,7 @@ export default function Single(props) {
                                     </li>
                                 ))}
                             </ul>
-                            <div className="grow md:order-3"></div>
-                            <p className="text-sm cormorant lowercase order-1 md:mt-2 md:order-4">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
+                            <p className="text-sm cormorant lowercase order-1">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                         </div>
                         <hr className="my-6 border-black" />
                     </div>
@@ -170,7 +173,7 @@ export default function Single(props) {
                     </>
                     )}
                     <div className="md:w-[560px] px-6 md:px-0 mx-auto mt-10 pb-20">
-                        <h6 ref={triggerTitleRef} className={`transition-all duration-300 ${isTriggerTitleVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">trigger</span></h6>
+                        <h6 ref={triggerTitleRef} className={`transition-all duration-300 ${isTriggerTitleVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">inspiration</span></h6>
                         <img ref={triggerImageRef} src={post.trigger_image} className={`w-full h-auto rounded-xl mt-6 transition-all duration-300 ${isTriggerImageVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`} />
                         <p ref={triggerDescriptionRef} className={`text-xs md:text-sm leading-6 md:leading-8 mt-6 transition-all duration-300 ${isTriggerDescriptionVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>{post.trigger_description}</p>
                         <h6 ref={creditTitleRef} className={`mt-10 transition-all duration-300 ${isCreditTitleVisible? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}><span className="inline-block text-[#2EFFEB] bg-black py-0.5 px-2 text-xs md:text-lg font-semibold jost">credit</span></h6>

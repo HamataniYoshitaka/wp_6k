@@ -126,8 +126,9 @@ export default function Concept(props) {
                                 </div>
                             </section>
                             <section className="section" style={{minHeight: windowHeight}}>
-                                <div className="bg-[#E8E8E8] py-32 px-5 md:px-0">
-                                    <div className="max-w-[970px] mx-auto">
+                                <div className="bg-[#E8E8E8] pt-32 pb-12 md:pb-32 px-5 md:px-0 ">
+                                    <div className="max-w-[970px] mx-auto relative">
+                                        <h5 className="md:hidden absolute -right-2 top-[216px] rotate-90 origin-top-right text-xl tracking-wider">ROKKEI’S PROJECTS</h5>
                                         <div className=" grid grid-cols-1 md:grid-cols-2 gap-12 px-8">
                                             <div className="relative group">
                                                 <img className="w-full h-auto" src={imgDir() + '/concept/no_mix.jpg'} />

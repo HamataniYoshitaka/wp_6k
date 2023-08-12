@@ -38,8 +38,6 @@ export default function Glass(props) {
         <path fill="#fff" d="m132.36,660.29c36.56-.13,109.54,19.84,101.21,67.49-1.57,10.74-6.76,20.94-15.66,27.38-44.71,31.86-114.8,40.15-166.67,22.97-66.33-21.61-60.42-68.5-4.31-99.81,25.43-15,56.5-17.1,85.42-18.18v.15"/>
       </svg>
       <img className={`pointer-events-none w-12 md:w-20 lg:w-24 absolute md:!bottom-[calc(50vh)] lg:!bottom-[calc(23vh)] xl:!bottom-[calc(35vh)] left-[calc(50vw-100px)] md:left-[calc(50vw-130px)] lg:left-[calc(50vw-150px)] xl:left-[calc(50vw-50px)] transition-opacity duration-1000 ${props.currentPage === 2? 'opacity-100': 'opacity-0'}`} src={imgDir() + '/concept/arrows1.svg'} style={{bottom: windowHeight<560? '38%': '40%'}}/>
-      <img className={`pointer-events-none w-12 md:w-20 lg:w-28 absolute bottom-[calc(50vh-70px)] md:bottom-[calc(50vh-0px)] lg:bottom-[calc(50vh-240px)] xl:bottom-[calc(50vh-150px)] left-[calc(50vw-100px)] md:left-[calc(50vw-120px)] lg:left-[calc(50vw-150px)] xl:left-[calc(50vw-50px)] transition-opacity duration-1000 ${props.currentPage === 4? 'opacity-100': 'opacity-0'}`} src={imgDir() + '/concept/arrows2.svg'} />
-      <img className={`pointer-events-none w-12 md:w-16 lg:w-20 absolute md:!bottom-[calc(50vh-50px)] lg:!bottom-[calc(50vh-240px)] xl:!bottom-[calc(50vh-180px)] left-[calc(50vw-100px)] md:left-[calc(50vw-100px)] lg:left-[calc(50vw-150px)] xl:left-[calc(50vw-20px)] transition-opacity duration-1000 ${props.currentPage === 6? 'opacity-100': 'opacity-0'}`} src={imgDir() + '/concept/arrows3.svg'} style={{bottom: windowHeight<560? '38%': '40%'}} />
     </div>
   )
 }

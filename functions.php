@@ -164,6 +164,7 @@ function artworkIndex($data) {
             'tag' => $tag,
             'thumbnail' => get_the_post_thumbnail_url($post->ID, 'full'),
             'shadow_text' => SCF::get('shadow_text', $post->ID),
+            'title_multiline' => SCF::get('title_multiline', $post->ID),
         );
 
     }
@@ -242,6 +243,7 @@ function artworkSingle($data) {
             'credit'  => SCF::get('credit', $post->ID),
             'shadow_text' => SCF::get('shadow_text', $post->ID),
             'fv_image' => $fvImage,
+            'title_multiline' => SCF::get('title_multiline', $post->ID),
         );
 
     }
@@ -308,6 +310,7 @@ function get_same_projects($data) {
                 'slug' => $post2->post_name,
                 'date' => $post2->post_date,
                 'thumbnail' => get_the_post_thumbnail_url($post2->ID, 'full'),
+                'title_multiline' => SCF::get('title_multiline', $post2->ID),
             );
         }
     }
