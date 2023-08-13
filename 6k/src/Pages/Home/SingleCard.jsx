@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { useMousePosition } from "../../hooks/userMousePosition";
 import { isMobile } from "react-device-detect";
+import { useDispatch } from "react-redux";
+import { setTransitionStarter } from "../../redux/product";
 
 export default function SingleCard(props) {
     const mousePosition = useMousePosition()
@@ -22,8 +24,16 @@ export default function SingleCard(props) {
         // return x+'px '+y+'px '+ (length) +'px rgba(0, 0, 0, 0.2)'            
         return x+'px '+y+'px 15px rgba(0, 0, 0, 0.2)'            
     }
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const linkTo = (path) => {
+        dispatch(setTransitionStarter(true))
+        setTimeout(()=>{
+            navigate(path)
+        }, 600)
+    }
     return (
-        <Link to={'/posts/' + props.post.slug} className={`block bg-white rounded-lg overflow-hidden relative`} style={{height: windowWidth<576? windowHeight-220: 520, boxShadow: shadowStyle()}}>
+        <div onClick={()=>linkTo('/posts/'+props.post.slug)} className={`block bg-white rounded-lg overflow-hidden relative cursor-pointer`} style={{height: windowWidth<576? windowHeight-220: 520, boxShadow: shadowStyle()}}>
             <img src={props.post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
             <p className={`absolute bottom-4 -left-44 text-right w-48 origin-bottom-right rotate-90 cormorant lowercase tracking-wider ${windowHeight<600 && 'hidden'}`}>{format(new Date(props.post.date), 'yyyy.MM.dd / EEEE')}</p>
             <ul className="absolute bottom-4 right-0  text-right space-y-2">
@@ -42,6 +52,6 @@ export default function SingleCard(props) {
                     </li>
                 ))}
             </ul>
-        </Link>
+        </div>
     )
 }

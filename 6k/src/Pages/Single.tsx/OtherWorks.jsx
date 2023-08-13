@@ -2,12 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useWindowSize } from "../../hooks/useWindowSize";
-import { Link } from "react-router-dom";
-import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react'
+import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import { format } from "date-fns";
 import { apiUrl } from "../../utils";
 import { BrowserView, MobileView } from "react-device-detect";
+import { useDispatch } from "react-redux";
+import { setTransitionStarter } from "../../redux/product";
 
 export default function OtherWorks(props) {
     const [windowWidth, windowHeight] = useWindowSize()
@@ -34,6 +36,15 @@ export default function OtherWorks(props) {
             }    
         }
     }, [windowWidth, posts])
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const linkTo = (path) => {
+        dispatch(setTransitionStarter(true))
+        setTimeout(()=>{
+            navigate(path)
+        }, 600)
+    }
     return (
         <div ref={ref} className="min-h-[626px] md:min-h-[642px]">
             <h3 className="text-center text-3xl jost">OTHER WORKS</h3>
@@ -48,9 +59,9 @@ export default function OtherWorks(props) {
                                     <div className="absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 shadow-[0_1px_20px_rgba(0,0,0,0.15)] ">
                                     </div>
                                     <MobileView>
-                                            <Link to={'/posts/'+post.slug} className="absolute block inset-0 text-white/0">
+                                            <div onClick={()=>linkTo('/posts/'+post.slug)} className="absolute block inset-0 text-white/0 cursor-pointer">
                                                 <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover rounded-lg" />
-                                            </Link>
+                                            </div>
                                         </MobileView>
                                     <BrowserView>
                                         <div className="group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ">
@@ -66,7 +77,7 @@ export default function OtherWorks(props) {
                                                     ))}
                                                 </ul>
                                                 <p className="text-sm text-white cormorant tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
-                                                <Link to={'/posts/'+post.slug} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</Link>
+                                                <div onClick={()=>linkTo('/posts/'+post.slug)} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white cursor-pointer">MORE</div>
                                             </div>
                                         </div>
                                     </BrowserView>
@@ -90,9 +101,9 @@ export default function OtherWorks(props) {
                                         <div className="absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 shadow-[0_1px_20px_rgba(0,0,0,0.15)] ">
                                         </div>
                                         <MobileView>
-                                            <Link to={'/posts/'+post.slug} className="absolute block inset-0 text-white/0">
+                                            <div onClick={()=>linkTo('/posts/'+post.slug)} className="absolute block inset-0 text-white/0 cursor-pointer">
                                                 <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover rounded-lg" />
-                                            </Link>
+                                            </div>
                                         </MobileView>
                                         <BrowserView>
                                             <div className="group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ">
@@ -111,7 +122,7 @@ export default function OtherWorks(props) {
                                                         ))}
                                                     </ul>
                                                     <p className="text-sm text-white cormorant tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
-                                                    <Link to={'/posts/'+post.slug} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</Link>
+                                                    <div onClick={()=>linkTo('/posts/'+post.slug)} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white cursor-pointer">MORE</div>
                                                 </div>
                                             </div>
                                         </BrowserView>
@@ -126,9 +137,9 @@ export default function OtherWorks(props) {
                                         <div className="absolute left-0 w-full h-full bg-white rounded-lg transition-all duration-1000 shadow-[0_1px_20px_rgba(0,0,0,0.15)] ">
                                         </div>
                                         <MobileView>
-                                            <Link to={'/posts/'+post.slug} className="absolute block inset-0 text-white/0">
+                                            <div onClick={()=>linkTo('/posts/'+post.slug)} className="absolute block inset-0 text-white/0 cursor-pointer">
                                                 <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover rounded-lg" />
-                                            </Link>
+                                            </div>
                                         </MobileView>
                                         <BrowserView>
                                             <div className="group absolute left-0 w-full h-full bg-white rounded-lg overflow-hidden transition-all duration-500 ">
@@ -147,7 +158,7 @@ export default function OtherWorks(props) {
                                                         ))}
                                                     </ul>
                                                     <p className="text-sm text-white cormorant tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
-                                                    <Link to={'/posts/'+post.slug} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</Link>
+                                                    <div onClick={()=>linkTo('/posts/'+post.slug)} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white cursor-pointer">MORE</div>
                                                 </div>
                                             </div>
                                         </BrowserView>

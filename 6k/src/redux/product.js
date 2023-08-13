@@ -5,6 +5,7 @@ export const productSlice = createSlice({
     initialState: {
         categories: [],
         openingShown: false,
+        transitionStarter: false,
     },
     reducers: {
         setCategories: (state, action) => {
@@ -12,10 +13,14 @@ export const productSlice = createSlice({
         },
         setOpeningShown: (state, action) => {
             state.openingShown = action.payload
-        }
+        },
+        setTransitionStarter: (state, action) => {
+            state.transitionStarter = action.payload
+        },
+
     }
 })
 
-export const { setCategories, setOpeningShown } = productSlice.actions
+export const { setCategories, setOpeningShown, setTransitionStarter } = productSlice.actions
 
 export default productSlice.reducer

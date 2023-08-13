@@ -16,6 +16,7 @@ import { apiUrl } from './utils';
 import { useWindowSize } from './hooks/useWindowSize';
 import ScrollToTop from './Components/ScrollToTop';
 import AnimatedCursor from "react-animated-cursor"
+import TransitionCover from './Components/TransitionCover';
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
           </Routes>
         </div>
       <Footer menuShowing={menuShowing} setMenuShowing={onSetMenuShowing} />
+      <TransitionCover />
     </div>
   );
 }

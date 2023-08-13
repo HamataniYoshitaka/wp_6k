@@ -2,11 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useWindowSize } from "../../hooks/useWindowSize";
-import { Link } from "react-router-dom";
-import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react'
+import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import { format } from "date-fns";
 import { apiUrl } from "../../utils";
+import { useDispatch } from "react-redux";
+import { setTransitionStarter } from "../../redux/product";
 
 export default function SameProjects(props) {
     const [windowWidth, windowHeight] = useWindowSize()
@@ -39,6 +41,16 @@ export default function SameProjects(props) {
             }    
         }
     }, [windowWidth, posts])
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const linkTo = (path) => {
+        dispatch(setTransitionStarter(true))
+        setTimeout(()=>{
+            navigate(path)
+        }, 600)
+    }
+
     return (
         <div className={` py-10 ${(posts.length === 0 && loaded) && 'hidden'} ${loaded? 'bg-white': 'bg-[#E8E8E8]'}`}>
             <div ref={ref} className="min-h-[626px] md:min-h-[642px]">
@@ -50,7 +62,7 @@ export default function SameProjects(props) {
                         <div className="flex justify-center items-center">
                             {posts.map((post, i) => (
                                 <div key={'sameproject-'+i} className="p-6">
-                                    <Link to={'/posts/' + post.slug} className={`block bg-white rounded-lg shadow-[0_1px_15px_rgba(0,0,0,0.20)] overflow-hidden relative w-[310px] h-[490px]`}>
+                                    <div onClick={()=>linkTo('/posts/'+post.slug)} className={`block bg-white rounded-lg shadow-[0_1px_15px_rgba(0,0,0,0.20)] overflow-hidden relative w-[310px] h-[490px] cursor-pointer`}>
                                         <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
                                         <p className={`absolute bottom-4 -left-44 text-right w-48 origin-bottom-right rotate-90 cormorant lowercase tracking-wider`}>{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                                         <ul className="absolute bottom-4 right-0  text-right space-y-2">
@@ -69,7 +81,7 @@ export default function SameProjects(props) {
                                                 </li>
                                             ))}
                                         </ul>
-                                    </Link>
+                                    </div>
 
                                 </div>
                             ))}
@@ -86,7 +98,7 @@ export default function SameProjects(props) {
                             {posts.map((post, i) => (
                                 <SwiperSlide key={'sameproject-'+i}>
                                     <div className="p-2 md:p-6">
-                                        <Link to={'/posts/' + post.slug} className={`block bg-white rounded-lg shadow-[0_1px_15px_rgba(0,0,0,0.20)] overflow-hidden relative w-[286px] h-[490px]`}>
+                                        <div onClick={()=>linkTo('/posts/'+post.slug)} className={`block bg-white rounded-lg shadow-[0_1px_15px_rgba(0,0,0,0.20)] overflow-hidden relative w-[286px] h-[490px] cursor-pointer`}>
                                             <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
                                             <p className={`absolute bottom-4 -left-44 text-right w-48 origin-bottom-right rotate-90 cormorant lowercase tracking-wider`}>{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                                             <ul className="absolute bottom-4 right-0  text-right space-y-2">
@@ -105,14 +117,14 @@ export default function SameProjects(props) {
                                                     </li>
                                                 ))}
                                             </ul>
-                                        </Link>
+                                        </div>
                                     </div>
                                 </SwiperSlide>
                             ))}
                             {posts.map((post, i) => (
                                 <SwiperSlide key={'sameproject-1-'+i}>
                                     <div className="p-2 md:p-6">
-                                        <Link to={'/posts/' + post.slug} className={`block bg-white rounded-lg shadow-[0_1px_15px_rgba(0,0,0,0.20)] overflow-hidden relative w-[286px] h-[490px]`}>
+                                        <div onClick={()=>linkTo('/posts/'+post.slug)} className={`block bg-white rounded-lg shadow-[0_1px_15px_rgba(0,0,0,0.20)] overflow-hidden relative w-[286px] h-[490px] cursor-pointer`}>
                                             <img src={post.thumbnail} className="absolute top-0 left-0 w-full h-full object-cover" />
                                             <p className={`absolute bottom-4 -left-44 text-right w-48 origin-bottom-right rotate-90 cormorant lowercase tracking-wider`}>{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
                                             <ul className="absolute bottom-4 right-0  text-right space-y-2">
@@ -125,7 +137,7 @@ export default function SameProjects(props) {
                                                     </li>
                                                 ))}
                                             </ul>
-                                        </Link>
+                                        </div>
                                     </div>
                                 </SwiperSlide>
                             ))}

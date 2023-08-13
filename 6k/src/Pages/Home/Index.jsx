@@ -1,6 +1,8 @@
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setTransitionStarter } from "../../redux/product";
 
 export default function HomeIndex(props) {
     const [shadowVisible, setShadowVisible] = useState(false)
@@ -21,6 +23,15 @@ export default function HomeIndex(props) {
 
         }
     }, [props.posts])
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const linkTo = (path) => {
+        dispatch(setTransitionStarter(true))
+        setTimeout(()=>{
+            navigate(path)
+        }, 600)
+    }
     return (
         <div className={` transition-opacity duration-300 ${props.nowLoading? 'opacity-0': 'opacity-100'}`}>
             {props.posts.length === 0 && (
@@ -50,9 +61,9 @@ export default function HomeIndex(props) {
                                         ))}
                                     </ul>
                                     <p className="text-sm text-white cormorant tracking-wider">{format(new Date(post.date), 'yyyy.MM.dd / EEEE')}</p>
-                                    <Link to={'/posts/'+post.slug} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</Link>
+                                    <div onClick={()=>linkTo('/posts/'+post.slug)} className="jost border-1.5 border-black bg-white text-black block w-52 py-2 text-center rounded-full text-xs transition-colors hover:bg-black hover:text-white">MORE</div>
                                 </div>
-                                <Link to={'/posts/'+post.slug} className="absolute inset-0 lg:hidden block">&nbsp;</Link>
+                                <div onClick={()=>linkTo('/posts/'+post.slug)} className="absolute inset-0 lg:hidden block">&nbsp;</div>
                             </div>
                         </div>
                     ))}
