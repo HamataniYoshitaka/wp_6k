@@ -43,7 +43,7 @@ export default function Concept(props) {
     return (
         <>
             <div className={`fixed z-0 top-0 left-0 w-screen overflow-hidden transition-opacity duration-[2s] ${currentPage===0? 'opacity-100': 'opacity-0'}`} style={{height: windowHeight}}>
-                <h1 className="absolute top-[calc(50vh-60px)] md:top-[calc(50vh-200px)] left-[calc(50vw-211px)] md:left-[calc(50vw-687px)] text-transparent text-blur-sm md:text-blur text-[80px] md:text-[260px] tracking-widest cormorant opacity-40">CONCEPT</h1>
+                <h1 className="absolute md:!top-[calc(50vh-200px)] left-[calc(50vw-211px)] md:left-[calc(50vw-687px)] text-transparent text-blur-sm md:text-blur text-[80px] md:text-[260px] tracking-widest cormorant opacity-40" style={{top: windowHeight/2-60}}>CONCEPT</h1>
             </div>
             <Typewriting currentPage={currentPage} prevPage={prevPage} finishTypewriting={finishTypewriting} finishDeleting={finishDeleting}/>
             <ConceptIndicator currentPage={currentPage}/>
