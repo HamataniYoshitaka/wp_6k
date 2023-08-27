@@ -44,7 +44,7 @@ export default function Opening() {
                 <div className="fixed bg-white top-1 left-0 w-screen h-20 md:h-28">
                 </div>
                 <div className="fixed z-[60] bottom-0 left-0 w-screen bg-black transition-all duration-1000" style={{height: scene<=1? '100%': '0%'}}>
-                    <div className={`pointer-events-none fixed z-50 left-0 w-full items-center p-5 transition-all duration-1000 ${scene <= 1? 'text-white top-[calc(50vh-50px)]': 'text-black top-5'}`}>
+                    <div className={`pointer-events-none fixed z-50 left-0 w-full items-center p-5 transition-all duration-1000 ${scene <= 1? 'text-white top-[calc(50vh-85px)] md:top-[calc(50vh-50px)]': 'text-black top-5 md:top-5'}`}>
                         <svg className={`w-auto h-[60px] md:h-[95px] absolute top-0 z-20 transition-all ${scene === 0? 'left-[calc(50vw-56px)]': 'left-5'} ${scene <= 1&& 'duration-1000'}`} viewBox="0 0 36.71 70.05">
                             <path fill="currentColor" d="M36.7,15v-1.14H0v1.14l1.09,1.44H35.61l1.09-1.44Z"/>
                             <path fill="currentColor" d="M25.98,2.58l.99-1.43V0H9.76V1.16l.99,1.43h15.23Z"/>

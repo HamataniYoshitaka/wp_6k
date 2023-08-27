@@ -28,7 +28,7 @@ export default function HomeNavigation(props) {
                 ))}
             </ul>
         </nav>
-        <nav className="fixed top-28 md:top-36 right-[22px] z-10">
+        <nav className="fixed top-28 md:top-36 right-4 md:right-[22px] z-10">
             <ul className="w-12 space-y-3">
                 <li className={`transition-opacity duration-500 ${showing? 'opacity-100': 'opacity-0'}`} style={{transitionDelay: '100ms'}}>
                     <button onClick={()=>props.changeView(true)} className={`block w-full text-center pt-1 pb-0.5 relative transition-all ${props.isSingleView? 'text-sm': 'text-xs text-slate-400'}`}>
