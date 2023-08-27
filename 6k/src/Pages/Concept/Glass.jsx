@@ -20,7 +20,7 @@ export default function Glass(props) {
 
   return (
     <div className={`${!windowHeight&&'!hidden'} fixed transition-all duration-[2s] left-0 w-screen pointer-events-none ${(!props.currentPage || props.currentPage===0)? 'top-[100vh]': 'top-0'}`} style={{height: windowHeight}}>
-      <svg className={`absolute left-[calc(50vw-120px)] md:left-[calc(50vw-50px)] xl:left-[calc(50vw+50px)] w-[540px] md:w-[760px] lg:w-[908px] h-auto shrink-0 transition-all duration-[2s] origin-[20%_70%] ease-out ${props.currentPage > 6? ' scale-[1000%] opacity-0': ' scale-100 opacity-1'}`} viewBox="0 0 908.06 1088.25" style={{bottom: windowWidth<576? windowHeight/2-160: windowWidth<1024? windowHeight/2-170: windowHeight/2-300}}>
+      <svg className={`absolute left-[calc(50vw-60px)] md:left-[calc(50vw-50px)] xl:left-[calc(50vw+50px)] w-[440px] md:w-[760px] lg:w-[908px] h-auto shrink-0 transition-all duration-[2s] origin-[20%_70%] ease-out ${props.currentPage > 6? ' scale-[1000%] opacity-0': ' scale-100 opacity-1'}`} viewBox="0 0 908.06 1088.25" style={{bottom: windowWidth<576? windowHeight/2-120: windowWidth<1024? windowHeight/2-170: windowHeight/2-300}}>
         <MorphPath
             fromPath={shadowPaths[props.prevPage<=6? props.prevPage: 6]}
             toPath={shadowPaths[props.currentPage<=6? props.currentPage: 6]}
@@ -37,7 +37,7 @@ export default function Glass(props) {
         <path fill="#fff" d="m7.31,754.87c37.52,39.88,111.62,41.53,161,25.94,22.76-6.71,47.45-14.91,61.75-35.16-7.64,46.14-23.97,90.09-35.59,135.27-6.77,26.2-12.47,52.68-19.74,78.74-4.98,19.89-31.44,27.09-48.69,32.8-23.4-1.4-59.4-3.55-69.45-28.6-4.03-18.04-9.35-35.71-14.37-53.46-6.8-28.54-12.58-57.3-18.77-85.97-4.86-23.31-12.27-46.06-16.15-69.59"/>
         <path fill="#fff" d="m132.36,660.29c36.56-.13,109.54,19.84,101.21,67.49-1.57,10.74-6.76,20.94-15.66,27.38-44.71,31.86-114.8,40.15-166.67,22.97-66.33-21.61-60.42-68.5-4.31-99.81,25.43-15,56.5-17.1,85.42-18.18v.15"/>
       </svg>
-      <img className={`pointer-events-none w-14 md:w-20 lg:w-24 absolute md:!bottom-[calc(50vh)] lg:!bottom-[calc(23vh)] xl:!bottom-[calc(35vh)] left-[calc(50vw-170px)] md:left-[calc(50vw-130px)] lg:left-[calc(50vw-150px)] xl:left-[calc(50vw-50px)] transition-opacity duration-1000 ${props.currentPage === 2? 'opacity-100': 'opacity-0'}`} src={imgDir() + '/concept/arrows1.svg'} style={{bottom: windowHeight<560? '32%': '36%'}}/>
+      <img className={`pointer-events-none w-12 md:w-20 lg:w-24 absolute md:!bottom-[calc(50vh)] lg:!bottom-[calc(23vh)] xl:!bottom-[calc(35vh)] left-[calc(50vw-100px)] md:left-[calc(50vw-130px)] lg:left-[calc(50vw-150px)] xl:left-[calc(50vw-50px)] transition-opacity duration-1000 ${props.currentPage === 2? 'opacity-100': 'opacity-0'}`} src={imgDir() + '/concept/arrows1.svg'} style={{bottom: windowHeight<560? '38%': '40%'}}/>
     </div>
   )
 }

@@ -48,7 +48,7 @@ export default function Concept(props) {
             <Typewriting currentPage={currentPage} prevPage={prevPage} finishTypewriting={finishTypewriting} finishDeleting={finishDeleting}/>
             <ConceptIndicator currentPage={currentPage}/>
             <ReactFullpage
-                // licenseKey = {'YOUR_KEY_HERE'}
+                licenseKey = 'V49L9-WPF3I-5K027-DJPEI-CKOWN'
                 ref={fullpageRef}
                 scrollingSpeed = {2000} /* Options here */
                 onLeave={(origin, destination, direction) => {

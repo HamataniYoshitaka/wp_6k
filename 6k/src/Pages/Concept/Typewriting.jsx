@@ -103,7 +103,7 @@ export default function Typewriting(props) {
             />
 
         </div>
-        <div className="fixed left-[calc(50vw-160px)] md:left-[calc(50vw-360px)] lg:left-[calc(50vw-440px)] w-80 md:w-96 text-xl md:text-2xl text-center md:text-left" style={{top: windowWidth<576? windowHeight/2+140: windowHeight/2+20}}>
+        <div className="fixed left-[calc(50vw-160px)] md:left-[calc(50vw-360px)] lg:left-[calc(50vw-440px)] w-80 md:w-96 text-xl md:text-2xl text-center md:text-left" style={{top: windowWidth<576? windowHeight/2+110: windowHeight/2+20}}>
             <Typewriter
                 onInit={(typewriter) => {
                     setTypewriter(typewriter);
