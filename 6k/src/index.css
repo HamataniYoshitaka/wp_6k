@@ -169,3 +169,6 @@ body {
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
+.fp-watermark {
+  bottom: -8px !important;
+}
