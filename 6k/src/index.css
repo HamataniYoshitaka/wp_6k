@@ -172,3 +172,20 @@ body {
 .fp-watermark {
   bottom: -8px !important;
 }
+
+.single-content a {
+  @apply inline-block relative;
+}
+
+.single-content a:before {
+  content: '';
+  @apply block absolute h-0.5 bottom-1 left-0 w-full z-0 bg-[#2EFFEB];
+}
+.single-content a:after {
+  content: '';
+  @apply block absolute h-0.5 bottom-1 -left-4 w-4 bg-[#E8E8E8]  z-0 transition-all duration-1000;
+}
+.single-content a:after:hover {
+  content: '';
+  @apply left-[calc(100%+16px)];
+}
