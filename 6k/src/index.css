@@ -179,11 +179,11 @@ body {
 
 .single-content a:before {
   content: '';
-  @apply block absolute h-0.5 bottom-1 left-0 w-full z-0 bg-[#2EFFEB];
+  @apply block absolute h-0.5 bottom-1 left-0 w-full z-0 bg-[#2fbed4];
 }
 .single-content a:after {
   content: '';
-  @apply block absolute h-0.5 bottom-1 -left-4 w-4 bg-[#E8E8E8]  z-0 transition-all duration-1000;
+  @apply block absolute h-0.5 bottom-1 -left-4 w-4 bg-[#E8E8E8]  z-0 transition-all duration-[1.5s];
 }
 .single-content a:after:hover {
   content: '';
