@@ -17,6 +17,7 @@ import { useWindowSize } from './hooks/useWindowSize';
 import ScrollToTop from './Components/ScrollToTop';
 import AnimatedCursor from "react-animated-cursor"
 import TransitionCover from './Components/TransitionCover';
+import Concept2 from './Pages/Concept2';
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
           <Routes location={displayLocation}>
             <Route path="/" element={<Home />} />
             <Route path="/concept" element={<Concept />} />
+            <Route path="/concept2" element={<Concept2 />} />
             <Route path="/company" element={<Company />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/posts/:slug" element={<Single />} />
