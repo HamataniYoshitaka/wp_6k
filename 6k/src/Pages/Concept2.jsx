@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import { imgDir } from "../utils";
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from "react";
+import { useReloadFonts } from "../hooks/useReloadFonts";
 
 export default function Concept2(props) {
+    const reloadFonts = useReloadFonts()
+
     const { ref: ref1, inView: inView1 } = useInView({ threshold: 0.6, triggerOnce: true});
     const { ref: ref2, inView: inView2 } = useInView({ threshold: 0.6, triggerOnce: true});
     const { ref: ref3, inView: inView3 } = useInView({ threshold: 0.6, triggerOnce: true});
@@ -28,6 +31,9 @@ export default function Concept2(props) {
     const [mounted, setMounted] = useState(false);
     useEffect(() => {
         setMounted(true);
+        setTimeout(() => {
+            reloadFonts()
+        }, 200);
     }, []);
     return (
         <>
@@ -59,8 +65,8 @@ export default function Concept2(props) {
                             <span className="inline-block bg-[#00ffeb] px-2 py-1 mt-3">受け継がれるプロダクト</span>
                         </h3>
                         <div className="flex flex-col">
-                            <p ref={ref3} className={`text-sm md:text-xl leading-loose mt-3 lg:mt-6 lg:order-1 transition-all delay-200 duration-700 ${inView3? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>それらの根底にはユーモアが潜んでいると<br />私たちは考えています。</p>
-                            <p ref={ref4} className={`text-sm md:text-xl leading-loose mt-2 lg:mt-6 lg:order-3 transition-all delay-200 duration-700 ${inView4? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
+                            <p ref={ref3} className={`text-sm md:text-xl !leading-loose mt-3 lg:mt-6 lg:order-1 transition-all delay-200 duration-700 ${inView3? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>それらの根底にはユーモアが潜んでいると<br />私たちは考えています。</p>
+                            <p ref={ref4} className={`text-sm md:text-xl !leading-loose mt-2 lg:mt-6 lg:order-3 transition-all delay-200 duration-700 ${inView4? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
                                 ユーモアという言葉は古代ギリシャで生まれました。<br />
                                 当時は体液を意味する言葉で、<br />
                                 自身が持つ体液のバランスによって<br />
@@ -72,59 +78,59 @@ export default function Concept2(props) {
                                 <span className="inline-block bg-[#00ffeb] px-2 py-1 mt-3">“その人の根源的欲求であり、原動力のようなもの”</span><br />
                                 <span className="inline-block  px-2 py-1 mt-2">だったのではないでしょうか。</span>
                             </h5>
-                            <p ref={ref6} className={`cormorant tracking-wider text-xs mt-4 leading-loose lg:order-2 transition-all delay-200 duration-700 ${inView6? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
+                            <p ref={ref6} className={`cormorant tracking-wider text-xs mt-4 !leading-loose lg:order-2 transition-all delay-200 duration-700 ${inView6? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
                                 Sympathetic Design , Services that are supported , Products that last<br />We believe that humor lies at the root of these products.
                             </p>
-                            <p ref={ref7} className={`cormorant tracking-wider text-xs mt-1 lg:mt-4 leading-loose lg:order-4 transition-all delay-200 duration-700 ${inView7? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
+                            <p ref={ref7} className={`cormorant tracking-wider text-xs mt-1 lg:mt-4 !leading-loose lg:order-4 transition-all delay-200 duration-700 ${inView7? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
                                 The word humor originated in ancient Greece.<br />
                                 At that time, the word meant bodily fluids, and it was believed that the balance of<br />
                                 one’s own bodily fluids determined one’s character and principles of behavior.
                             </p>
-                            <p ref={ref8} className={`cormorant tracking-wider text-xs mt-1 lg:mt-4 leading-loose lg:order-6 transition-all delay-200 duration-700 ${inView8? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
+                            <p ref={ref8} className={`cormorant tracking-wider text-xs mt-1 lg:mt-4 !leading-loose lg:order-6 transition-all delay-200 duration-700 ${inView8? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
                                 I believe that humor was originally “a person’s fundamental desire, a kind of driving force.
                             </p>
                         </div>
                         <h5 ref={ref9} className={`text-sm md:text-xl mt-12 transition-all delay-200 duration-700 ${inView9? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
                             <span className="inline-block bg-[#00ffeb] px-2 py-1">その上で私たちが掲げるミッションは3つ。</span>
                         </h5>
-                        <p ref={ref10} className={`cormorant tracking-wider text-xs mt-4 leading-loose transition-all delay-200 duration-700 ${inView10? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
+                        <p ref={ref10} className={`cormorant tracking-wider text-xs mt-4 !leading-loose transition-all delay-200 duration-700 ${inView10? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
                             On top of that, we have three missions.
                         </p>
                         <div ref={ref11} className={`transition-all delay-200 duration-700 ${inView11? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
                             <h6 className=" mt-8 w-7 h-7 rounded-full bg-black text-white flex justify-center items-center cormorant text-xl pb-1">1</h6>
-                            <p className="text-sm md:text-xl leading-loose mt-1">
+                            <p className="text-sm md:text-xl !leading-loose mt-1">
                                 社会・企業・ブランドにおける<br />
                                 純度の高いユーモアを再発見すること
                             </p>
-                            <p className="cormorant tracking-wider text-xs mt-2 leading-loose">
+                            <p className="cormorant tracking-wider text-xs mt-2 !leading-loose">
                                 Rediscovering the purity of humor in society, companies, and brands
                             </p>
                         </div>
                         <div ref={ref12} className={`transition-all delay-200 duration-700 ${inView12? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
                             <h6 className=" mt-8 w-7 h-7 rounded-full bg-black text-white flex justify-center items-center cormorant text-xl pb-1">2</h6>
-                            <p className="text-sm md:text-xl leading-loose mt-1">
+                            <p className="text-sm md:text-xl !leading-loose mt-1">
                                 再発見したユーモアと社会的動向や<br />
                                 歴史的背景との共通項を見つけること
                             </p>
-                            <p className="cormorant tracking-wider text-xs mt-2 leading-loose">
+                            <p className="cormorant tracking-wider text-xs mt-2 !leading-loose">
                             Finding common ground between humor and social trends and historical context
                             </p>
                         </div>
                         <div ref={ref13} className={`transition-all delay-200 duration-700 ${inView13? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
                             <h6 className=" mt-8 w-7 h-7 rounded-full bg-black text-white flex justify-center items-center cormorant text-xl pb-2">3</h6>
-                            <p className="text-sm md:text-xl leading-loose mt-1">
+                            <p className="text-sm md:text-xl !leading-loose mt-1">
                                 適切なアウトプットを選択し<br />
                                 その先に見える景色を提供すること
                             </p>
-                            <p className="cormorant tracking-wider text-xs mt-2 leading-loose">
+                            <p className="cormorant tracking-wider text-xs mt-2 !leading-loose">
                                 Selecting the appropriate output and providing a view beyond it.
                             </p>
                         </div>
                         <div ref={ref14} className={`transition-all delay-200 duration-700 ${inView14? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
-                            <p className="text-sm md:text-xl leading-loose mt-10">
+                            <p className="text-sm md:text-xl !leading-loose mt-10">
                             私たちはユーモラスで艶やかな景色が<br />溢れる世界を目指していきます。
                             </p>
-                            <p className="cormorant tracking-wider text-xs mt-2 leading-loose">
+                            <p className="cormorant tracking-wider text-xs mt-2 !leading-loose">
                             We aim to create a world filled with humorous and lustrous landscapes.
                             </p>
                         </div>
@@ -135,14 +141,14 @@ export default function Concept2(props) {
                                 <span className="inline-block bg-[#00ffeb] px-2 py-1 text-lg">平面</span>
                                 <span className="cormorant text-lg tracking-wider">Flat Surface</span>
                             </h3>
-                            <h4 className="text-sm md:text-xl leading-loose mt-4">
+                            <h4 className="text-sm md:text-xl !leading-loose mt-4">
                                 ロゴマーク / webサイト / 名刺 / パンフレット等
                             </h4>
-                            <p className="text-xs leading-loose mt-4">
+                            <p className="text-xs !leading-loose mt-4">
                             デザインからヒアリング、リサーチ、イラストレーターの手配、紙の選定、印刷方法の選定、印刷業者の手配等を一貫して行うことができます。
                             </p>
 
-                            <p className="cormorant tracking-wider text-xs mt-2 leading-loose">
+                            <p className="cormorant tracking-wider text-xs mt-2 !leading-loose">
                             Logos, websites, business cards, pamphlets, etc. We can handle everything from design to interviews, research, arranging illustrators, selecting paper, selecting printing methods, arranging printers, etc.
                             </p>
                             <Link to="/?mode=index&category=5" className="jost tracking-widest text-xs mt-4 flex justify-between items-center w-full border-2 border-black rounded-full px-4 py-2 transition-colors hover:bg-black hover:text-white">
@@ -157,14 +163,14 @@ export default function Concept2(props) {
                                 <span className="inline-block bg-[#00ffeb] px-2 py-1 text-lg">画面</span>
                                 <span className="cormorant text-lg tracking-wider">Screen</span>
                             </h3>
-                            <h4 className="text-sm md:text-xl leading-loose mt-4">
+                            <h4 className="text-sm md:text-xl !leading-loose mt-4">
                             Webサイト / ECサイトの構築からデザイン
                             </h4>
-                            <p className="text-xs leading-loose mt-4">
+                            <p className="text-xs !leading-loose mt-4">
                             デザインからフロントエンド、バックエンド開発、CMS構築、ECサイト構築、インバウンド向け多言語サイト構築など網羅的に制作が可能です。
                             </p>
 
-                            <p className="cormorant tracking-wider text-xs mt-2 leading-loose">
+                            <p className="cormorant tracking-wider text-xs mt-2 !leading-loose">
                             Logos, websites, business cards, pamphlets, etc. We can handle everything from design to interviews, research, arranging illustrators, selecting paper, selecting printing methods, arranging printers, etc.
                             </p>
                             <Link to="/?mode=index&category=1" className="jost tracking-widest text-xs mt-4 flex justify-between items-center w-full border-2 border-black rounded-full px-4 py-2 transition-colors hover:bg-black hover:text-white">
@@ -179,14 +185,14 @@ export default function Concept2(props) {
                                 <span className="inline-block bg-[#00ffeb] px-2 py-1 text-lg">立体</span>
                                 <span className="cormorant text-lg tracking-wider">3D</span>
                             </h3>
-                            <h4 className="text-sm md:text-xl leading-loose mt-4">
+                            <h4 className="text-sm md:text-xl !leading-loose mt-4">
                             店舗サイン / ディスプレイ / パッケージ / 看板等
                             </h4>
-                            <p className="text-xs leading-loose mt-4">
+                            <p className="text-xs !leading-loose mt-4">
                             デザインからサイン計画、店舗レイアウト計画、サイン・パッケージ・看板・グッズの素材や仕様選定と各種業者の手配等を一貫して行うことができます。
                             </p>
 
-                            <p className="cormorant tracking-wider text-xs mt-2 leading-loose">
+                            <p className="cormorant tracking-wider text-xs mt-2 !leading-loose">
                             Store signs, displays, packaging, signage, etc.<br />We can provide a full range of services from design, signage planning, store layout planning, selection of materials and specifications for signs, packages, signage, and merchandise, and arrangement of various vendors.
                             </p>
                             <Link to="/?mode=index&category=3" className="jost tracking-widest text-xs mt-4 flex justify-between items-center w-full border-2 border-black rounded-full px-4 py-2 transition-colors hover:bg-black hover:text-white">
@@ -201,14 +207,14 @@ export default function Concept2(props) {
                                 <span className="inline-block bg-[#00ffeb] px-2 py-1 text-lg">思考</span>
                                 <span className="cormorant text-lg tracking-wider">Thinking</span>
                             </h3>
-                            <h4 className="text-sm md:text-xl leading-loose mt-4">
+                            <h4 className="text-sm md:text-xl !leading-loose mt-4">
                             コンセプトメイキング / 壁打ち / 企画
                             </h4>
-                            <p className="text-xs leading-loose mt-4">
+                            <p className="text-xs !leading-loose mt-4">
                             ヒアリングやリサーチ、会社・ブランドにおける方向性の提案や企画を行います。また参謀としての雑談やアイデアの壁打ち相手も行います。
                             </p>
 
-                            <p className="cormorant tracking-wider text-xs mt-2 leading-loose">
+                            <p className="cormorant tracking-wider text-xs mt-2 !leading-loose">
                             Concept-making, wall-hunting, planning<br />We conduct interviews and research, and propose and plan the direction of the company and brand. We also act as a consultant, chatting and brainstorming with other staff members.
                             </p>
                             <Link to="/?mode=index&category=2" className="jost tracking-widest text-xs mt-4 flex justify-between items-center w-full border-2 border-black rounded-full px-4 py-2 transition-colors hover:bg-black hover:text-white">
@@ -223,14 +229,14 @@ export default function Concept2(props) {
                                 <span className="inline-block bg-[#00ffeb] px-2 py-1 text-lg">嗅覚</span>
                                 <span className="cormorant text-lg tracking-wider">Smell</span>
                             </h3>
-                            <h4 className="text-sm md:text-xl leading-loose mt-4">
+                            <h4 className="text-sm md:text-xl !leading-loose mt-4">
                             混ぜるな危険 / コーポレートフレグランスの提案
                             </h4>
-                            <p className="text-xs leading-loose mt-4">
+                            <p className="text-xs !leading-loose mt-4">
                             香りに関するイベントを行うコレクティブチーム混ぜるな危険の企画と運営を行っています。またコーポレートフレグランスの制作や選定を行っています。
                             </p>
 
-                            <p className="cormorant tracking-wider text-xs mt-2 leading-loose">
+                            <p className="cormorant tracking-wider text-xs mt-2 !leading-loose">
                             MAZERUNAKIKEN, Corporate Fragrance Proposal<br />We plan and manage the collective team Mixed Dangerous, which holds events related to fragrance. We also create and select corporate fragrances.
                             </p>
                             <Link to="/?mode=index&category=4" className="jost tracking-widest text-xs mt-4 flex justify-between items-center w-full border-2 border-black rounded-full px-4 py-2 transition-colors hover:bg-black hover:text-white">
