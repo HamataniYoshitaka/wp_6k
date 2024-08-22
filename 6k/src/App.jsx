@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import Header from './Components/Header'
 import Footer from './Components/Footer'
 import Home from './Pages/Home'
-import Concept from './Pages/Concept'
 import Company from './Pages/Company'
 import Contact from './Pages/Contact'
 import Single from './Pages/Single'
@@ -64,8 +63,7 @@ function App() {
           <ScrollToTop />
           <Routes location={displayLocation}>
             <Route path="/" element={<Home />} />
-            <Route path="/concept" element={<Concept />} />
-            <Route path="/concept2" element={<Concept2 />} />
+            <Route path="/concept" element={<Concept2 />} />
             <Route path="/company" element={<Company />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/posts/:slug" element={<Single />} />
