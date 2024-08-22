@@ -40,23 +40,23 @@ export default function Concept2(props) {
             
             <div className="w-full grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative">
-                    <div className="lg:fixed top-0 left-0 lg:w-[50vw] h-screen flex justify-center items-center">
+                    <div className="lg:fixed top-0 left-0 lg:w-[50vw] h-[100svh] flex justify-center items-center">
                         <div className={`transition-all delay-200 duration-700 ${mounted? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
                             <img alt="ユーモラスで艶やかな景色をつくる" src={imgDir() + '/concept2/typo_copy.svg'} />
                             <p className="cormorant text-center tracking-widest mt-4">Creating a humorous and elegant scene</p>
                         </div>
                     </div>
-                    <svg className="lg:hidden absolute top-[calc(100vh-60px)] left-[calc(50vw-5px)]" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+                    <svg className="lg:hidden absolute top-[calc(100svh-60px)] left-[calc(50vw-5px)]" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
                         <polygon className="fill-current" points="0,0 10,0 5,7"/>
                     </svg>
-                    <svg className="lg:hidden absolute top-[calc(100vh-75px)] left-[calc(50vw-5px)]" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+                    <svg className="lg:hidden absolute top-[calc(100svh-75px)] left-[calc(50vw-5px)]" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
                         <polygon className="fill-current" points="0,0 10,0 5,7"/>
                     </svg>
-                    <svg className="lg:hidden absolute top-[calc(100vh-90px)] left-[calc(50vw-5px)]" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+                    <svg className="lg:hidden absolute top-[calc(100svh-90px)] left-[calc(50vw-5px)]" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
                         <polygon className="fill-current" points="0,0 10,0 5,7"/>
                     </svg>
                 </div>
-                <div className="py-48">
+                <div className="pt-2 pb-28 lg:pb-48 lg:pt-48">
                     <div className="max-w-[480px] mx-auto lg:mx-0 px-6 lg:px-0">
                         <h2 ref={ref1} className={`cormorant text-[#00ffeb] text-7xl tracking-wide transition-all delay-200 duration-700 ${inView1? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>Our Philosophy</h2>
                         <h3 ref={ref2} className={`text-sm md:text-xl mt-6 lg:mt-12 transition-all delay-200 duration-700 ${inView2? 'opacity-100 translate-y-0': 'opacity-0 translate-y-10'}`}>
