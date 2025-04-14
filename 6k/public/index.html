@@ -38,7 +38,9 @@
           FONTPLUS.start()
         }
       }
-      FONTPLUS.async()
+      if (typeof FONTPLUS !== 'undefined') {
+        FONTPLUS.async()
+      }
     </script>
   </head>
   <body>

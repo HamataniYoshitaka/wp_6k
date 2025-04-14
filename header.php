@@ -29,10 +29,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="https://webfont.fontplus.jp/accessor/script/fontplus.js?SKUuJA9FCRo%3D&box=a0gTO1QmFhk%3D&aa=1&ab=2"></script>
 <script type="text/javascript">
 function reload_fontPlus() {
-    FONTPLUS.start()
+    if (typeof FONTPLUS !== 'undefined') {
+        FONTPLUS.start()
+    }
 }
-FONTPLUS.async()
-
+if (typeof FONTPLUS !== 'undefined') {
+    FONTPLUS.async()
+}
 </script>
 <script defer="defer" src="<?php echo get_template_directory_uri(); ?>/6k/build/static/js/main.3781161f.js"></script>
 <link href="<?php echo get_template_directory_uri(); ?>/6k/build/static/css/main.00d1aa49.css" rel="stylesheet">
