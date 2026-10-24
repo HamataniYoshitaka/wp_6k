@@ -338,10 +338,47 @@ function create_nonce($data) {
     $nonce = wp_create_nonce( 'rokkei.co.jp' );
     return $nonce;
 }
+/**
+ * reCAPTCHA のトークンを Google に問い合わせて検証する
+ *
+ * @param string|null $token フロントから送られた g-recaptcha-response
+ * @return true|WP_Error 成功なら true、失敗なら WP_Error
+ */
+function verify_recaptcha( $token ) {
+    if ( ! defined( 'RECAPTCHA_SECRET' ) || RECAPTCHA_SECRET === '' ) {
+        return new WP_Error( 'recaptcha_not_configured', 'recaptcha error', [ 'status' => 500 ] );
+    }
+    if ( empty( $token ) || ! is_string( $token ) ) {
+        return new WP_Error( 'recaptcha_missing', 'recaptcha error', [ 'status' => 400 ] );
+    }
+    $res = wp_remote_post( 'https://www.google.com/recaptcha/api/siteverify', [
+        'timeout' => 10,
+        'body'    => [
+            'secret'   => RECAPTCHA_SECRET,
+            'response' => $token,
+            'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
+        ],
+    ] );
+    if ( is_wp_error( $res ) ) {
+        return new WP_Error( 'recaptcha_unreachable', 'recaptcha error', [ 'status' => 502 ] );
+    }
+    $json = json_decode( wp_remote_retrieve_body( $res ), true );
+    if ( empty( $json['success'] ) ) {
+        return new WP_Error( 'recaptcha_failed', 'recaptcha error', [ 'status' => 400 ] );
+    }
+    return true;
+}
+
 function contact($data) {
     $nonce = $data->get_param( 'nonce' );
     if ( ! wp_verify_nonce( $nonce, 'rokkei.co.jp' ) ) {
-        return 'nonce error';
+        return new WP_Error( 'nonce_invalid', 'nonce error', [ 'status' => 403 ] );
+    }
+
+    // reCAPTCHA (v2) のサーバー側検証。シークレットは wp-config.php の RECAPTCHA_SECRET
+    $recaptcha_error = verify_recaptcha( $data->get_param( 'recaptcha' ) );
+    if ( is_wp_error( $recaptcha_error ) ) {
+        return $recaptcha_error;
     }
     $name = $data->get_param( 'name' );
     $kana = $data->get_param( 'kana' );

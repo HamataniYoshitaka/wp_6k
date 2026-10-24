@@ -37,7 +37,7 @@ if (typeof FONTPLUS !== 'undefined') {
     FONTPLUS.async()
 }
 </script>
-<script defer="defer" src="<?php echo get_template_directory_uri(); ?>/6k/build/static/js/main.3781161f.js"></script>
+<script defer="defer" src="<?php echo get_template_directory_uri(); ?>/6k/build/static/js/main.0c26e0d9.js"></script>
 <link href="<?php echo get_template_directory_uri(); ?>/6k/build/static/css/main.00d1aa49.css" rel="stylesheet">
 </head>
 

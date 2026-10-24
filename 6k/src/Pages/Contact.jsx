@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NavFooter from "../Components/NavFooter";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
@@ -41,9 +41,15 @@ export default function Contact(props) {
         }
     }, [])
 
-    const [recaptcha, setRecapthca] = useState(false)
+    // reCAPTCHA のトークン本体を保持し、サーバー側で検証してもらう
+    const [recaptcha, setRecapthca] = useState(null)
+    const recaptchaRef = useRef(null)
     const onChallenge = (value) => {
-        setRecapthca(value != null)
+        setRecapthca(value)
+    }
+    const resetRecaptcha = () => {
+        setRecapthca(null)
+        recaptchaRef.current?.reset()
     }
     const {register, formState: {isValid, errors}, getValues} = useForm({
         resolver: yupResolver(schema),
@@ -63,19 +69,22 @@ export default function Contact(props) {
     const [tel, setTel] = useState('')
 
     const canSubmit = () => {
-        if (isValid && recaptcha) return true
+        if (isValid && !!recaptcha) return true
         else return false
     }
     const [nowLoading, setNowLoading] = useState(false)
     const [sent, setSent] = useState(false)
+    const [sendError, setSendError] = useState('')
     const submit = () => {
         const url = apiUrl() + '/wp-json/wp/6k/nonce'
         setNowLoading(true)
+        setSendError('')
         axios.post(url, {}).then(res => {
             console.log('success', res)
             const nonce = res.data
             const payload = {
                 nonce: nonce,
+                recaptcha: recaptcha,
                 name: getValues('name'),
                 kana: getValues('kana'),
                 email: getValues('email'),
@@ -89,14 +98,27 @@ export default function Contact(props) {
             const url2 = apiUrl() + '/wp-json/wp/6k/contact'
             axios.post(url2, payload).then(res => {
                 console.log('success', res)
-                setSent(true)
+                if (res.data && res.data.status === true) {
+                    setSent(true)
+                } else {
+                    setSendError('送信に失敗しました。時間をおいて再度お試しください。')
+                    resetRecaptcha()
+                }
                 setNowLoading(false)
             }).catch(errors => {
                 console.log('error', errors)
+                const code = errors?.response?.data?.code || ''
+                if (code.startsWith('recaptcha')) {
+                    setSendError('reCAPTCHA の確認に失敗しました。もう一度チェックを入れて送信してください。')
+                } else {
+                    setSendError('送信に失敗しました。時間をおいて再度お試しください。')
+                }
+                resetRecaptcha()
                 setNowLoading(false)
             })
         }).catch(errors => {
             console.log('error', errors)
+            setSendError('送信に失敗しました。時間をおいて再度お試しください。')
             setNowLoading(false)
         })
     }
@@ -180,10 +202,15 @@ export default function Contact(props) {
                         </div>
                         <div className="flex justify-center h-20">
                             <ReCAPTCHA
+                                ref={recaptchaRef}
                                 sitekey="6Lfn1NIZAAAAALJNpsIB0w9hFOSNL30s1Dx6rVmL"
                                 onChange={onChallenge}
+                                onExpired={() => setRecapthca(null)}
                             />
                         </div>
+                        {sendError && (
+                            <p className="text-xs text-red-600 text-center px-6">{sendError}</p>
+                        )}
                         {nowLoading? (
                             <div className="flex justify-center py-8">
                                 <div className="animate-spin h-10 w-10 border-4 border-stone-800 rounded-full border-t-transparent"></div>
